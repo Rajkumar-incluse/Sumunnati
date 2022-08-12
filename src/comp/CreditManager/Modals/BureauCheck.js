@@ -4,11 +4,15 @@ import InputWithLabel from '../../Common/InputWithLabel';
 
 const list = ["CIBIL", "Highmark", "EQUIFAX", "Worldcheck", "Experian"]
 
-function BureauCheck({ isOpen, closeModal }) {
-  const [details, setDetails] = useState(list.reduce((prev, curr) => {
-    prev[curr] = ''
-    return prev
-  }, { ESMS: '' }))
+function BureauCheck({ isOpen, data, type, closeModal }) {
+  const [details, setDetails] = useState(
+    data
+      ? { ...data }
+      : list.reduce((prev, curr) => {
+        prev[curr] = ''
+        return prev
+      }, { ESMS: '' })
+  )
 
   const onChage = e => {
     setDetails(p => ({
@@ -32,9 +36,9 @@ function BureauCheck({ isOpen, closeModal }) {
           <InputWithLabel
             key={l}
             name={l}
-            type='number'
             value={details[l]}
             onChage={onChage}
+            disabled={type === 'View'}
           />
         ))
       }
@@ -46,7 +50,7 @@ function BureauCheck({ isOpen, closeModal }) {
           name='ESMS'
           onChange={onChage}
           value={details.ESMS}
-          onChage={onChage}
+          disabled={type === 'View'}
         >
           <option value="" disabled></option>
           <option value="Applicable">Applicable</option>
@@ -54,12 +58,15 @@ function BureauCheck({ isOpen, closeModal }) {
         </select>
       </div>
 
-      <button
-        className='block w-3/4 mx-auto bg-[#a3dc5d] disabled:bg-[#b9e287] disabled:cursor-not-allowed'
-        onClick={closeModal}
-      >
-        Update
-      </button>
+      {
+        type !== 'View' &&
+        <button
+          className='block w-3/4 mx-auto bg-[#a3dc5d] disabled:bg-[#b9e287] disabled:cursor-not-allowed'
+          onClick={closeModal}
+        >
+          Update
+        </button>
+      }
     </Modal>
   )
 }

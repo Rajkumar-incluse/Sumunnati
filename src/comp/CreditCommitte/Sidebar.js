@@ -10,27 +10,27 @@ const list = [
   {
     title: "Dashboard",
     icon: <Dashboard />,
-    to: '/credit_committe/dashboard'
+    to: '/credit_committee/dashboard'
   },
   {
     title: "FPO Info",
     icon: <Dpr />,
-    to: '/credit_committe/fpo'
+    to: '/credit_committee/fpo'
   },
   {
     title: "Loan",
     icon: <Loan />,
-    to: '/credit_committe/loan'
+    to: '/credit_committee/loan'
   },
   {
     title: "Support",
     icon: <Support />,
-    to: '/credit_committe/support'
+    to: '/credit_committee/support'
   },
   {
     title: "Settings",
     icon: <Setting />,
-    to: '/credit_committe/setting'
+    to: '/credit_committee/setting'
   },
 ]
 

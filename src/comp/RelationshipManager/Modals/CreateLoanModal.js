@@ -175,7 +175,7 @@ function CreateLoanModal({
               <SelectWithInput
                 list={["Anughraha FPO", "ABCD FPO", "Samrthi FPO"]}
                 lable='FPO Name'
-                btnCls='ml-px mb-4'
+                btnCls='mb-4'
                 value={details.FPO_Name}
                 query={query}
                 setQuery={setQuery}
@@ -287,6 +287,7 @@ function CreateLoanModal({
                 value={details.Margin}
                 onChage={onChange}
                 disabled={type === "View"}
+                isPercentage
               />
 
               <InputWithLabel
@@ -688,7 +689,7 @@ function CreateLoanModal({
           }
 
           {
-            step < 5 &&
+            ((type !== "Create" && step < 5) || (type === "Create" && step < 4)) &&
             <button
               className='ml-auto bg-[#a3dc5d] hover:scale-105'
               onClick={() => setStep(p => p + 1)}
@@ -698,7 +699,7 @@ function CreateLoanModal({
           }
 
           {
-            step === 5 && type !== "View" &&
+            ((step === 5 && type !== "View") || (type === "Create" && step === 4)) &&
             <button
               className='ml-auto bg-[#a3dc5d] hover:scale-105'
             >

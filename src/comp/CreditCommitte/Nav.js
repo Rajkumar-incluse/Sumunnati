@@ -9,7 +9,7 @@ function Nav() {
 
   const onClk = val => {
     if (val === "Profile") {
-      navigate('/credit_committe/setting')
+      navigate('/credit_committee/setting')
     } else if (val === 'Log out') {
       navigate('/')
     }

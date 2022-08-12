@@ -2,11 +2,6 @@ import Modal, { ModalHeader } from '../../UIComp/Modal';
 
 const data = [
   {
-    role: 'Credit Manager',
-    status: 'Accepted',
-    comment: 'Some comment added by Credit Manager.'
-  },
-  {
     role: 'Credit Committee',
     status: 'Accepted',
     comment: 'Some comment added by Credit Committee.'
@@ -23,11 +18,9 @@ const data = [
   },
 ]
 
-function Status({ isOpen, closeModal }) {
+function OthersStatus({ isOpen, closeModal }) {
   return (
-    <Modal
-      isOpen={isOpen}
-    >
+    <Modal isOpen={isOpen}>
       <ModalHeader
         title="Status"
         closeModal={closeModal}
@@ -58,4 +51,4 @@ function Status({ isOpen, closeModal }) {
   )
 }
 
-export default Status
+export default OthersStatus

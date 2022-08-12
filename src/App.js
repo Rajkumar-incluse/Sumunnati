@@ -92,7 +92,7 @@ function App() {
           <Route path='loan' element={<CADLoan />} />
         </Route>
 
-        <Route path="credit_committe" element={<CC />}>
+        <Route path="credit_committee" element={<CC />}>
           <Route path='fpo' element={<CCFPO />} />
           <Route path='support' element={<CCSupport />} />
           <Route path='dashboard' element={<CCDashboard />} />

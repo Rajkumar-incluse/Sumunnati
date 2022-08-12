@@ -40,8 +40,8 @@ function Login() {
       navigate('/credit_admin_department/fpo')
     }
 
-    if (deatails.email === "credit_committe" && deatails.pass === "credit_committe") {
-      navigate('/credit_committe/fpo')
+    if (deatails.email === "credit_committee" && deatails.pass === "credit_committee") {
+      navigate('/credit_committee/fpo')
     }
 
     if (deatails.email === "credit_operations" && deatails.pass === "credit_operations") {
