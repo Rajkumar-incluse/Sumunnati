@@ -203,7 +203,7 @@ function CreateLoanModal({
                 name='Arrangement'
                 value={details.Arrangement}
                 options={options.Arrangement}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -212,7 +212,7 @@ function CreateLoanModal({
                 name='Aggregate_disbursement'
                 lable='Aggregate disbursement'
                 value={details.Aggregate_disbursement}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -249,7 +249,7 @@ function CreateLoanModal({
                 name='Validity_of_limit'
                 lable='Validity of limit'
                 value={details.Validity_of_limit}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -258,7 +258,7 @@ function CreateLoanModal({
                 name='Purpose'
                 options={options.Purpose}
                 value={details.Purpose}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -268,7 +268,7 @@ function CreateLoanModal({
                 lable='Nature of facility'
                 options={options.Nature_of_facility}
                 value={details.Nature_of_facility}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -277,7 +277,7 @@ function CreateLoanModal({
                 lable='Revolving/Non-revolving'
                 options={options.Revolving}
                 value={details.Revolving}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -285,7 +285,7 @@ function CreateLoanModal({
                 name='Margin'
                 type='number'
                 value={details.Margin}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
                 isPercentage
               />
@@ -296,7 +296,7 @@ function CreateLoanModal({
                 lable='Principal repayment'
                 options={options.Principal_repayment}
                 value={details.Principal_repayment}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
             </>
@@ -317,7 +317,7 @@ function CreateLoanModal({
                 lable='Interest repayment'
                 options={options.Interest_repayment}
                 value={details.Interest_repayment}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -332,7 +332,7 @@ function CreateLoanModal({
                 name='Security'
                 options={options.Security}
                 value={details.Security}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -353,7 +353,7 @@ function CreateLoanModal({
                 name='Rate_of_Interest'
                 lable='Rate of Interest'
                 value={details.Rate_of_Interest}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -363,7 +363,7 @@ function CreateLoanModal({
                 name='Referral_fee'
                 lable='Referral fee'
                 value={details.Referral_fee}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -373,7 +373,7 @@ function CreateLoanModal({
                 name='Processing_fee'
                 lable='Processing fee'
                 value={details.Processing_fee}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -387,7 +387,7 @@ function CreateLoanModal({
                 name='Name_of_the_pool'
                 lable='Name of the pool'
                 value={details.Name_of_the_pool}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -397,7 +397,7 @@ function CreateLoanModal({
                 name='Average_yield'
                 lable='Average yield'
                 value={details.Average_yield}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
             </>
@@ -411,7 +411,7 @@ function CreateLoanModal({
                 name='PSL'
                 value={details.PSL}
                 options={options.PSL}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -421,7 +421,7 @@ function CreateLoanModal({
                 name='Coupon_rate'
                 lable='Coupon rate'
                 value={details.Coupon_rate}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -429,7 +429,7 @@ function CreateLoanModal({
                 name='Payment_terms'
                 lable='Payment terms'
                 value={details.Payment_terms}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -437,7 +437,7 @@ function CreateLoanModal({
                 name='Nature_of_underlying_asset'
                 lable='Nature of underlying asset'
                 value={details.Nature_of_underlying_asset}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -447,7 +447,7 @@ function CreateLoanModal({
                 lable='Average tenor'
                 value={details.Average_tenor}
                 options={options.Average_tenor}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -462,7 +462,7 @@ function CreateLoanModal({
                 name='Number_of_obligors'
                 lable='Number of obligors'
                 value={details.Number_of_obligors}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -472,7 +472,7 @@ function CreateLoanModal({
                 name='Consideration_amount'
                 lable='Consideration amount'
                 value={details.Consideration_amount}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -481,21 +481,21 @@ function CreateLoanModal({
                 name='Cut_off_date'
                 lable='Cut-off date'
                 value={details.Cut_off_date}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
               <InputWithLabel
                 name='Asignee'
                 value={details.Asignee}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
               <InputWithLabel
                 name='Originator'
                 value={details.Originator}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
             </>
@@ -510,7 +510,7 @@ function CreateLoanModal({
                 name='Pool_size'
                 lable='Pool size'
                 value={details.Pool_size}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -519,7 +519,7 @@ function CreateLoanModal({
                 name='Execution_date'
                 lable='Execution date(Tentative)'
                 value={details.Execution_date}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -528,7 +528,7 @@ function CreateLoanModal({
                 name='Pool_maturity_date'
                 lable='Pool maturity date'
                 value={details.Pool_maturity_date}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -541,7 +541,7 @@ function CreateLoanModal({
                 name='External_rating_Entity'
                 lable='External rating(Entity)'
                 value={details.External_rating_Entity}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -549,7 +549,7 @@ function CreateLoanModal({
                 name='External_rating_Individual'
                 lable='External rating(Individual)'
                 value={details.External_rating_Individual}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -557,7 +557,7 @@ function CreateLoanModal({
                 name='Samunnati_score'
                 lable='Samunnati score'
                 value={details.Samunnati_score}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -567,7 +567,7 @@ function CreateLoanModal({
                 lable='Business segment'
                 options={options.Business_segment}
                 value={details.Business_segment}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -577,7 +577,7 @@ function CreateLoanModal({
                 lable='Nature of security'
                 options={options.Nature_of_security}
                 value={details.Nature_of_security}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
 
@@ -586,7 +586,7 @@ function CreateLoanModal({
                 name='Guarantee'
                 options={options.Guarantee}
                 value={details.Guarantee}
-                onChage={onChange}
+                onChange={onChange}
                 disabled={type === "View"}
               />
             </>

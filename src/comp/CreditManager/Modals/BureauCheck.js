@@ -14,7 +14,7 @@ function BureauCheck({ isOpen, data, type, closeModal }) {
       }, { ESMS: '' })
   )
 
-  const onChage = e => {
+  const onChange = e => {
     setDetails(p => ({
       ...p,
       [e.target.name]: e.target.value
@@ -37,7 +37,7 @@ function BureauCheck({ isOpen, data, type, closeModal }) {
             key={l}
             name={l}
             value={details[l]}
-            onChage={onChage}
+            onChange={onChange}
             disabled={type === 'View'}
           />
         ))
@@ -48,7 +48,7 @@ function BureauCheck({ isOpen, data, type, closeModal }) {
         <select
           id='esms-bu'
           name='ESMS'
-          onChange={onChage}
+          onChange={onChange}
           value={details.ESMS}
           disabled={type === 'View'}
         >

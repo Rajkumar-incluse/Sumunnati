@@ -4,7 +4,7 @@ function InputWithLabel({
   lable = '', name = '', type = 'text',
   wrapperCls = 'mb-4', labelCls = 'mb-1', inputCls = '',
   isSelect = false, options = [], disabled,
-  value = '', onChage = () => { },
+  value = '', onChange = () => { },
   isPercentage = false, isRupee = false,
 }) {
   const id = useId()
@@ -21,7 +21,7 @@ function InputWithLabel({
             id={id}
             name={name}
             value={value}
-            onChange={onChage}
+            onChange={onChange}
             className={inputCls}
             disabled={disabled}
           >
@@ -39,7 +39,7 @@ function InputWithLabel({
               type={type}
               name={name}
               value={value}
-              onChange={onChage}
+              onChange={onChange}
               className={`no-number-arrows ${isPercentage || isRupee ? "pr-8" : ""} ${inputCls}`}
               disabled={disabled}
             />

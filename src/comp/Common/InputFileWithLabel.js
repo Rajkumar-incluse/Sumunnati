@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 
 function InputFileWithLabel({
   lable = '', wrapperCls = 'mb-4', labelCls = 'mb-1',
-  inputCls = '', onChage = () => { }, val = '', updateImg
+  inputCls = '', onChange = () => { }, val = '', updateImg
 }) {
   const [isUpdate, setIsUpdate] = useState(false)
   const id = useId()
@@ -21,7 +21,7 @@ function InputFileWithLabel({
         <input
           type="file"
           id={id}
-          onChange={onChage}
+          onChange={onChange}
           className={`mb-1 ${inputCls}`}
         />
       }
