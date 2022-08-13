@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import data from '../../dummy/manager/dpr';
+import dummyData from '../../dummy/manager/dpr';
 
-import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
+import RepaymentStructure from './Modals/RepaymentStructure';
+import UploadExecutedDocs from './Modals/UploadExecutedDocs';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import CheckListModal from './Modals/CheckListModal';
 import StatusUpdate from './Modals/StatusUpdate';
+import Tabs from '../UIComp/Tabs';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -50,15 +53,20 @@ const emptyDetails = {
   otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
 }
 
-function Loan() {
-  const [open, setOpen] = useState("")
+const statusData = {
+  confirmed: true,
+  comment: 'Some data as the comments for this section...',
+  status: 'Accept',
+}
+
+function GrantedTable({ data = [], updateOpen }) {
   const [filterByRM, setFilterByRM] = useState('None')
   const [rmNames, setRmNames] = useState([])
 
   useEffect(() => {
     let filteredNames = [...new Set(data.map(p => p.name))]
     setRmNames([...new Set(["None", ...filteredNames])])
-  }, [])
+  }, [data])
 
   const finalData = useMemo(() => {
     let final = data
@@ -67,9 +75,193 @@ function Loan() {
     }
 
     return final
-  }, [filterByRM])
+  }, [filterByRM, data])
 
-  const updateOpen = val => setOpen(val)
+  return (
+    <table className='w-full table-fixed'>
+      <thead>
+        <tr className='sticky top-0 bg-white text-left'>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>
+            <DropDownWrapper
+              list={rmNames}
+              onClk={setFilterByRM}
+              active={filterByRM}
+              activeCls='bg-[#a3dc5d]'
+              rootCls='p-0'
+            >
+              RM name
+            </DropDownWrapper>
+          </td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
+          <td className='w-24 pl-2 pr-4 py-4 text-gray-500 font-medium leading-5'>Status</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {
+          finalData.map((d, i) => (
+            <tr key={d.id} className='text-sm'>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
+              <td className='px-2 py-1'>{d.start}</td>
+              <td className='px-2 py-1'>{d.fpo}</td>
+              <td className='px-2 py-1'>{d.name}</td>
+              <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1'>{d.start}</td>
+              <td className='px-2 py-1'>&#8377; {d.due}</td>
+              <td className='px-2 py-1'>&#8377; {d.due - 400}</td>
+              <td className='px-2 py-1'>{d.end}</td>
+              <td className='px-2 py-1'>
+                <button
+                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('Repayment')}
+                >
+                  View
+                </button>
+              </td>
+              <td className='pl-2 pr-4 py-1'>
+                <button
+                  className={`py-0.5 px-0 w-[82px] text-xs ${i % 3 === 0 ? ' bg-yellow-200 text-yellow-900' : 'bg-green-300 text-green-800'}`}
+                >
+                  {i % 3 === 0 ? 'In progress' : 'Repaid'}
+                </button>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  )
+}
+
+function ProcessTable({ data = [], updateOpen }) {
+  const [filterByRM, setFilterByRM] = useState('None')
+  const [rmNames, setRmNames] = useState([])
+
+  useEffect(() => {
+    let filteredNames = [...new Set(data.map(p => p.name))]
+    setRmNames([...new Set(["None", ...filteredNames])])
+  }, [data])
+
+  const finalData = useMemo(() => {
+    let final = data
+    if (filterByRM !== "None") {
+      final = final.filter(n => n.name === filterByRM)
+    }
+
+    return final
+  }, [filterByRM, data])
+
+  return (
+    <table className='w-full table-fixed'>
+      <thead>
+        <tr className='sticky top-0 bg-white text-left'>
+          <td className='w-28 pl-4 xl:pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>
+            <DropDownWrapper
+              list={rmNames}
+              onClk={setFilterByRM}
+              active={filterByRM}
+              activeCls='bg-[#a3dc5d]'
+              rootCls='p-0'
+            >
+              RM name
+            </DropDownWrapper>
+          </td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Check list</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Action</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Upload executed documents</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {
+          finalData.map((d, i) => (
+            <tr key={d.id} className='text-sm'>
+              <td className='pl-4 xl:pl-12 pr-2 py-1'>{d.loanId}</td>
+              <td className='px-2 py-1'>{d.start}</td>
+              <td className='px-2 py-1'>{d.fpo}</td>
+              <td className='px-2 py-1'>{d.name}</td>
+              <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1'>
+                <button
+                  className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('Check list')}
+                >
+                  View
+                </button>
+              </td>
+              <td className='px-2 py-1'>
+                {
+                  i % 3 !== 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('Status', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('Status')}
+                    >
+                      Update
+                    </button>
+                }
+              </td>
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('UploadExecutedDocs', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('UploadExecutedDocs', 'Create')}
+                    >
+                      Update
+                    </button>
+                }
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  )
+}
+
+const lists = ['Granted Loans', 'Loans in process']
+
+function Loan() {
+  const [open, setOpen] = useState("")
+  const [type, setType] = useState('')
+
+  const updateOpen = (val, condition) => {
+    setOpen(val)
+    if (condition) setType(condition)
+  }
+
+  const closeModal = () => {
+    setOpen('')
+    setType('')
+  }
 
   return (
     <section className='dfc h-full overflow-y-hidden bg-[#f7f7f7]'>
@@ -77,60 +269,21 @@ function Loan() {
         <h1 className='text-2xl'>Loan Information</h1>
       </div>
 
-      <div className='scroll-y mx-4 my-2 bg-white'>
-        <table className='w-full'>
-          <thead>
-            <tr className='sticky top-0 bg-white text-left'>
-              <td className='pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'>
-                <DropDownWrapper
-                  list={rmNames}
-                  onClk={setFilterByRM}
-                  active={filterByRM}
-                  activeCls='bg-[#a3dc5d]'
-                  rootCls='p-0'
-                >
-                  RM name
-                </DropDownWrapper>
-              </td>
-              <td className='px-2 py-4 text-gray-500 font-medium'>Action</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'></td>
-            </tr>
-          </thead>
-
-          <tbody>
-            {
-              finalData.map(d => (
-                <tr key={d.id} className='text-sm'>
-                  <td className='pl-12 pr-2 py-1'>{d.loanId}</td>
-                  <td className='px-2 py-1'>{d.fpo}</td>
-                  <td className='px-2 py-1'>&#8377; {d.amount}</td>
-                  <td className='px-2 py-1'>{d.name}</td>
-                  <td className='px-2 py-1'>
-                    <button
-                      className='py-px bg-[#a3dc5d] rounded-full'
-                      onClick={() => updateOpen('Status')}
-                    >
-                      Update
-                    </button>
-                  </td>
-                  <td className='px-2 py-1'>
-                    <DropDownWrapper
-                      needArrow
-                      list={['View']}
-                      onClk={val => updateOpen(val)}
-                    >
-                      <Dot className='w-5 h-5 [--svg-color:#333]' />
-                    </DropDownWrapper>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
+      <Tabs
+        tabsList={lists}
+        listClass='mx-6'
+        tabClass='pb-2'
+        panelClass='scroll-y overflow-x-auto mx-4 my-2 bg-white'
+      >
+        <GrantedTable
+          data={dummyData.filter(d => d.appOrRe === 'Accepted')}
+          updateOpen={updateOpen}
+        />
+        <ProcessTable
+          data={dummyData.filter(d => d.appOrRe === 'Pending')}
+          updateOpen={updateOpen}
+        />
+      </Tabs>
 
       {
         open === 'View' &&
@@ -138,7 +291,15 @@ function Loan() {
           isOpen
           type={open}
           data={open !== "Create" ? emptyDetails : false}
-          closeModal={() => updateOpen('')}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === 'Repayment' &&
+        <RepaymentStructure
+          isOpen
+          closeModal={closeModal}
         />
       }
 
@@ -146,7 +307,26 @@ function Loan() {
         open === 'Status' &&
         <StatusUpdate
           isOpen
-          closeModal={() => updateOpen('')}
+          type={type}
+          data={type ? statusData : false}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === 'Check list' &&
+        <CheckListModal
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === 'UploadExecutedDocs' &&
+        <UploadExecutedDocs
+          isOpen
+          type={type}
+          closeModal={closeModal}
         />
       }
     </section>

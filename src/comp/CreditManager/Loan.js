@@ -64,7 +64,7 @@ const bureaCheckData = {
 
 const statusData = {
   confirmed: true,
-  comment: 'Some data as the comment for this section...',
+  comment: 'Some data as the comments for this section...',
   status: 'Accept',
 }
 
@@ -212,6 +212,23 @@ function RejectedTable({ data = [] }) {
 }
 
 function ProcessTable({ data = [], updateOpen }) {
+  const [filterByRM, setFilterByRM] = useState('None')
+  const [rmNames, setRmNames] = useState([])
+
+  useEffect(() => {
+    let filteredNames = [...new Set(data.map(p => p.name))]
+    setRmNames([...new Set(["None", ...filteredNames])])
+  }, [data])
+
+  const finalData = useMemo(() => {
+    let final = data
+    if (filterByRM !== "None") {
+      final = final.filter(n => n.name === filterByRM)
+    }
+
+    return final
+  }, [filterByRM, data])
+
   return (
     <table className='w-full table-fixed'>
       <thead>
@@ -219,6 +236,17 @@ function ProcessTable({ data = [], updateOpen }) {
           <td className='w-28 pl-4 xl:pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>
+            <DropDownWrapper
+              list={rmNames}
+              onClk={setFilterByRM}
+              active={filterByRM}
+              activeCls='bg-[#a3dc5d]'
+              rootCls='p-0'
+            >
+              RM name
+            </DropDownWrapper>
+          </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Bureau Check</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Action</td>
@@ -228,11 +256,12 @@ function ProcessTable({ data = [], updateOpen }) {
 
       <tbody>
         {
-          data.map((d, i) => (
+          finalData.map((d, i) => (
             <tr key={d.id} className='text-sm'>
               <td className='pl-4 xl:pl-12 pr-2 py-1'>{d.loanId}</td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
+              <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1'>
                 {
