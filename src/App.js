@@ -44,7 +44,18 @@ const CCLoan = lazy(() => import("./comp/CreditCommitte/Loan"))
 const CCFPO = lazy(() => import("./comp/CreditCommitte/FPO"))
 const CC = lazy(() => import("./comp/CreditCommitte"))
 
+const CODashboard = lazy(() => import("./comp/CreditOperations/Dashboard"))
+const COSettings = lazy(() => import("./comp/CreditOperations/Settings"))
+const COSupport = lazy(() => import("./comp/CreditOperations/Support"))
+const COLoan = lazy(() => import("./comp/CreditOperations/Loan"))
+const COFPO = lazy(() => import("./comp/CreditOperations/FPO"))
 const CO = lazy(() => import("./comp/CreditOperations"))
+
+const OpDashboard = lazy(() => import("./comp/Operations/Dashboard"))
+const OpSettings = lazy(() => import("./comp/Operations/Settings"))
+const OpSupport = lazy(() => import("./comp/Operations/Support"))
+const OpLoan = lazy(() => import("./comp/Operations/Loan"))
+const OpFPO = lazy(() => import("./comp/Operations/FPO"))
 const Op = lazy(() => import("./comp/Operations"))
 
 function App() {
@@ -100,8 +111,21 @@ function App() {
           <Route path='loan' element={<CCLoan />} />
         </Route>
 
-        <Route path="credit_operations" element={<CO />} />
-        <Route path="operations" element={<Op />} />
+        <Route path="credit_operations" element={<CO />} >
+          <Route path='fpo' element={<COFPO />} />
+          <Route path='support' element={<COSupport />} />
+          <Route path='dashboard' element={<CODashboard />} />
+          <Route path='setting' element={<COSettings />} />
+          <Route path='loan' element={<COLoan />} />
+        </Route>
+
+        <Route path="operations" element={<Op />} >
+          <Route path='fpo' element={<OpFPO />} />
+          <Route path='support' element={<OpSupport />} />
+          <Route path='dashboard' element={<OpDashboard />} />
+          <Route path='setting' element={<OpSettings />} />
+          <Route path='loan' element={<OpLoan />} />
+        </Route>
       </Routes>
     </Suspense>
   )

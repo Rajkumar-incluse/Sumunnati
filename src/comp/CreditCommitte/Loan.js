@@ -54,7 +54,7 @@ const emptyDetails = {
 
 const statusData = {
   confirmed: true,
-  comment: 'Some data as the comments for this section...',
+  comment: 'Some data as the comment for this section...',
   status: 'Accept',
 }
 
