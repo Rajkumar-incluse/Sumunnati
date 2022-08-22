@@ -6,7 +6,7 @@ function DisbursementLetter({ isOpen, type, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
-      contentCls={`dfc w-[400px] ${type === 'View' ? "h-[500px]" : "h-[250px]"} relative`}
+      contentCls={`dfc w-[400px] ${type === 'View' ? "h-[500px]" : "h-[250px]"}`}
     >
       <ModalHeader
         title="Disbursement request Letter"

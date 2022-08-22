@@ -53,18 +53,9 @@ const emptyDetails = {
   otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
 }
 
-const bureaCheckData = {
-  CIBIL: 'Cibil data',
-  Highmark: '10',
-  EQUIFAX: 'EQUIFAX data',
-  Worldcheck: 'Worldcheck data',
-  Experian: "Experian data",
-  ESMS: 'Applicable'
-}
-
 const statusData = {
   confirmed: true,
-  comment: 'Some data as the comment for this section...',
+  comment: 'Please add document X',
   status: 'Accept',
 }
 
@@ -104,7 +95,7 @@ function GrantedTable({ data = [], updateOpen }) {
               RM name
             </DropDownWrapper>
           </td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
@@ -373,7 +364,6 @@ function Loan() {
         <BureauCheck
           isOpen
           type={type}
-          data={type ? bureaCheckData : false}
           closeModal={closeModal}
         />
       }

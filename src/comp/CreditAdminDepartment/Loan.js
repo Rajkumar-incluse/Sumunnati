@@ -8,6 +8,7 @@ import { DropDownWrapper } from '../UIComp/DropDown';
 import CheckListModal from './Modals/CheckListModal';
 import StatusUpdate from './Modals/StatusUpdate';
 import Tabs from '../UIComp/Tabs';
+import LSAModal from './Modals/LSAModal';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -55,7 +56,7 @@ const emptyDetails = {
 
 const statusData = {
   confirmed: true,
-  comment: 'Some data as the comments for this section...',
+  comment: 'Please add document X',
   status: 'Accept',
 }
 
@@ -95,13 +96,14 @@ function GrantedTable({ data = [], updateOpen }) {
               RM name
             </DropDownWrapper>
           </td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
-          <td className='w-24 pl-2 pr-4 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>LSA</td>
         </tr>
       </thead>
 
@@ -133,6 +135,25 @@ function GrantedTable({ data = [], updateOpen }) {
                   {i % 3 === 0 ? 'In progress' : 'Repaid'}
                 </button>
               </td>
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('lsa', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('lsa', 'Create')}
+                    >
+                      Pending
+                    </button>
+                }
+              </td>
             </tr>
           ))
         }
@@ -163,10 +184,10 @@ function ProcessTable({ data = [], updateOpen }) {
     <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='w-28 pl-4 xl:pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>
             <DropDownWrapper
               list={rmNames}
               onClk={setFilterByRM}
@@ -177,10 +198,11 @@ function ProcessTable({ data = [], updateOpen }) {
               RM name
             </DropDownWrapper>
           </td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
-          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Check list</td>
-          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Action</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Upload executed documents</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Check list</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Action</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Upload executed documents</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>LSA</td>
         </tr>
       </thead>
 
@@ -188,7 +210,7 @@ function ProcessTable({ data = [], updateOpen }) {
         {
           finalData.map((d, i) => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-4 xl:pl-12 pr-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
@@ -236,6 +258,25 @@ function ProcessTable({ data = [], updateOpen }) {
                       onClick={() => updateOpen('UploadExecutedDocs', 'Create')}
                     >
                       Update
+                    </button>
+                }
+              </td>
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('lsa', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('lsa', 'Create')}
+                    >
+                      Pending
                     </button>
                 }
               </td>
@@ -324,6 +365,15 @@ function Loan() {
       {
         open === 'UploadExecutedDocs' &&
         <UploadExecutedDocs
+          isOpen
+          type={type}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === 'lsa' &&
+        <LSAModal
           isOpen
           type={type}
           closeModal={closeModal}

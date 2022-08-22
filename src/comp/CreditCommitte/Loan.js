@@ -54,7 +54,7 @@ const emptyDetails = {
 
 const statusData = {
   confirmed: true,
-  comment: 'Some data as the comment for this section...',
+  comment: 'Please add document X',
   status: 'Accept',
 }
 
@@ -94,7 +94,7 @@ function GrantedTable({ data = [], updateOpen }) {
               RM name
             </DropDownWrapper>
           </td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>

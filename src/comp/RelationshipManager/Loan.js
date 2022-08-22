@@ -2,8 +2,10 @@ import { useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
 import RepaymentStructure from './Modals/RepaymentStructure';
+import DisbursementLetter from './Modals/DisbursementLetter';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import CheckListModal from './Modals/CheckListModal';
+import InterestModal from './Modals/InterestModal';
 import Status from './Modals/Status';
 import Tabs from '../UIComp/Tabs';
 
@@ -51,7 +53,7 @@ const emptyDetails = {
   otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
 }
 
-function GrantedTable({ data = [], updateRepaymentModal }) {
+function GrantedTable({ data = [], updateOpen }) {
   return (
     <table className='w-full table-fixed'>
       <thead>
@@ -59,13 +61,15 @@ function GrantedTable({ data = [], updateRepaymentModal }) {
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
-          <td className='w-24 pl-2 pr-4 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
         </tr>
       </thead>
 
@@ -77,6 +81,9 @@ function GrantedTable({ data = [], updateRepaymentModal }) {
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                {i % 2 === 0 ? "40%" : "60%"}
+              </td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>&#8377; {d.due}</td>
               <td className='px-2 py-1'>&#8377; {d.due - 400}</td>
@@ -84,49 +91,36 @@ function GrantedTable({ data = [], updateRepaymentModal }) {
               <td className='px-2 py-1'>
                 <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={updateRepaymentModal}
+                  onClick={() => updateOpen('repaymentModal')}
                 >
                   View
                 </button>
               </td>
-              <td className='pl-2 pr-4 py-1'>
+              <td className='px-2 py-1'>
                 <button
                   className={`py-0.5 px-0 w-[82px] text-xs ${i % 3 === 0 ? ' bg-yellow-200 text-yellow-900' : 'bg-green-300 text-green-800'}`}
                 >
                   {i % 3 === 0 ? 'In progress' : 'Repaid'}
                 </button>
               </td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
-  )
-}
-
-function RejectedTable({ data = [] }) {
-  return (
-    <table className='w-full table-fixed'>
-      <thead>
-        <tr className='sticky top-0 bg-white text-left'>
-          <td className='w-28 xl:w-auto pl-4 xl:pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
-          <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
-          <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
-          <td className='w-80 px-2 py-4 xl:pr-12 text-gray-500 font-medium'>Reason for rejection (Comment of credit committee)</td>
-        </tr>
-      </thead>
-
-      <tbody>
-        {
-          data.map(d => (
-            <tr key={d.id} className='text-sm'>
-              <td className='pl-4 xl:pl-12 pr-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>{d.start}</td>
-              <td className='px-2 py-1'>{d.fpo}</td>
-              <td className='px-2 py-1'>&#8377; {d.amount}</td>
-              <td className='px-2 py-1 xl:pr-12'>
-                Document is not correct
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('Disbursement', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('Disbursement', "Create")}
+                    >
+                      Pending
+                    </button>
+                }
               </td>
             </tr>
           ))
@@ -136,18 +130,18 @@ function RejectedTable({ data = [] }) {
   )
 }
 
-function ProcessTable({ data = [], updateOpen, updateStatus, updateUpdateCLModal }) {
+function RejectedTable({ data = [], updateOpen }) {
   return (
     <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='w-28 pl-4 xl:pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
-          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Loan application</td>
-          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Status</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Update checklist</td>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
+          <td className='w-80 px-2 py-4 text-gray-500 font-medium leading-5'>Reason for rejection (Comment of credit committee)</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
         </tr>
       </thead>
 
@@ -155,24 +149,85 @@ function ProcessTable({ data = [], updateOpen, updateStatus, updateUpdateCLModal
         {
           data.map((d, i) => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-4 xl:pl-12 pr-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                {i % 2 === 0 ? "40%" : "60%"}
+              </td>
+              <td className='px-2 py-1 xl:pr-12'>
+                Document is not correct
+              </td>
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('Disbursement', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('Disbursement', "Create")}
+                    >
+                      Pending
+                    </button>
+                }
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  )
+}
+
+function ProcessTable({ data = [], updateOpen }) {
+  return (
+    <table className='w-full table-fixed'>
+      <thead>
+        <tr className='sticky top-0 bg-white text-left'>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Update checklist</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {
+          data.map((d, i) => (
+            <tr key={d.id} className='text-sm'>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
+              <td className='px-2 py-1'>{d.start}</td>
+              <td className='px-2 py-1'>{d.fpo}</td>
+              <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                {i % 2 === 0 ? "40%" : "60%"}
+              </td>
               <td className='px-2 py-1'>
                 {
                   i % 2 === 0
                     ?
                     <button
                       className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                      onClick={() => updateOpen('View')}
+                      onClick={() => updateOpen('loan', 'View')}
                     >
                       View
                     </button>
                     :
                     <button
                       className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                      onClick={() => updateOpen('Edit')}
+                      onClick={() => updateOpen('loan', 'Edit')}
                     >
                       Edit
                     </button>
@@ -181,7 +236,7 @@ function ProcessTable({ data = [], updateOpen, updateStatus, updateUpdateCLModal
               <td className='px-2 py-1'>
                 <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={updateStatus}
+                  onClick={() => updateOpen('status')}
                 >
                   View
                 </button>
@@ -189,10 +244,29 @@ function ProcessTable({ data = [], updateOpen, updateStatus, updateUpdateCLModal
               <td>
                 <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={updateUpdateCLModal}
+                  onClick={() => updateOpen('updateCLModal')}
                 >
                   Update
                 </button>
+              </td>
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('Disbursement', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('Disbursement', "Create")}
+                    >
+                      Pending
+                    </button>
+                }
               </td>
             </tr>
           ))
@@ -205,21 +279,24 @@ function ProcessTable({ data = [], updateOpen, updateStatus, updateUpdateCLModal
 const lists = ['Granted Loans', 'Rejected Loans', 'Loans in process']
 
 function Loan() {
-  const [repaymentModal, setRepaymentModal] = useState(false)
-  const [updateCLModal, setUpdateCLModal] = useState(false)
-  const [status, setStatus] = useState(false)
   const [open, setOpen] = useState('')
+  const [type, setType] = useState('')
 
-  const updateRepaymentModal = () => setRepaymentModal(p => !p)
-  const updateUpdateCLModal = () => setUpdateCLModal(p => !p)
-  const updateStatus = () => setStatus(p => !p)
-  const updateOpen = val => setOpen(val)
+  const updateOpen = (val, condition) => {
+    setOpen(val)
+    if (condition) setType(condition)
+  }
+
+  const closeModal = () => {
+    setOpen('')
+    setType('')
+  }
 
   return (
     <section className='dfc h-full overflow-y-hidden bg-[#f7f7f7]'>
       <div className='df gap-4 mt-4 px-8 py-4'>
         <h1 className='text-2xl'>Loan Information</h1>
-        <button onClick={() => updateOpen('Create')} className='bg-[#a3dc5d] hover:bg-[#bdf579]'>Create loan</button>
+        <button onClick={() => updateOpen('loan', 'Create')} className='bg-[#a3dc5d] hover:bg-[#bdf579]'>Create loan</button>
       </div>
 
       <Tabs
@@ -230,43 +307,68 @@ function Loan() {
       >
         <GrantedTable
           data={dummyData.filter(d => d.appOrRe === 'Accepted')}
-          updateRepaymentModal={updateRepaymentModal}
+          updateOpen={updateOpen}
         />
         <RejectedTable
           data={dummyData.filter(d => d.appOrRe === 'Rejected')}
+          updateOpen={updateOpen}
         />
         <ProcessTable
           data={dummyData.filter(d => d.appOrRe === 'Pending')}
           updateOpen={updateOpen}
-          updateStatus={updateStatus}
-          updateUpdateCLModal={updateUpdateCLModal}
         />
       </Tabs>
 
       {
-        !!open &&
+        open === "loan" &&
         <CreateLoanModal
-          type={open}
-          data={open !== "Create" ? emptyDetails : false}
           isOpen
-          closeModal={() => updateOpen('')}
+          type={type}
+          data={type !== "Create" ? emptyDetails : false}
+          closeModal={closeModal}
         />
       }
 
-      <Status
-        isOpen={status}
-        closeModal={updateStatus}
-      />
+      {
+        open === "status" &&
+        <Status
+          isOpen
+          closeModal={closeModal}
+        />
+      }
 
-      <RepaymentStructure
-        isOpen={repaymentModal}
-        closeModal={updateRepaymentModal}
-      />
+      {
+        open === "repaymentModal" &&
+        <RepaymentStructure
+          isOpen
+          closeModal={closeModal}
+        />
+      }
 
-      <CheckListModal
-        isOpen={updateCLModal}
-        closeModal={updateUpdateCLModal}
-      />
+      {
+        open === "updateCLModal" &&
+        <CheckListModal
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "interest" &&
+        <InterestModal
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "Disbursement" &&
+        <DisbursementLetter
+          isOpen
+          type={type}
+          closeModal={closeModal}
+        />
+      }
     </section>
   )
 }

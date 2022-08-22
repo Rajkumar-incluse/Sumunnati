@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import data from '../../dummy/manager/dpr';
 
-import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
-import DisbursementLetter from './Modals/DisbursementLetter'
+import DisbursementLetter from './Modals/DisbursementLetter';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
 
@@ -90,10 +89,10 @@ function Loan() {
         <table className='w-full table-fixed'>
           <thead>
             <tr className='sticky top-0 bg-white text-left'>
-              <td className='w-28 xl:w-auto pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
-              <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
-              <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
-              <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>
+              <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+              <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>
                 <DropDownWrapper
                   list={rmNames}
                   onClk={setFilterByRM}
@@ -104,9 +103,9 @@ function Loan() {
                   RM name
                 </DropDownWrapper>
               </td>
-              <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
-              <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
-              <td className='w-16 px-2 py-4 text-gray-500 font-medium'></td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+              <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application</td>
             </tr>
           </thead>
 
@@ -139,13 +138,12 @@ function Loan() {
                     }
                   </td>
                   <td className='px-2 py-1'>
-                    <DropDownWrapper
-                      needArrow
-                      list={['View']}
-                      onClk={val => updateOpen(val)}
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('View')}
                     >
-                      <Dot className='w-5 h-5 [--svg-color:#333]' />
-                    </DropDownWrapper>
+                      View
+                    </button>
                   </td>
                 </tr>
               ))

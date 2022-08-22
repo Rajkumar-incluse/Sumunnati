@@ -49,7 +49,7 @@ function CheckListModal({ isOpen, closeModal }) {
       contentCls='dfc w-[70vw] max-h-[80vh]'
     >
       <ModalHeader
-        title="Update Check List"
+        title="List of executed documents"
         closeModal={closeModal}
       />
 

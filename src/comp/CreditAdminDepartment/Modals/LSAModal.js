@@ -2,14 +2,14 @@ import InputFileWithLabel from '../../Common/InputFileWithLabel';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 import gst from '../../../assets/img/gst.jpg';
 
-function DisbursementLetter({ isOpen, type, closeModal }) {
+function LSAModal({ isOpen, type, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
-      contentCls={`dfc w-[400px] ${type === 'View' ? "h-[500px]" : "h-[250px]"} relative`}
+      contentCls={`dfc w-[400px] ${type === 'View' ? "h-[500px]" : "h-[250px]"}`}
     >
       <ModalHeader
-        title="Disbursement request Letter"
+        title="LSA"
         closeModal={closeModal}
       />
 
@@ -23,7 +23,7 @@ function DisbursementLetter({ isOpen, type, closeModal }) {
         <>
           <InputFileWithLabel
             val={type}
-            lable='Disbursement request letter'
+            lable='LSA'
           />
           <button
             className='ml-auto bg-[#a3dc5d] hover:scale-105'
@@ -36,4 +36,4 @@ function DisbursementLetter({ isOpen, type, closeModal }) {
   )
 }
 
-export default DisbursementLetter
+export default LSAModal
