@@ -3,27 +3,27 @@ import Modal, { ModalHeader } from '../../UIComp/Modal';
 const list = [
   {
     name: "Total loan amount",
-    amount: "15263"
+    amount: "100"
   },
   {
     name: "Samunnati’s share",
-    amount: "200"
+    amount: "20"
   },
   {
     name: "SBI’s share",
-    amount: "400"
+    amount: "80"
   },
   {
     name: "Total interest rate",
-    amount: "30"
+    amount: "14%"
   },
   {
     name: "Samunnati Interest rate",
-    amount: "10"
+    amount: "9%"
   },
   {
     name: "SBI Interest rate",
-    amount: "20"
+    amount: "14%"
   },
 ]
 
