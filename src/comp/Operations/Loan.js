@@ -5,6 +5,7 @@ import LoanRepaymentSchedule from './Modals/LoanRepaymentSchedule';
 import DisbursementLetter from './Modals/DisbursementLetter';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import DisbursementModal from './Modals/DisbursementModal';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -106,6 +107,7 @@ function Loan() {
               </td>
               <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
               <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
+              <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement</td>
               <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Loan repayment schedule</td>
             </tr>
           </thead>
@@ -125,14 +127,32 @@ function Loan() {
                         ?
                         <button
                           className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                          onClick={() => updateOpen('DisbursementLetter', 'View')}
+                          onClick={() => updateOpen('DisbursementLetter')}
                         >
                           View
                         </button>
                         :
                         <button
-                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                          onClick={() => updateOpen('DisbursementLetter', 'Create')}
+                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs cursor-default'
+                        >
+                          Pending
+                        </button>
+                    }
+                  </td>
+                  <td className='px-2 py-1'>
+                    {
+                      i % 2 === 0
+                        ?
+                        <button
+                          className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                          onClick={() => updateOpen('Disbursement', 'View')}
+                        >
+                          View
+                        </button>
+                        :
+                        <button
+                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs cursor-default'
+                          onClick={() => updateOpen('Disbursement', 'Create')}
                         >
                           Pending
                         </button>
@@ -164,10 +184,18 @@ function Loan() {
       }
 
       {
+        open === 'Disbursement' &&
+        <DisbursementModal
+          isOpen
+          type={type}
+          closeModal={closeModal}
+        />
+      }
+
+      {
         open === 'DisbursementLetter' &&
         <DisbursementLetter
           isOpen
-          type={type}
           closeModal={closeModal}
         />
       }

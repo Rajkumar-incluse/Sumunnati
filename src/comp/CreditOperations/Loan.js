@@ -133,7 +133,7 @@ function Loan() {
                           className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
                           onClick={() => updateOpen('DisbursementLetter', 'Create')}
                         >
-                          Update
+                          Pending
                         </button>
                     }
                   </td>
