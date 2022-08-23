@@ -82,7 +82,7 @@ function GrantedTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
-                {i % 2 === 0 ? "40%" : "60%"}
+                14%
               </td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>&#8377; {d.due}</td>
@@ -154,7 +154,7 @@ function RejectedTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
-                {i % 2 === 0 ? "40%" : "60%"}
+                14%
               </td>
               <td className='px-2 py-1 xl:pr-12'>
                 Document is not correct
@@ -212,7 +212,7 @@ function ProcessTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
-                {i % 2 === 0 ? "40%" : "60%"}
+                14%
               </td>
               <td className='px-2 py-1'>
                 {
