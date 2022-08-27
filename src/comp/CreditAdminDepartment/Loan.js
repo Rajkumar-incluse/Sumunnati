@@ -6,9 +6,10 @@ import UploadExecutedDocs from './Modals/UploadExecutedDocs';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import CheckListModal from './Modals/CheckListModal';
+import InterestModal from './Modals/InterestModal';
 import StatusUpdate from './Modals/StatusUpdate';
-import Tabs from '../UIComp/Tabs';
 import LSAModal from './Modals/LSAModal';
+import Tabs from '../UIComp/Tabs';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -97,6 +98,7 @@ function GrantedTable({ data = [], updateOpen }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
@@ -116,6 +118,9 @@ function GrantedTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>&#8377; {d.due}</td>
               <td className='px-2 py-1'>&#8377; {d.due - 400}</td>
@@ -199,6 +204,7 @@ function ProcessTable({ data = [], updateOpen }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Check list</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Action</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Upload executed documents</td>
@@ -215,6 +221,9 @@ function ProcessTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1'>
                 <button
                   className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
@@ -376,6 +385,14 @@ function Loan() {
         <LSAModal
           isOpen
           type={type}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "interest" &&
+        <InterestModal
+          isOpen
           closeModal={closeModal}
         />
       }

@@ -4,6 +4,7 @@ import dummyData from '../../dummy/manager/dpr';
 import RepaymentStructure from './Modals/RepaymentStructure';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import InterestModal from './Modals/InterestModal';
 import OthersStatus from './Modals/OthersStatus';
 import StatusUpdate from './Modals/StatusUpdate';
 import Tabs from '../UIComp/Tabs';
@@ -95,6 +96,7 @@ function GrantedTable({ data = [], updateOpen }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
@@ -113,6 +115,9 @@ function GrantedTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>&#8377; {d.due}</td>
               <td className='px-2 py-1'>&#8377; {d.due - 400}</td>
@@ -140,7 +145,7 @@ function GrantedTable({ data = [], updateOpen }) {
   )
 }
 
-function RejectedTable({ data = [] }) {
+function RejectedTable({ data = [], updateOpen }) {
   const [filterByRM, setFilterByRM] = useState('None')
   const [rmNames, setRmNames] = useState([])
 
@@ -177,6 +182,7 @@ function RejectedTable({ data = [] }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-80 px-2 py-4 xl:pr-12 text-gray-500 font-medium'>Reason for rejection (Comment of credit committee)</td>
         </tr>
       </thead>
@@ -190,6 +196,9 @@ function RejectedTable({ data = [] }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1 xl:pr-12'>
                 Document is not correct
               </td>
@@ -238,6 +247,7 @@ function ProcessTable({ data = [], updateOpen }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium'>Interest rate</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Action</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Status</td>
         </tr>
@@ -252,6 +262,9 @@ function ProcessTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1'>
                 {
                   i % 3 !== 0
@@ -321,27 +334,12 @@ function Loan() {
         />
         <RejectedTable
           data={dummyData.filter(d => d.appOrRe === 'Rejected')}
+          updateOpen={updateOpen}
         />
         <ProcessTable
           data={dummyData.filter(d => d.appOrRe === 'Pending')}
           updateOpen={updateOpen}
         />
-
-        {/* <Table
-          type='Accepted'
-          data={dummyData.filter(d => d.appOrRe === 'Accepted')}
-          updateOpen={updateOpen}
-        />
-        <Table
-          type='Rejected'
-          data={dummyData.filter(d => d.appOrRe === 'Rejected')}
-          updateOpen={updateOpen}
-        />
-        <Table
-          type='Pending'
-          data={dummyData.filter(d => d.appOrRe === 'Pending')}
-          updateOpen={updateOpen}
-        /> */}
       </Tabs>
 
       {
@@ -375,6 +373,14 @@ function Loan() {
       {
         open === 'OtherStatus' &&
         <OthersStatus
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "interest" &&
+        <InterestModal
           isOpen
           closeModal={closeModal}
         />

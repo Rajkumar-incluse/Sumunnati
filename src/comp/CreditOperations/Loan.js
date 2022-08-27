@@ -4,6 +4,7 @@ import data from '../../dummy/manager/dpr';
 import DisbursementLetter from './Modals/DisbursementLetter';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import InterestModal from './Modals/InterestModal';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -104,6 +105,7 @@ function Loan() {
                 </DropDownWrapper>
               </td>
               <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
               <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
               <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application</td>
             </tr>
@@ -118,6 +120,9 @@ function Loan() {
                   <td className='px-2 py-1'>{d.fpo}</td>
                   <td className='px-2 py-1'>{d.name}</td>
                   <td className='px-2 py-1'>&#8377; {d.amount}</td>
+                  <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                    14%
+                  </td>
                   <td className='px-2 py-1'>
                     {
                       i % 2 === 0
@@ -167,6 +172,14 @@ function Loan() {
         <DisbursementLetter
           isOpen
           type={type}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "interest" &&
+        <InterestModal
+          isOpen
           closeModal={closeModal}
         />
       }

@@ -4,6 +4,7 @@ import dummyData from '../../dummy/manager/dpr';
 import RepaymentStructure from './Modals/RepaymentStructure';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import InterestModal from './Modals/InterestModal';
 import OthersStatus from './Modals/OthersStatus';
 import StatusUpdate from './Modals/StatusUpdate';
 import BureauCheck from './Modals/BureauCheck';
@@ -96,6 +97,7 @@ function GrantedTable({ data = [], updateOpen }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
@@ -114,6 +116,9 @@ function GrantedTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>&#8377; {d.due}</td>
               <td className='px-2 py-1'>&#8377; {d.due - 400}</td>
@@ -141,7 +146,7 @@ function GrantedTable({ data = [], updateOpen }) {
   )
 }
 
-function RejectedTable({ data = [] }) {
+function RejectedTable({ data = [], updateOpen }) {
   const [filterByRM, setFilterByRM] = useState('None')
   const [rmNames, setRmNames] = useState([])
 
@@ -178,6 +183,7 @@ function RejectedTable({ data = [] }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
+          <td className='w-24 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Interest rate</td>
           <td className='w-80 px-2 py-4 xl:pr-12 text-gray-500 font-medium'>Reason for rejection (Comment of credit committee)</td>
         </tr>
       </thead>
@@ -191,6 +197,9 @@ function RejectedTable({ data = [] }) {
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1 xl:pr-12'>
                 Document is not correct
               </td>
@@ -224,7 +233,7 @@ function ProcessTable({ data = [], updateOpen }) {
     <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='w-28 pl-4 xl:pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>
@@ -239,9 +248,10 @@ function ProcessTable({ data = [], updateOpen }) {
             </DropDownWrapper>
           </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium'>Interest rate</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Bureau Check</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Action</td>
-          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Status</td>
+          <td className='w-16 px-2 py-4 text-gray-500 font-medium'>Status</td>
         </tr>
       </thead>
 
@@ -249,11 +259,14 @@ function ProcessTable({ data = [], updateOpen }) {
         {
           finalData.map((d, i) => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-4 xl:pl-12 pr-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+                14%
+              </td>
               <td className='px-2 py-1'>
                 {
                   i % 2 === 0
@@ -342,6 +355,7 @@ function Loan() {
         />
         <RejectedTable
           data={dummyData.filter(d => d.appOrRe === 'Rejected')}
+          updateOpen={updateOpen}
         />
         <ProcessTable
           data={dummyData.filter(d => d.appOrRe === 'Pending')}
@@ -389,6 +403,14 @@ function Loan() {
       {
         open === 'OtherStatus' &&
         <OthersStatus
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "interest" &&
+        <InterestModal
           isOpen
           closeModal={closeModal}
         />

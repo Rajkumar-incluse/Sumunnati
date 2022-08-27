@@ -4,6 +4,7 @@ import dummyData from '../../dummy/manager/dpr';
 import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import InterestModal from './Modals/InterestModal';
 import StatusUpdate from './Modals/StatusUpdate';
 import Tabs from '../UIComp/Tabs';
 
@@ -57,6 +58,9 @@ function Row({ d, type, updateOpen, updateStatus }) {
       <td className='pl-12 pr-2 py-1'>{d.loanId}</td>
       <td className='px-2 py-1'>{d.fpo}</td>
       <td className='px-2 py-1'>&#8377; {d.amount}</td>
+      <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
+        14%
+      </td>
       <td className='px-2 py-1'>{d.name}</td>
       {
         type === "Pending" &&
@@ -111,6 +115,7 @@ function Table({ type, data, updateOpen }) {
             <td className='pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
             <td className='px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
             <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
+            <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
             <td className='px-2 py-4 text-gray-500 font-medium'>
               <DropDownWrapper
                 list={rmNames}
@@ -162,6 +167,7 @@ function Loan() {
   const [open, setOpen] = useState("")
 
   const updateOpen = val => setOpen(val)
+  const closeModal = () => setOpen('')
 
   return (
     <section className='dfc gap-4 h-full overflow-y-hidden bg-[#f7f7f7]'>
@@ -188,12 +194,20 @@ function Loan() {
       </Tabs>
 
       {
-        !!open &&
+        open === "View" &&
         <CreateLoanModal
           type={open}
           data={open !== "Create" ? emptyDetails : false}
           isOpen
-          closeModal={() => updateOpen('')}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "interest" &&
+        <InterestModal
+          isOpen
+          closeModal={closeModal}
         />
       }
     </section>

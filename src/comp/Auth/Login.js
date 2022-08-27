@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as LoginImg } from '../../assets/svg/auth/signup.svg';
 import summunatiLogo from '../../assets/svg/Samunnati_Logo.svg';
 import AnimeInputField from "../Common/AnimeInputField";
-import sbiLogo from '../../assets/img/sbi-logo.png';
 
 function Login() {
   const navigate = useNavigate()
@@ -55,10 +54,7 @@ function Login() {
 
   return (
     <div className="df flex-col justify-between pt-8 auth-bg h-screen bg-no-repeat bg-cover bg-center">
-      <div className="df gap-4">
-        <img className="w-16" src={sbiLogo} alt="sbiLogo" />
-        <img className="h-10" src={summunatiLogo} alt="logo" />
-      </div>
+      <img className="h-10" src={summunatiLogo} alt="logo" />
 
       <div className="-mt-4 text-xl font-medium text-gray-600">Blockchain enabled co-lending platform</div>
 
