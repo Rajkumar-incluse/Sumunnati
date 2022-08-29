@@ -23,6 +23,11 @@ const list = [
     to: '/credit_manager/loan'
   },
   {
+    title: "Loan account details",
+    icon: <Loan />,
+    to: '/credit_manager/loan-details'
+  },
+  {
     title: "Support",
     icon: <Support />,
     to: '/credit_manager/support'

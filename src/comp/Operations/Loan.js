@@ -123,8 +123,8 @@ function Loan() {
                   <td className='px-2 py-1'>{d.fpo}</td>
                   <td className='px-2 py-1'>{d.name}</td>
                   <td className='px-2 py-1'>&#8377; {d.amount}</td>
-                  <td className='px-2 py-1 cursor-pointer' onClick={() => updateOpen('interest')}>
-                    14%
+                  <td className='px-2 py-1'>
+                    <button className='p-0' onClick={() => updateOpen('interest')}>14%</button>
                   </td>
                   <td className='px-2 py-1'>
                     {

@@ -23,6 +23,11 @@ const list = [
     to: '/credit_committee/loan'
   },
   {
+    title: "Loan account details",
+    icon: <Loan />,
+    to: '/credit_committee/loan-details'
+  },
+  {
     title: "Support",
     icon: <Support />,
     to: '/credit_committee/support'

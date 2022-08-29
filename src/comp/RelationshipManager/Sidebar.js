@@ -23,6 +23,11 @@ const list = [
     to: '/relationship_manager/loan'
   },
   {
+    title: "Loan account details",
+    icon: <Loan />,
+    to: '/relationship_manager/loan-details'
+  },
+  {
     title: "Support",
     icon: <Support />,
     to: '/relationship_manager/support'

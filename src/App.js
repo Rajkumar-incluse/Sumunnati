@@ -9,6 +9,7 @@ const AdminSubscription = lazy(() => import("./comp/Admin/Subscription"))
 const AdminUser = lazy(() => import("./comp/Admin/User"))
 const Admin = lazy(() => import("./comp/Admin"))
 
+const RMLoanDetails = lazy(() => import("./comp/RelationshipManager/LoanDetails"))
 const RMDashboard = lazy(() => import("./comp/RelationshipManager/Dashboard"))
 const RMSettings = lazy(() => import("./comp/RelationshipManager/Settings"))
 const RMSupport = lazy(() => import("./comp/RelationshipManager/Support"))
@@ -16,6 +17,7 @@ const RMLoan = lazy(() => import("./comp/RelationshipManager/Loan"))
 const RMFPO = lazy(() => import("./comp/RelationshipManager/FPO"))
 const RM = lazy(() => import("./comp/RelationshipManager"))
 
+const CMLoanDetails = lazy(() => import("./comp/CreditManager/LoanDetails"))
 const CMDashboard = lazy(() => import("./comp/CreditManager/Dashboard"))
 const CMSettings = lazy(() => import("./comp/CreditManager/Settings"))
 const CMSupport = lazy(() => import("./comp/CreditManager/Support"))
@@ -30,6 +32,7 @@ const CCLULoan = lazy(() => import("./comp/CentralCoLendingUnit/Loan"))
 const CCLUFPO = lazy(() => import("./comp/CentralCoLendingUnit/FPO"))
 const CCLU = lazy(() => import("./comp/CentralCoLendingUnit"))
 
+const CADLoanDetails = lazy(() => import("./comp/CreditAdminDepartment/LoanDetails"))
 const CADDashboard = lazy(() => import("./comp/CreditAdminDepartment/Dashboard"))
 const CADSettings = lazy(() => import("./comp/CreditAdminDepartment/Settings"))
 const CADSupport = lazy(() => import("./comp/CreditAdminDepartment/Support"))
@@ -37,6 +40,7 @@ const CADLoan = lazy(() => import("./comp/CreditAdminDepartment/Loan"))
 const CADFPO = lazy(() => import("./comp/CreditAdminDepartment/FPO"))
 const CAD = lazy(() => import("./comp/CreditAdminDepartment"))
 
+const CCLoanDetails = lazy(() => import("./comp/CreditCommitte/LoanDetails"))
 const CCDashboard = lazy(() => import("./comp/CreditCommitte/Dashboard"))
 const CCSettings = lazy(() => import("./comp/CreditCommitte/Settings"))
 const CCSupport = lazy(() => import("./comp/CreditCommitte/Support"))
@@ -77,6 +81,7 @@ function App() {
           <Route path='dashboard' element={<RMDashboard />} />
           <Route path='setting' element={<RMSettings />} />
           <Route path='loan' element={<RMLoan />} />
+          <Route path='loan-details' element={<RMLoanDetails />} />
         </Route>
 
         <Route path="credit_manager" element={<CM />}>
@@ -85,6 +90,7 @@ function App() {
           <Route path='dashboard' element={<CMDashboard />} />
           <Route path='setting' element={<CMSettings />} />
           <Route path='loan' element={<CMLoan />} />
+          <Route path='loan-details' element={<CMLoanDetails />} />
         </Route>
 
         <Route path="central_co_lending_unit" element={<CCLU />}>
@@ -101,6 +107,7 @@ function App() {
           <Route path='dashboard' element={<CADDashboard />} />
           <Route path='setting' element={<CADSettings />} />
           <Route path='loan' element={<CADLoan />} />
+          <Route path='loan-details' element={<CADLoanDetails />} />
         </Route>
 
         <Route path="credit_committee" element={<CC />}>
@@ -109,6 +116,7 @@ function App() {
           <Route path='dashboard' element={<CCDashboard />} />
           <Route path='setting' element={<CCSettings />} />
           <Route path='loan' element={<CCLoan />} />
+          <Route path='loan-details' element={<CCLoanDetails />} />
         </Route>
 
         <Route path="credit_operations" element={<CO />} >
