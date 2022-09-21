@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
 function Table({ data, updateOpen }) {
@@ -54,10 +54,12 @@ function Table({ data, updateOpen }) {
 }
 
 function LoanDetails() {
-  const [open, setOpen] = useState("")
+  // const [open, setOpen] = useState("")
 
-  const updateOpen = val => setOpen(val)
-  const closeModal = () => setOpen('')
+  // const updateOpen = val => setOpen(val)
+  // const closeModal = () => setOpen('')
+
+  const updateOpen = val => { }
 
   return (
     <section className='dfc gap-4 h-full overflow-y-hidden bg-[#f7f7f7]'>

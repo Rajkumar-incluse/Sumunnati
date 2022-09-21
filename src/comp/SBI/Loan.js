@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import cn from 'classnames';
 
 import dummyData from '../../dummy/manager/dpr';
@@ -166,10 +166,12 @@ function SanctionedTable({ data, updateOpen }) {
 const tabList = ['In-progress', 'Sanctioned']
 
 function Loan() {
-  const [open, setOpen] = useState("")
+  // const [open, setOpen] = useState("")
 
-  const updateOpen = val => setOpen(val)
-  const closeModal = () => setOpen('')
+  // const updateOpen = val => setOpen(val)
+  // const closeModal = () => setOpen('')
+
+  const updateOpen = val => { }
 
   return (
     <section className='dfc gap-4 h-full overflow-y-hidden bg-[#f7f7f7]'>
