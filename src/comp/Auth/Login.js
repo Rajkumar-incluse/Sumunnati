@@ -50,6 +50,10 @@ function Login() {
     if (deatails.email === "operations" && deatails.pass === "operations") {
       navigate('/operations')
     }
+
+    if (deatails.email === "sbi" && deatails.pass === "sbi") {
+      navigate('/sbi')
+    }
   }
 
   return (

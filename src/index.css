@@ -193,6 +193,13 @@
     @apply w-5 h-5 ml-auto -mr-2 pointer-events-none shrink-0;
   }
 
+  .loader {
+    @apply 
+      w-10 h-10 border-4 animate-spin rounded-full 
+      border-main-100 border-t-main-900
+    ;
+  }
+
     
   /* login */
   .anime-input-placeholder {

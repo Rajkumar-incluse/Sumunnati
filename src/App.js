@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from "react-router-dom";
+import Loader from './comp/Common/Loader';
 
 const ForgetPass = lazy(() => import("./comp/Auth/ForgetPass"))
 const Signup = lazy(() => import("./comp/Auth/Signup"))
@@ -62,9 +63,15 @@ const OpLoan = lazy(() => import("./comp/Operations/Loan"))
 const OpFPO = lazy(() => import("./comp/Operations/FPO"))
 const Op = lazy(() => import("./comp/Operations"))
 
+const SBILoanDetails = lazy(() => import("./comp/SBI/LoanDetails"))
+const SBIDashboard = lazy(() => import("./comp/SBI/Dashboard"))
+const SBILoan = lazy(() => import("./comp/SBI/Loan"))
+const SBIFPO = lazy(() => import("./comp/SBI/FPO"))
+const SBI = lazy(() => import("./comp/SBI"))
+
 function App() {
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<Loader wrapperCls='h-screen' />}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="signup" element={<Signup />} />
@@ -133,6 +140,13 @@ function App() {
           <Route path='dashboard' element={<OpDashboard />} />
           <Route path='setting' element={<OpSettings />} />
           <Route path='loan' element={<OpLoan />} />
+        </Route>
+
+        <Route path="sbi" element={<SBI />} >
+          <Route path='loan-details' element={<SBILoanDetails />} />
+          <Route path='dashboard' element={<SBIDashboard />} />
+          <Route path='loan' element={<SBILoan />} />
+          <Route path='fpo' element={<SBIFPO />} />
         </Route>
       </Routes>
     </Suspense>
