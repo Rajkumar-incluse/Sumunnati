@@ -1,5 +1,8 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
+
+import TotalAmountModal from './Modals/TotalAmount';
+import InterestModal from './Modals/InterestModal';
 
 function Table({ data, updateOpen }) {
   return (
@@ -23,7 +26,12 @@ function Table({ data, updateOpen }) {
             <tr key={d.id} className='text-sm'>
               <td className='pl-12 pr-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>&#8377; {d.amount}</td>
+              <td
+                className='px-2 py-1 cursor-pointer'
+                onClick={() => updateOpen("totalAmount")}
+              >
+                &#8377; {d.amount}
+              </td>
               <td className='px-2 py-1'>
                 <button className='p-0' onClick={() => updateOpen('interest')}>14%</button>
               </td>
@@ -54,12 +62,10 @@ function Table({ data, updateOpen }) {
 }
 
 function LoanDetails() {
-  // const [open, setOpen] = useState("")
+  const [open, setOpen] = useState("")
 
-  // const updateOpen = val => setOpen(val)
-  // const closeModal = () => setOpen('')
-
-  const updateOpen = val => { }
+  const updateOpen = val => setOpen(val)
+  const closeModal = () => setOpen('')
 
   return (
     <section className='dfc gap-4 h-full overflow-y-hidden bg-[#f7f7f7]'>
@@ -73,6 +79,22 @@ function LoanDetails() {
           updateOpen={updateOpen}
         />
       </div>
+
+      {
+        open === "interest" &&
+        <InterestModal
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "totalAmount" &&
+        <TotalAmountModal
+          isOpen
+          closeModal={closeModal}
+        />
+      }
     </section>
   )
 }
