@@ -104,6 +104,7 @@ function GrantedTable({ data = [], updateOpen }) {
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
           <td className='w-24 pl-2 pr-4 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -138,6 +139,14 @@ function GrantedTable({ data = [], updateOpen }) {
                   {i % 3 === 0 ? 'In progress' : 'Repaid'}
                 </button>
               </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('loan', 'View')}
+                >
+                  View
+                </button>
+              </td>
             </tr>
           ))
         }
@@ -168,10 +177,10 @@ function RejectedTable({ data = [], updateOpen }) {
     <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='w-28 xl:w-auto pl-4 xl:pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
-          <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
-          <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium'>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>
             <DropDownWrapper
               list={rmNames}
               onClk={setFilterByRM}
@@ -182,9 +191,10 @@ function RejectedTable({ data = [], updateOpen }) {
               RM name
             </DropDownWrapper>
           </td>
-          <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
-          <td className='w-24 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Interest rate</td>
-          <td className='w-80 px-2 py-4 xl:pr-12 text-gray-500 font-medium'>Reason for rejection (Comment of credit committee)</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium'>Interest rate</td>
+          <td className='w-80 px-2 py-4 text-gray-500 font-medium'>Reason for rejection (Comment of credit committee)</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -192,7 +202,7 @@ function RejectedTable({ data = [], updateOpen }) {
         {
           finalData.map(d => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-4 xl:pl-12 pr-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
               <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
@@ -200,8 +210,16 @@ function RejectedTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>
                 <button className='p-0' onClick={() => updateOpen('interest')}>14%</button>
               </td>
-              <td className='px-2 py-1 xl:pr-12'>
+              <td className='px-2 py-1'>
                 Document is not correct
+              </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('loan', 'View')}
+                >
+                  View
+                </button>
               </td>
             </tr>
           ))
@@ -252,6 +270,7 @@ function ProcessTable({ data = [], updateOpen }) {
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Bureau Check</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Action</td>
           <td className='w-16 px-2 py-4 text-gray-500 font-medium'>Status</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -313,6 +332,14 @@ function ProcessTable({ data = [], updateOpen }) {
                   View
                 </button>
               </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('loan', 'View')}
+                >
+                  View
+                </button>
+              </td>
             </tr>
           ))
         }
@@ -364,10 +391,10 @@ function Loan() {
       </Tabs>
 
       {
-        open === 'View' &&
+        open === 'loan' &&
         <CreateLoanModal
-          type={open}
-          data={open !== "Create" ? emptyDetails : false}
+          type={type}
+          data={type !== "Create" ? emptyDetails : false}
           isOpen
           closeModal={closeModal}
         />

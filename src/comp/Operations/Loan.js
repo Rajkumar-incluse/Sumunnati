@@ -111,6 +111,7 @@ function Loan() {
               <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
               <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement</td>
               <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Loan repayment schedule</td>
+              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
             </tr>
           </thead>
 
@@ -171,6 +172,14 @@ function Loan() {
                       View
                     </button>
                   </td>
+                  <td className='px-2 py-1'>
+                    <button
+                      className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('loan', 'View')}
+                    >
+                      View
+                    </button>
+                  </td>
                 </tr>
               ))
             }
@@ -179,11 +188,11 @@ function Loan() {
       </div>
 
       {
-        open === 'View' &&
+        open === 'loan' &&
         <CreateLoanModal
           isOpen
-          type={open}
-          data={open !== "Create" ? emptyDetails : false}
+          type={type}
+          data={type !== "Create" ? emptyDetails : false}
           closeModal={closeModal}
         />
       }

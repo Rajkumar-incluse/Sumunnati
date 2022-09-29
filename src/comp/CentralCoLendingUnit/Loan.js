@@ -5,8 +5,8 @@ import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import InterestModal from './Modals/InterestModal';
 import StatusUpdate from './Modals/StatusUpdate';
-import Tabs from '../UIComp/Tabs';
 import ShareToSBI from './Modals/ShareToSBI';
+import Tabs from '../UIComp/Tabs';
 
 const emptyDetails = {
   Name: 'ABC FPO',

@@ -106,6 +106,7 @@ function GrantedTable({ data = [], updateOpen }) {
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>LSA</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -159,6 +160,14 @@ function GrantedTable({ data = [], updateOpen }) {
                     </button>
                 }
               </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('loan', 'View')}
+                >
+                  View
+                </button>
+              </td>
             </tr>
           ))
         }
@@ -207,8 +216,9 @@ function ProcessTable({ data = [], updateOpen }) {
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Check list</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Action</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Upload executed documents</td>
+          <td className='w-36 px-2 py-4 text-gray-500 font-medium leading-5'>Upload executed documents</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>LSA</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -289,6 +299,14 @@ function ProcessTable({ data = [], updateOpen }) {
                     </button>
                 }
               </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('loan', 'View')}
+                >
+                  View
+                </button>
+              </td>
             </tr>
           ))
         }
@@ -339,8 +357,8 @@ function Loan() {
         open === 'View' &&
         <CreateLoanModal
           isOpen
-          type={open}
-          data={open !== "Create" ? emptyDetails : false}
+          type={type}
+          data={type !== "Create" ? emptyDetails : false}
           closeModal={closeModal}
         />
       }

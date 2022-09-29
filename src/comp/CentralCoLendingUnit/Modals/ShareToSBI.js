@@ -10,7 +10,7 @@ function ShareToSBI({ isOpen, closeModal }) {
       contentCls='w-[450px]'
     >
       <ModalHeader
-        title='Share to SBI'
+        title='Share with SBI'
         closeModal={closeModal}
       />
 

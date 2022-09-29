@@ -521,7 +521,7 @@ function CreateLoanModal({
                 <label htmlFor="Bureau_check">Bureau check</label>
                 <Select
                   closeMenuOnSelect={false}
-                  placeholder=''
+                  placeholder={type === "View" ? details.Bureau_check : ''}
                   isDisabled={type === "View"}
                   onChange={onBureauChange}
                   options={options.Bureau_check.map(v => ({ value: v, label: v }))}
