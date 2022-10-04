@@ -7,7 +7,7 @@ import InProgressStatus from './Modals/InProgressStatus';
 import TotalAmountModal from './Modals/TotalAmount';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import LimitAppraisal from './Modals/LimitAppraisal';
-import InterestModal from './Modals/InterestModal';
+import Interest from '../Template/Modals/Interest';
 import DueDiligence from './Modals/DueDiligence';
 import BureauCheck from './Modals/BureauCheck';
 import Tabs from '../UIComp/Tabs';
@@ -326,7 +326,7 @@ function Loan() {
 
       {
         open === "interest" &&
-        <InterestModal
+        <Interest
           isOpen
           closeModal={closeModal}
         />

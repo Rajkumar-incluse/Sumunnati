@@ -3,7 +3,7 @@ import dummyData from '../../dummy/manager/dpr';
 
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
-import InterestModal from './Modals/InterestModal';
+import Interest from '../Template/Modals/Interest';
 import StatusUpdate from './Modals/StatusUpdate';
 import ShareToSBI from './Modals/ShareToSBI';
 import Tabs from '../UIComp/Tabs';
@@ -202,7 +202,7 @@ function Loan() {
 
       {
         open === "interest" &&
-        <InterestModal
+        <Interest
           isOpen
           closeModal={closeModal}
         />

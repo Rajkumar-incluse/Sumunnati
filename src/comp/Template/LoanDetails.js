@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
-import CreateLoanModal from './Modals/CreateLoanModal';
-import InterestModal from './Modals/InterestModal';
+import CreateLoan from './Modals/CreateLoan';
+import Interest from './Modals/Interest';
 
 const emptyDetails = {
-  Name: 'ABC FPO',
+  FPO_Name: 'ABC FPO',
   Arrangement: 'PTC',
   Aggregate_disbursement: 500000,
   Tenure: "Months",
@@ -134,8 +134,8 @@ function LoanDetails() {
       </div>
 
       {
-        open === 'loan' &&
-        <CreateLoanModal
+        open === "loan" &&
+        <CreateLoan
           isOpen
           type={type}
           data={type !== "Create" ? emptyDetails : false}
@@ -145,7 +145,7 @@ function LoanDetails() {
 
       {
         open === "interest" &&
-        <InterestModal
+        <Interest
           isOpen
           closeModal={closeModal}
         />

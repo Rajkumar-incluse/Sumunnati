@@ -6,67 +6,39 @@ const ForgetPass = lazy(() => import("./comp/Auth/ForgetPass"))
 const Signup = lazy(() => import("./comp/Auth/Signup"))
 const Login = lazy(() => import("./comp/Auth/Login"))
 
+const TemplateLoanDetails = lazy(() => import("./comp/Template/LoanDetails"))
+const TemplateDashboard = lazy(() => import("./comp/Template/Dashboard"))
+const TemplateSettings = lazy(() => import("./comp/Template/Settings"))
+const TemplateSupport = lazy(() => import("./comp/Template/Support"))
+const TemplateFPO = lazy(() => import("./comp/Template/FPO"))
+
 const AdminSubscription = lazy(() => import("./comp/Admin/Subscription"))
 const AdminUser = lazy(() => import("./comp/Admin/User"))
 const Admin = lazy(() => import("./comp/Admin"))
 
-const RMLoanDetails = lazy(() => import("./comp/RelationshipManager/LoanDetails"))
-const RMDashboard = lazy(() => import("./comp/RelationshipManager/Dashboard"))
-const RMSettings = lazy(() => import("./comp/RelationshipManager/Settings"))
-const RMSupport = lazy(() => import("./comp/RelationshipManager/Support"))
 const RMLoan = lazy(() => import("./comp/RelationshipManager/Loan"))
-const RMFPO = lazy(() => import("./comp/RelationshipManager/FPO"))
 const RM = lazy(() => import("./comp/RelationshipManager"))
 
-const CMLoanDetails = lazy(() => import("./comp/CreditManager/LoanDetails"))
-const CMDashboard = lazy(() => import("./comp/CreditManager/Dashboard"))
-const CMSettings = lazy(() => import("./comp/CreditManager/Settings"))
-const CMSupport = lazy(() => import("./comp/CreditManager/Support"))
 const CMLoan = lazy(() => import("./comp/CreditManager/Loan"))
-const CMFPO = lazy(() => import("./comp/CreditManager/FPO"))
 const CM = lazy(() => import("./comp/CreditManager"))
 
-const CCLUDashboard = lazy(() => import("./comp/CentralCoLendingUnit/Dashboard"))
-const CCLUSettings = lazy(() => import("./comp/CentralCoLendingUnit/Settings"))
-const CCLUSupport = lazy(() => import("./comp/CentralCoLendingUnit/Support"))
 const CCLULoan = lazy(() => import("./comp/CentralCoLendingUnit/Loan"))
-const CCLUFPO = lazy(() => import("./comp/CentralCoLendingUnit/FPO"))
 const CCLU = lazy(() => import("./comp/CentralCoLendingUnit"))
 
-const CADLoanDetails = lazy(() => import("./comp/CreditAdminDepartment/LoanDetails"))
-const CADDashboard = lazy(() => import("./comp/CreditAdminDepartment/Dashboard"))
-const CADSettings = lazy(() => import("./comp/CreditAdminDepartment/Settings"))
-const CADSupport = lazy(() => import("./comp/CreditAdminDepartment/Support"))
 const CADLoan = lazy(() => import("./comp/CreditAdminDepartment/Loan"))
-const CADFPO = lazy(() => import("./comp/CreditAdminDepartment/FPO"))
 const CAD = lazy(() => import("./comp/CreditAdminDepartment"))
 
-const CCLoanDetails = lazy(() => import("./comp/CreditCommitte/LoanDetails"))
-const CCDashboard = lazy(() => import("./comp/CreditCommitte/Dashboard"))
-const CCSettings = lazy(() => import("./comp/CreditCommitte/Settings"))
-const CCSupport = lazy(() => import("./comp/CreditCommitte/Support"))
 const CCLoan = lazy(() => import("./comp/CreditCommitte/Loan"))
-const CCFPO = lazy(() => import("./comp/CreditCommitte/FPO"))
 const CC = lazy(() => import("./comp/CreditCommitte"))
 
-const CODashboard = lazy(() => import("./comp/CreditOperations/Dashboard"))
-const COSettings = lazy(() => import("./comp/CreditOperations/Settings"))
-const COSupport = lazy(() => import("./comp/CreditOperations/Support"))
 const COLoan = lazy(() => import("./comp/CreditOperations/Loan"))
-const COFPO = lazy(() => import("./comp/CreditOperations/FPO"))
 const CO = lazy(() => import("./comp/CreditOperations"))
 
-const OpDashboard = lazy(() => import("./comp/Operations/Dashboard"))
-const OpSettings = lazy(() => import("./comp/Operations/Settings"))
-const OpSupport = lazy(() => import("./comp/Operations/Support"))
 const OpLoan = lazy(() => import("./comp/Operations/Loan"))
-const OpFPO = lazy(() => import("./comp/Operations/FPO"))
 const Op = lazy(() => import("./comp/Operations"))
 
 const SBILoanDetails = lazy(() => import("./comp/SBI/LoanDetails"))
-const SBIDashboard = lazy(() => import("./comp/SBI/Dashboard"))
 const SBILoan = lazy(() => import("./comp/SBI/Loan"))
-const SBIFPO = lazy(() => import("./comp/SBI/FPO"))
 const SBI = lazy(() => import("./comp/SBI"))
 
 function App() {
@@ -80,73 +52,75 @@ function App() {
         <Route path="admin" element={<Admin />}>
           <Route path='user' element={<AdminUser />} />
           <Route path='subscription' element={<AdminSubscription />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSettings />} />
         </Route>
 
         <Route path="relationship_manager" element={<RM />}>
-          <Route path='fpo' element={<RMFPO />} />
-          <Route path='support' element={<RMSupport />} />
-          <Route path='dashboard' element={<RMDashboard />} />
-          <Route path='setting' element={<RMSettings />} />
+          <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<RMLoan />} />
-          <Route path='loan-details' element={<RMLoanDetails />} />
+          <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="credit_manager" element={<CM />}>
-          <Route path='fpo' element={<CMFPO />} />
-          <Route path='support' element={<CMSupport />} />
-          <Route path='dashboard' element={<CMDashboard />} />
-          <Route path='setting' element={<CMSettings />} />
+          <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CMLoan />} />
-          <Route path='loan-details' element={<CMLoanDetails />} />
+          <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="central_co_lending_unit" element={<CCLU />}>
-          <Route path='fpo' element={<CCLUFPO />} />
-          <Route path='support' element={<CCLUSupport />} />
-          <Route path='dashboard' element={<CCLUDashboard />} />
-          <Route path='setting' element={<CCLUSettings />} />
+          <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CCLULoan />} />
         </Route>
 
         <Route path="credit_admin_department" element={<CAD />}>
-          <Route path='fpo' element={<CADFPO />} />
-          <Route path='support' element={<CADSupport />} />
-          <Route path='dashboard' element={<CADDashboard />} />
-          <Route path='setting' element={<CADSettings />} />
+          <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CADLoan />} />
-          <Route path='loan-details' element={<CADLoanDetails />} />
+          <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="credit_committee" element={<CC />}>
-          <Route path='fpo' element={<CCFPO />} />
-          <Route path='support' element={<CCSupport />} />
-          <Route path='dashboard' element={<CCDashboard />} />
-          <Route path='setting' element={<CCSettings />} />
+          <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CCLoan />} />
-          <Route path='loan-details' element={<CCLoanDetails />} />
+          <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="credit_operations" element={<CO />} >
-          <Route path='fpo' element={<COFPO />} />
-          <Route path='support' element={<COSupport />} />
-          <Route path='dashboard' element={<CODashboard />} />
-          <Route path='setting' element={<COSettings />} />
+          <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<COLoan />} />
         </Route>
 
         <Route path="operations" element={<Op />} >
-          <Route path='fpo' element={<OpFPO />} />
-          <Route path='support' element={<OpSupport />} />
-          <Route path='dashboard' element={<OpDashboard />} />
-          <Route path='setting' element={<OpSettings />} />
+          <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<OpLoan />} />
         </Route>
 
         <Route path="sbi" element={<SBI />} >
           <Route path='loan-details' element={<SBILoanDetails />} />
-          <Route path='dashboard' element={<SBIDashboard />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan' element={<SBILoan />} />
-          <Route path='fpo' element={<SBIFPO />} />
+          <Route path='fpo' element={<TemplateFPO />} />
         </Route>
       </Routes>
     </Suspense>

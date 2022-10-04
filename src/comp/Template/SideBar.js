@@ -1,33 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ReactComponent as Dashboard } from '../../assets/svg/common/dashboard.svg';
-import { ReactComponent as Loan } from '../../assets/svg/common/loan.svg';
-import { ReactComponent as Dpr } from '../../assets/svg/common/dpr.svg';
 import summunatiLogo from '../../assets/svg/Samunnati_Logo.svg';
 
-const list = [
-  {
-    title: "Dashboard",
-    icon: <Dashboard />,
-    to: '/sbi/dashboard'
-  },
-  {
-    title: "FPO Info",
-    icon: <Dpr />,
-    to: '/sbi/fpo'
-  },
-  {
-    title: "Loan",
-    icon: <Loan />,
-    to: '/sbi/loan'
-  },
-  {
-    title: "Loan-details",
-    icon: <Loan />,
-    to: '/sbi/loan-details'
-  },
-]
-
-function Sidebar() {
+function SideBar({ list = [] }) {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
@@ -51,4 +25,4 @@ function Sidebar() {
   )
 }
 
-export default Sidebar
+export default SideBar

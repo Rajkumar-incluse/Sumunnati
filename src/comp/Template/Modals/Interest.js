@@ -27,7 +27,7 @@ const list = [
   },
 ]
 
-function InterestModal({ isOpen, closeModal }) {
+function Interest({ isOpen, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
@@ -51,4 +51,4 @@ function InterestModal({ isOpen, closeModal }) {
   )
 }
 
-export default InterestModal
+export default Interest

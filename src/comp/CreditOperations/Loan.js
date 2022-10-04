@@ -4,7 +4,7 @@ import data from '../../dummy/manager/dpr';
 import DisbursementLetter from './Modals/DisbursementLetter';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
-import InterestModal from './Modals/InterestModal';
+import Interest from '../Template/Modals/Interest';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -178,7 +178,7 @@ function Loan() {
 
       {
         open === "interest" &&
-        <InterestModal
+        <Interest
           isOpen
           closeModal={closeModal}
         />

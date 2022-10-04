@@ -3,7 +3,7 @@ import dummyData from '../../dummy/manager/dpr';
 
 import CreateLoanModal from './Modals/CreateLoanModal';
 import TotalAmountModal from './Modals/TotalAmount';
-import InterestModal from './Modals/InterestModal';
+import Interest from '../Template/Modals/Interest';
 
 const emptyDetails = {
   FPO_Name: 'ABC FPO',
@@ -146,7 +146,7 @@ function LoanDetails() {
 
       {
         open === "interest" &&
-        <InterestModal
+        <Interest
           isOpen
           closeModal={closeModal}
         />

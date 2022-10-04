@@ -4,12 +4,12 @@ import { ReactComponent as TriArrow } from '../../assets/svg/arrows/traiangle.sv
 import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
 import { DropDownWrapper } from '../UIComp/DropDown';
 
-function Nav() {
+function Nav({ userType = "" }) {
   const navigate = useNavigate()
 
   const onClk = val => {
     if (val === "Profile") {
-      navigate('/relationship_manager/setting')
+      navigate(`/${userType}/setting`)
     } else if (val === 'Log out') {
       navigate('/')
     }
@@ -17,12 +17,12 @@ function Nav() {
 
   return (
     <nav className='df gap-8 px-6 py-2 shadow-lg'>
-      <div className='df w-4/6 h-full gap-px pl-2 border rounded-full'>
-        <Search className='w-4 h-4 ml-2' />
+      <div className='df gap-px pl-2 border rounded'>
+        <Search className='w-4 h-4' />
         <input
           type="text"
-          className='w-full h-full border-none rounded-full py-1'
-          placeholder='Search...'
+          className='border-none py-1'
+          placeholder='Search'
         />
       </div>
 

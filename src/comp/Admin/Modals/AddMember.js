@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 import user from '../../../assets/img/user.png';
 
+const list = ["Relationship Manager", "Credit Manager", "Credit committee", "Credit Administration", "Central Co-lending Unit", "Credit Operations", "Operations", "SBI"]
+
 function AddMember({ isOpen, closeModal }) {
   const inputRef = useRef()
 
@@ -63,11 +65,12 @@ function AddMember({ isOpen, closeModal }) {
         <div className='col-span-2'>
           <label htmlFor="">Role</label>
           <select name="" id="">
-            <option value="Relationship Manager">Relationship Manager</option>
-            <option value="Credit Manager">Credit Manager</option>
-            <option value="Credit committee">Credit committee</option>
-            <option value="Credit Administration">Credit Administration</option>
-            <option value="Central Co-lending Unit">Central Co-lending Unit</option>
+            <option value="" disabled></option>
+            {
+              list.map(li => (
+                <option key={li} value={li}>{li}</option>
+              ))
+            }
           </select>
         </div>
       </div>

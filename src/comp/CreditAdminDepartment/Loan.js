@@ -6,7 +6,7 @@ import UploadExecutedDocs from './Modals/UploadExecutedDocs';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import CheckListModal from './Modals/CheckListModal';
-import InterestModal from './Modals/InterestModal';
+import Interest from '../Template/Modals/Interest';
 import StatusUpdate from './Modals/StatusUpdate';
 import LSAModal from './Modals/LSAModal';
 import Tabs from '../UIComp/Tabs';
@@ -409,7 +409,7 @@ function Loan() {
 
       {
         open === "interest" &&
-        <InterestModal
+        <Interest
           isOpen
           closeModal={closeModal}
         />

@@ -5,7 +5,7 @@ import RepaymentStructure from './Modals/RepaymentStructure';
 import DisbursementLetter from './Modals/DisbursementLetter';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import CheckListModal from './Modals/CheckListModal';
-import InterestModal from './Modals/InterestModal';
+import Interest from '../Template/Modals/Interest';
 import Status from './Modals/Status';
 import Tabs from '../UIComp/Tabs';
 
@@ -198,7 +198,6 @@ function ProcessTable({ data = [], updateOpen }) {
           <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Update checklist</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
-          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -266,14 +265,6 @@ function ProcessTable({ data = [], updateOpen }) {
                       Pending
                     </button>
                 }
-              </td>
-              <td className='px-2 py-1'>
-                <button
-                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={() => updateOpen('loan', 'View')}
-                >
-                  View
-                </button>
               </td>
             </tr>
           ))
@@ -362,7 +353,7 @@ function Loan() {
 
       {
         open === "interest" &&
-        <InterestModal
+        <Interest
           isOpen
           closeModal={closeModal}
         />
