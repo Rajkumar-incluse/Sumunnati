@@ -1,5 +1,11 @@
+import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
+import { DropDownWrapper } from '../UIComp/DropDown';
+
 import getRandom from '../../helper/getRandom';
 import data from '../../dummy/manager/dpr';
+
+const l1 = ["Activate"]
+const l2 = ["De-activate"]
 
 function FPO() {
   return (
@@ -18,7 +24,7 @@ function FPO() {
               <td className='px-2 py-4 text-gray-500 font-medium'>Phone</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>Email</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>Location</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
+              <td className='px-2 py-4 text-gray-500 font-medium'></td>
             </tr>
           </thead>
 
@@ -33,9 +39,12 @@ function FPO() {
                   <td className='px-2 py-1'>{d.email}</td>
                   <td className='px-2 py-1'>{d.location}</td>
                   <td className='px-2 py-1'>
-                    <button className={`w-24 h-6 p-0 text-sm text-center rounded-full ${d.status === "Active" ? "bg-green-200 text-green-800" : ""} ${d.status === "De-active" ? "bg-red-200 text-red-900" : ""}`}>
-                      {d.status}
-                    </button>
+                    <DropDownWrapper
+                      list={i % 2 === 0 ? l2 : l1}
+                      needArrow
+                    >
+                      <Dot className="w-4" />
+                    </DropDownWrapper>
                   </td>
                 </tr>
               ))

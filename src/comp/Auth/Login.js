@@ -75,7 +75,7 @@ function Login() {
           <AnimeInputField
             wrapperCls="mx-6 my-3"
             inpCls="border-0 border-b"
-            txt="User Name"
+            txt="Email"
             name="email"
             value={deatails.email}
             onChange={onChange}

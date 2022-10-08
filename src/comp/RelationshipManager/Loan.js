@@ -59,7 +59,6 @@ function GrantedTable({ data = [], updateOpen }) {
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
@@ -79,7 +78,6 @@ function GrantedTable({ data = [], updateOpen }) {
           data.map((d, i) => (
             <tr key={d.id} className='text-sm'>
               <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1'>
@@ -145,7 +143,6 @@ function RejectedTable({ data = [], updateOpen }) {
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
@@ -159,7 +156,6 @@ function RejectedTable({ data = [], updateOpen }) {
           data.map(d => (
             <tr key={d.id} className='text-sm'>
               <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1'>
@@ -190,7 +186,6 @@ function ProcessTable({ data = [], updateOpen }) {
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
@@ -206,7 +201,6 @@ function ProcessTable({ data = [], updateOpen }) {
           data.map((d, i) => (
             <tr key={d.id} className='text-sm'>
               <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1'>
@@ -214,17 +208,17 @@ function ProcessTable({ data = [], updateOpen }) {
               </td>
               <td className='px-2 py-1'>
                 {
-                  i % 2 === 0
+                  i % 3 === 0
                     ?
                     <button
-                      className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      className='w-16 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
                       onClick={() => updateOpen('loan', 'View')}
                     >
                       View
                     </button>
                     :
                     <button
-                      className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      className='w-16 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
                       onClick={() => updateOpen('loan', 'Edit')}
                     >
                       Edit
@@ -240,12 +234,22 @@ function ProcessTable({ data = [], updateOpen }) {
                 </button>
               </td>
               <td>
-                <button
-                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={() => updateOpen('updateCLModal')}
-                >
-                  Update
-                </button>
+                {
+                  i % 2 === 0 ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('updateCLModal')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button
+                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      onClick={() => updateOpen('updateCLModal')}
+                    >
+                      Update
+                    </button>
+                }
               </td>
               <td className='px-2 py-1'>
                 {

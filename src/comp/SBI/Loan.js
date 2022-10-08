@@ -61,8 +61,8 @@ function SanctionedTable({ data, updateOpen }) {
     <table className='w-full'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='pl-2 pr-2 py-4 text-gray-500 font-medium'>Date</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='px-2 py-4 text-gray-500 font-medium'>Date</td>
           <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
           <td className='px-2 py-4 text-gray-500 font-medium'>Deed of Assignment</td>
           <td className='px-2 py-4 text-gray-500 font-medium'>Disbursement</td>
@@ -74,8 +74,8 @@ function SanctionedTable({ data, updateOpen }) {
         {
           data.map((d, i) => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-2 pr-2 py-1'>{d.start}</td>
-              <td className='px-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
+              <td className='px-2 py-1'>{d.start}</td>
               <td
                 className='px-2 py-1 cursor-pointer'
                 onClick={() => updateOpen("totalAmount")}
@@ -138,15 +138,15 @@ function InProgressTable({ data, updateOpen }) {
     <table className='w-full'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='pl-2 pr-2 py-4 text-gray-500 font-medium'>Date</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>SBI's share</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Samunnati's share</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Interest rate</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Due diligence</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Loan limit appraisal</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
+          <td className='pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Date</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed Loan amount</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>SBI's share</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Samunnati's share</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Due diligence</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Loan limit appraisal</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
@@ -155,8 +155,8 @@ function InProgressTable({ data, updateOpen }) {
         {
           data.map((d, i) => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-2 pr-2 py-1'>{d.start}</td>
-              <td className='px-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
+              <td className='px-2 py-1'>{d.start}</td>
               <td
                 className='px-2 py-1 cursor-pointer'
                 onClick={() => updateOpen("totalAmount")}
@@ -172,13 +172,16 @@ function InProgressTable({ data, updateOpen }) {
                 {
                   i % 2 === 0
                     ?
-                    <button className='w-20 py-0.5 bg-[#bdf579] text-xs'>
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                      onClick={() => updateOpen('DueDiligence', 'View')}
+                    >
                       View
                     </button>
                     :
                     <button
                       className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                      onClick={() => updateOpen('DueDiligence')}
+                      onClick={() => updateOpen('DueDiligence', 'Edit')}
                     >
                       Pending
                     </button>
@@ -188,13 +191,16 @@ function InProgressTable({ data, updateOpen }) {
                 {
                   i % 2 === 0
                     ?
-                    <button className='w-20 py-0.5 bg-[#bdf579] text-xs'>
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                      onClick={() => updateOpen('LimitAppraisal', 'View')}
+                    >
                       View
                     </button>
                     :
                     <button
                       className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                      onClick={() => updateOpen('LimitAppraisal')}
+                      onClick={() => updateOpen('LimitAppraisal', 'Edit')}
                     >
                       Pending
                     </button>
@@ -204,13 +210,16 @@ function InProgressTable({ data, updateOpen }) {
                 {
                   i % 2 === 0
                     ?
-                    <button className='w-20 py-0.5 bg-[#bdf579] text-xs'>
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                      onClick={() => updateOpen('InProgressStatus', 'View')}
+                    >
                       View
                     </button>
                     :
                     <button
                       className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                      onClick={() => updateOpen('InProgressStatus')}
+                      onClick={() => updateOpen('InProgressStatus', 'Edit')}
                     >
                       Pending
                     </button>
@@ -237,9 +246,10 @@ function RejectedTable({ data, updateOpen }) {
     <table className='w-full'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='pl-2 pr-2 py-4 text-gray-500 font-medium'>Date</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='px-2 py-4 text-gray-500 font-medium'>Date</td>
           <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
+          <td className='w-80 px-2 py-4 text-gray-500 font-medium'>Reason for rejection (Comment of credit committee)</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
@@ -248,13 +258,16 @@ function RejectedTable({ data, updateOpen }) {
         {
           data.map(d => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-2 pr-2 py-1'>{d.start}</td>
-              <td className='px-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
+              <td className='px-2 py-1'>{d.start}</td>
               <td
                 className='px-2 py-1 cursor-pointer'
                 onClick={() => updateOpen("totalAmount")}
               >
                 &#8377; {d.amount}
+              </td>
+              <td className='px-2 py-1'>
+                Document is not correct
               </td>
               <td className='px-2 py-1'>
                 <button
@@ -298,7 +311,7 @@ function Loan() {
         tabsList={tabList}
         listClass='mx-6'
         tabClass='pb-2'
-        panelClass='scroll-y mx-4 my-2 bg-white'
+        panelClass='scroll-y overflow-x-auto mx-4 mb-2 bg-white'
       >
         <InProgressTable
           data={dummyData}
@@ -353,6 +366,7 @@ function Loan() {
         open === "InProgressStatus" &&
         <InProgressStatus
           isOpen
+          type={type}
           closeModal={closeModal}
         />
       }
@@ -361,6 +375,7 @@ function Loan() {
         open === "LimitAppraisal" &&
         <LimitAppraisal
           isOpen
+          type={type}
           closeModal={closeModal}
           openBueroCheck={() => updateOpen("BureauCheck")}
         />
@@ -370,6 +385,7 @@ function Loan() {
         open === "DueDiligence" &&
         <DueDiligence
           isOpen
+          type={type}
           closeModal={closeModal}
           openBueroCheck={() => updateOpen("BureauCheck")}
         />

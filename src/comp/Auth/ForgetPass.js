@@ -23,7 +23,7 @@ function ForgetPass() {
 
           <button className="mt-6 px-8 bg-[#2c8c79] text-white hover:bg-[#1d3a34] transition-colors mx-auto rounded-full">Submit</button>
 
-          <Link className="mb-auto hover:text-[#375fd8]" to='/login'>Login</Link>
+          <Link className="mb-auto hover:text-[#375fd8]" to='/'>Login</Link>
         </div>
       </div>
     </div>

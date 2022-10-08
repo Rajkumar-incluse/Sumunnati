@@ -83,7 +83,6 @@ function GrantedTable({ data = [], updateOpen }) {
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>
             <DropDownWrapper
@@ -113,7 +112,6 @@ function GrantedTable({ data = [], updateOpen }) {
           finalData.map((d, i) => (
             <tr key={d.id} className='text-sm'>
               <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
@@ -178,7 +176,6 @@ function RejectedTable({ data = [], updateOpen }) {
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>
             <DropDownWrapper
@@ -203,7 +200,6 @@ function RejectedTable({ data = [], updateOpen }) {
           finalData.map(d => (
             <tr key={d.id} className='text-sm'>
               <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
@@ -252,7 +248,6 @@ function ProcessTable({ data = [], updateOpen }) {
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Loan application date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>
             <DropDownWrapper
@@ -279,7 +274,6 @@ function ProcessTable({ data = [], updateOpen }) {
           finalData.map((d, i) => (
             <tr key={d.id} className='text-sm'>
               <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
-              <td className='px-2 py-1'>{d.start}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>{d.name}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>

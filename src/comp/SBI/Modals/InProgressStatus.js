@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 
-function InProgressStatus({ isOpen, closeModal }) {
+function InProgressStatus({ isOpen, type, closeModal }) {
   const [confirmed, setConfirmed] = useState(false)
-  const [status, setStatus] = useState("")
+  const [comment, setComment] = useState(type === "View" ? "Some comment added" : '')
+  const [status, setStatus] = useState(type === "View" ? "Approved" : "")
 
   return (
     <Modal
@@ -15,16 +16,27 @@ function InProgressStatus({ isOpen, closeModal }) {
         closeModal={closeModal}
       />
 
-      <div className='df gap-1 my-4'>
-        <input
-          type="checkbox"
-          id='confirm'
-          className='w-fit'
-          checked={confirmed}
-          onChange={() => setConfirmed(p => !p)}
-        />
-        <label htmlFor="confirm" className='mt-1'>I hereby confirm</label>
-      </div>
+      <div className='mb-1'>Comment : </div>
+      <textarea
+        cols="30"
+        className='max-h-40'
+        value={comment}
+        onChange={e => setComment(e.target.value)}
+        disabled={type === "View"}
+      ></textarea>
+      {
+        type !== "View" &&
+        <div className='df gap-1 my-4'>
+          <input
+            type="checkbox"
+            id='confirm'
+            className='w-fit'
+            checked={confirmed}
+            onChange={() => setConfirmed(p => !p)}
+          />
+          <label htmlFor="confirm" className='mt-1'>I hereby confirm</label>
+        </div>
+      }
 
       <div className='df gap-4 my-4'>
         {
@@ -46,7 +58,7 @@ function InProgressStatus({ isOpen, closeModal }) {
               </button>
             </>
             :
-            status
+            <p className={status === "Approved" ? "text-[#86ba46]" : "text-red-500"}>{status}</p>
         }
       </div>
     </Modal>

@@ -3,9 +3,10 @@ import Modal, { ModalHeader } from '../../UIComp/Modal';
 import { ReactComponent as Close } from '../../../assets/svg/actions/close.svg';
 import gst from '../../../assets/img/gst.jpg';
 
-function LimitAppraisal({ isOpen, closeModal, openBueroCheck }) {
+function LimitAppraisal({ isOpen, type, closeModal, openBueroCheck }) {
   const [confirmed, setConfirmed] = useState(false)
-  const [status, setStatus] = useState("")
+  const [comment, setComment] = useState(type === "View" ? "Some comment added" : '')
+  const [status, setStatus] = useState(type === "View" ? "Approved" : "")
   const [show, setShow] = useState(false)
 
   const updateShow = () => setShow(p => !p)
@@ -32,7 +33,7 @@ function LimitAppraisal({ isOpen, closeModal, openBueroCheck }) {
       }
 
       <div className='df gap-4 my-4'>
-        <p className='w-40'>Income statements</p>
+        <p className='w-52'>Income statements :</p>
         <button
           onClick={updateShow}
           className="py-0.5 bg-[#bdf579] text-sm"
@@ -42,7 +43,7 @@ function LimitAppraisal({ isOpen, closeModal, openBueroCheck }) {
       </div>
 
       <div className='df gap-4 my-4'>
-        <p className='w-40'> Credit score/ Bureau check</p>
+        <p className='w-52'> Credit score/ Bureau check :</p>
         <button
           onClick={openBueroCheck}
           className="py-0.5 bg-[#bdf579] text-sm"
@@ -51,16 +52,28 @@ function LimitAppraisal({ isOpen, closeModal, openBueroCheck }) {
         </button>
       </div>
 
-      <div className='df gap-1 my-4'>
-        <input
-          type="checkbox"
-          id='confirm'
-          className='w-fit'
-          checked={confirmed}
-          onChange={() => setConfirmed(p => !p)}
-        />
-        <label htmlFor="confirm" className='mt-1'>I hereby confirm</label>
-      </div>
+      <div className='mb-1'>Comment : </div>
+      <textarea
+        cols="30"
+        className='max-h-40'
+        value={comment}
+        onChange={e => setComment(e.target.value)}
+        disabled={type === "View"}
+      ></textarea>
+
+      {
+        type !== "View" &&
+        <div className='df gap-1 my-4'>
+          <input
+            type="checkbox"
+            id='confirm'
+            className='w-fit'
+            checked={confirmed}
+            onChange={() => setConfirmed(p => !p)}
+          />
+          <label htmlFor="confirm" className='mt-1'>I hereby confirm</label>
+        </div>
+      }
 
       <div className='df gap-4 my-4'>
         {
@@ -82,7 +95,7 @@ function LimitAppraisal({ isOpen, closeModal, openBueroCheck }) {
               </button>
             </>
             :
-            status
+            <p className={status === "Approved" ? "text-[#86ba46]" : "text-red-500"}>{status}</p>
         }
       </div>
     </Modal>
