@@ -4,17 +4,17 @@ const data = [
   {
     title: 'Loan Application form',
     status: 'Accepted',
-    comment: 'Some comment added by SBI.'
+    comment: 'Comments added by SBI.'
   },
   {
     title: 'Due Diligence check',
     status: 'Accepted',
-    comment: 'Some comment added by SBI.'
+    comment: 'Comments added by SBI.'
   },
   {
     title: 'Loan Limit Appraisal',
     status: 'Rejected',
-    comment: 'Some comment added by SBI.'
+    comment: 'Comments added by SBI.'
   },
 ]
 
