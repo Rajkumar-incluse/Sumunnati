@@ -7,6 +7,7 @@ import Interest from '../Template/Modals/Interest';
 import StatusUpdate from './Modals/StatusUpdate';
 import ShareToSBI from './Modals/ShareToSBI';
 import Tabs from '../UIComp/Tabs';
+import SBIStatus from './Modals/SBIStatus';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -96,7 +97,10 @@ function Table({ type, data, updateOpen }) {
           <td className='px-2 py-4 text-gray-500 font-medium'>Loan Application</td>
           {
             type === "Accepted" &&
-            <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
+            <>
+              <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
+              <td className='px-2 py-4 text-gray-500 font-medium'>SBI Status</td>
+            </>
           }
         </tr>
       </thead>
@@ -133,22 +137,41 @@ function Table({ type, data, updateOpen }) {
               </td>
               {
                 type === "Accepted" &&
-                <td className='px-2 py-1'>
-                  {
-                    i % 2 === 0
-                      ?
-                      <button className='w-20 py-0.5 bg-[#bdf579] text-xs cursor-default'>
-                        Shared
-                      </button>
-                      :
-                      <button
-                        className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                        onClick={() => updateOpen('shareToSBI')}
-                      >
-                        Pending
-                      </button>
-                  }
-                </td>
+                <>
+                  <td className='px-2 py-1'>
+                    {
+                      i % 2 === 0
+                        ?
+                        <button className='w-20 py-0.5 bg-[#bdf579] text-xs cursor-default'>
+                          Shared
+                        </button>
+                        :
+                        <button
+                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                          onClick={() => updateOpen('shareToSBI')}
+                        >
+                          Pending
+                        </button>
+                    }
+                  </td>
+
+                  <td className='px-2 py-1'>
+                    {
+                      i % 2 === 0
+                        ?
+                        <button
+                          className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#8ed13d] text-xs'
+                          onClick={() => updateOpen('SBI-Status')}
+                        >
+                          View
+                        </button>
+                        :
+                        <button className='w-20 py-0.5 bg-red-200 text-xs cursor-default'>
+                          Pending
+                        </button>
+                    }
+                  </td>
+                </>
               }
             </tr>
           ))
@@ -219,6 +242,14 @@ function Loan() {
       {
         open === "shareToSBI" &&
         <ShareToSBI
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "SBI-Status" &&
+        <SBIStatus
           isOpen
           closeModal={closeModal}
         />
