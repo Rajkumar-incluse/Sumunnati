@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import data from '../../dummy/manager/dpr';
 
-import LoanRepaymentSchedule from './Modals/LoanRepaymentSchedule';
+import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
 import DisbursementLetter from './Modals/DisbursementLetter';
 import DisbursementModal from './Modals/DisbursementModal';
 import CreateLoanModal from './Modals/CreateLoanModal';
@@ -163,12 +163,23 @@ function Loan() {
                     }
                   </td>
                   <td className='px-2 py-1'>
-                    <button
-                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                      onClick={() => updateOpen('LoanRepaymentSchedule')}
-                    >
-                      View
-                    </button>
+                    {
+                      i % 2 === 0
+                        ?
+                        <button
+                          className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                          onClick={() => updateOpen('LoanRepaymentSchedule', 'View')}
+                        >
+                          View
+                        </button>
+                        :
+                        <button
+                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                          onClick={() => updateOpen('LoanRepaymentSchedule', 'Create')}
+                        >
+                          Pending
+                        </button>
+                    }
                   </td>
                   <td className='px-2 py-1'>
                     <button
@@ -216,6 +227,8 @@ function Loan() {
         open === 'LoanRepaymentSchedule' &&
         <LoanRepaymentSchedule
           isOpen
+          type={type}
+          role="operations"
           closeModal={closeModal}
         />
       }
