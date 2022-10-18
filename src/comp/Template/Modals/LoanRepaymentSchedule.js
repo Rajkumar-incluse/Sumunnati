@@ -94,7 +94,7 @@ function LoanRepaymentSchedule({ isOpen, closeModal, role = "", type = "" }) {
       }
 
       {
-        role === "operations" && type === "View" &&
+        ((role === "operations" && type === "View") || role !== "operations") &&
         <p className='text-[#62a80b]'>
           Approved
         </p>

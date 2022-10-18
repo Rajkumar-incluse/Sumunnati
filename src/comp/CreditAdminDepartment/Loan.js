@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
-import RepaymentStructure from './Modals/RepaymentStructure';
+import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
 import UploadExecutedDocs from './Modals/UploadExecutedDocs';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
@@ -127,7 +127,7 @@ function GrantedTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>
                 <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={() => updateOpen('Repayment')}
+                  onClick={() => updateOpen('Repayment', 'View')}
                 >
                   View
                 </button>
@@ -361,8 +361,9 @@ function Loan() {
 
       {
         open === 'Repayment' &&
-        <RepaymentStructure
+        <LoanRepaymentSchedule
           isOpen
+          type={type}
           closeModal={closeModal}
         />
       }
