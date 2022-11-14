@@ -2,6 +2,7 @@ import { useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
 import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
+import LoanRepaymentStatus from '../Template/Modals/LoanRepaymentStatus';
 import DisbursementLetter from './Modals/DisbursementLetter';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import CheckListModal from './Modals/CheckListModal';
@@ -68,6 +69,7 @@ function GrantedTable({ data = [], updateOpen }) {
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-36 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Repayment status</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
@@ -100,6 +102,14 @@ function GrantedTable({ data = [], updateOpen }) {
                   className={`py-0.5 px-0 w-[82px] text-xs ${i % 3 === 0 ? ' bg-yellow-200 text-yellow-900' : 'bg-green-300 text-green-800'}`}
                 >
                   {i % 3 === 0 ? 'In progress' : 'Repaid'}
+                </button>
+              </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='block w-20 mx-auto py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('LoanRepaymentStatus')}
+                >
+                  View
                 </button>
               </td>
               <td className='px-2 py-1'>
@@ -369,6 +379,15 @@ function Loan() {
         <DisbursementLetter
           isOpen
           type={type}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "LoanRepaymentStatus" &&
+        <LoanRepaymentStatus
+          isOpen
+          role="relationship_manager"
           closeModal={closeModal}
         />
       }
