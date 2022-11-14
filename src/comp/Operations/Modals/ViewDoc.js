@@ -1,14 +1,14 @@
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 import gst from '../../../assets/img/gst.jpg';
 
-function DisbursementLetter({ isOpen, closeModal }) {
+function ViewDoc({ isOpen, title, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
       contentCls='dfc w-[400px] h-[500px] relative'
     >
       <ModalHeader
-        title="Disbursement request Letter"
+        title={title}
         closeModal={closeModal}
       />
 
@@ -17,4 +17,4 @@ function DisbursementLetter({ isOpen, closeModal }) {
   )
 }
 
-export default DisbursementLetter
+export default ViewDoc

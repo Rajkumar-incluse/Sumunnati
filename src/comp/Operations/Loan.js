@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState } from 'react';
 import data from '../../dummy/manager/dpr';
 
 import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
-import DisbursementLetter from './Modals/DisbursementLetter';
 import DisbursementModal from './Modals/DisbursementModal';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import Interest from '../Template/Modals/Interest';
+import ViewDoc from './Modals/ViewDoc';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -92,9 +92,9 @@ function Loan() {
         <table className='w-full table-fixed'>
           <thead>
             <tr className='sticky top-0 bg-white text-left'>
-              <td className='w-28 xl:w-auto pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
-              <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
-              <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>
+              <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>
                 <DropDownWrapper
                   list={rmNames}
                   onClk={setFilterByRM}
@@ -105,11 +105,13 @@ function Loan() {
                   RM name
                 </DropDownWrapper>
               </td>
-              <td className='w-32 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed loan amount</td>
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
-              <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
-              <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement</td>
-              <td className='w-40 xl:w-auto px-2 py-4 text-gray-500 font-medium'>Loan repayment schedule</td>
+              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>LSA</td>
+              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>CAM</td>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan repayment schedule</td>
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
             </tr>
           </thead>
@@ -126,12 +128,28 @@ function Loan() {
                     <button className='p-0' onClick={() => updateOpen('interest')}>14%</button>
                   </td>
                   <td className='px-2 py-1'>
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('viewDoc', "LSA")}
+                    >
+                      View
+                    </button>
+                  </td>
+                  <td className='px-2 py-1'>
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('viewDoc', "CAM")}
+                    >
+                      View
+                    </button>
+                  </td>
+                  <td className='px-2 py-1'>
                     {
                       i % 2 === 0
                         ?
                         <button
                           className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                          onClick={() => updateOpen('DisbursementLetter')}
+                          onClick={() => updateOpen('viewDoc', "Disbursement request Letter")}
                         >
                           View
                         </button>
@@ -216,9 +234,10 @@ function Loan() {
       }
 
       {
-        open === 'DisbursementLetter' &&
-        <DisbursementLetter
+        open === 'viewDoc' &&
+        <ViewDoc
           isOpen
+          title={type}
           closeModal={closeModal}
         />
       }

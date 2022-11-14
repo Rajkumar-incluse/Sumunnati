@@ -8,6 +8,7 @@ import StatusUpdate from './Modals/StatusUpdate';
 import ShareToSBI from './Modals/ShareToSBI';
 import Tabs from '../UIComp/Tabs';
 import SBIStatus from './Modals/SBIStatus';
+import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
 
 const emptyDetails = {
   Name: 'ABC FPO',
@@ -96,6 +97,10 @@ function Table({ type, data, updateOpen }) {
           }
           <td className='px-2 py-4 text-gray-500 font-medium'>Loan Application</td>
           {
+            type !== "Rejected" &&
+            <td className='px-2 py-4 text-gray-500 font-medium'>Executed Documents</td>
+          }
+          {
             type === "Accepted" &&
             <>
               <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
@@ -120,7 +125,7 @@ function Table({ type, data, updateOpen }) {
                 type === "Pending" &&
                 <td className='px-2 py-1'>
                   <button
-                    className='py-px bg-[#a3dc5d] rounded-full'
+                    className='py-px bg-[#a3dc5d] hover:bg-[#bdf579]'
                     onClick={() => updateOpen("statusUpdate")}
                   >
                     Update
@@ -129,12 +134,23 @@ function Table({ type, data, updateOpen }) {
               }
               <td className='px-2 py-1'>
                 <button
-                  className='py-px bg-[#a3dc5d] rounded-full'
+                  className='py-px bg-[#a3dc5d] hover:bg-[#bdf579]'
                   onClick={() => updateOpen("Loan")}
                 >
                   View
                 </button>
               </td>
+              {
+                type !== "Rejected" &&
+                <td className='px-2 py-1'>
+                  <button
+                    className='w-20 py-0.5 bg-[#a3dc5d] text-xs hover:bg-[#bdf579]'
+                    onClick={() => updateOpen("ExecutedDoc")}
+                  >
+                    View
+                  </button>
+                </td>
+              }
               {
                 type === "Accepted" &&
                 <>
@@ -251,6 +267,15 @@ function Loan() {
         open === "SBI-Status" &&
         <SBIStatus
           isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "ExecutedDoc" &&
+        <UploadExecutedDocs
+          isOpen
+          type="View"
           closeModal={closeModal}
         />
       }

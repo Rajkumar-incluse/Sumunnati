@@ -43,7 +43,7 @@ function UploadExecutedDocs({ isOpen, type, closeModal }) {
       contentCls='dfc w-[450px] h-[80vh] relative'
     >
       <ModalHeader
-        title="Upload Executed documents"
+        title={type === "View" ? `Executed documents` : "Upload Executed documents"}
         closeModal={closeModal}
       />
       {

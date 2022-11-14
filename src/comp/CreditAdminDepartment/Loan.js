@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
 import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
-import UploadExecutedDocs from './Modals/UploadExecutedDocs';
+import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import CheckListModal from './Modals/CheckListModal';
