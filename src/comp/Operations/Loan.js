@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import data from '../../dummy/manager/dpr';
 
 import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
+import LoanRepaymentStatus from '../Template/Modals/LoanRepaymentStatus';
 import DisbursementModal from './Modals/DisbursementModal';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
@@ -109,9 +110,10 @@ function Loan() {
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>LSA</td>
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>CAM</td>
-              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
               <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement</td>
-              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan repayment schedule</td>
+              <td className='w-36 px-2 py-4 text-gray-500 font-medium leading-5'>Loan repayment schedule</td>
+              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Payment history</td>
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
             </tr>
           </thead>
@@ -202,6 +204,14 @@ function Loan() {
                   <td className='px-2 py-1'>
                     <button
                       className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('LoanRepaymentStatus')}
+                    >
+                      View
+                    </button>
+                  </td>
+                  <td className='px-2 py-1'>
+                    <button
+                      className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
                       onClick={() => updateOpen('loan', 'View')}
                     >
                       View
@@ -255,6 +265,14 @@ function Loan() {
       {
         open === "interest" &&
         <Interest
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "LoanRepaymentStatus" &&
+        <LoanRepaymentStatus
           isOpen
           closeModal={closeModal}
         />

@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import dummyData from '../../dummy/manager/dpr';
 
+import LoanRepaymentStatus from '../Template/Modals/LoanRepaymentStatus';
+import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
 import DisbursementModal from './Modals/DisbursementModal';
 import InProgressStatus from './Modals/InProgressStatus';
 import TotalAmountModal from './Modals/TotalAmount';
@@ -61,12 +63,16 @@ function SanctionedTable({ data, updateOpen }) {
     <table className='w-full'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Date</td>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Date</td>
           <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
           <td className='px-2 py-4 text-gray-500 font-medium'>Deed of Assignment</td>
           <td className='px-2 py-4 text-gray-500 font-medium'>Disbursement</td>
-          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Executed documents</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Due diligence</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Loan limit appraisal</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Payment history</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -119,6 +125,38 @@ function SanctionedTable({ data, updateOpen }) {
               </td>
               <td className='px-2 py-1'>
                 <button
+                  className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                  onClick={() => updateOpen('executedDoc', 'View')}
+                >
+                  View
+                </button>
+              </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                  onClick={() => updateOpen('DueDiligence', 'View')}
+                >
+                  View
+                </button>
+              </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                  onClick={() => updateOpen('LimitAppraisal', 'View')}
+                >
+                  View
+                </button>
+              </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('LoanRepaymentStatus')}
+                >
+                  View
+                </button>
+              </td>
+              <td className='px-2 py-1'>
+                <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
                   onClick={() => updateOpen('loan', 'View')}
                 >
@@ -138,14 +176,15 @@ function InProgressTable({ data, updateOpen }) {
     <table className='w-full'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Date</td>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed Loan amount</td>
           <td className='px-2 py-4 text-gray-500 font-medium leading-5'>SBI's share</td>
           <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Samunnati's share</td>
           <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Due diligence</td>
           <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Loan limit appraisal</td>
+          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Executed documents</td>
           <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
@@ -205,6 +244,14 @@ function InProgressTable({ data, updateOpen }) {
                       Pending
                     </button>
                 }
+              </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                  onClick={() => updateOpen('executedDoc', 'View')}
+                >
+                  View
+                </button>
               </td>
               <td className='px-2 py-1'>
                 {
@@ -397,6 +444,23 @@ function Loan() {
           isOpen
           type="View"
           closeModal={() => updateOpen("DueDiligence")}
+        />
+      }
+
+      {
+        open === "LoanRepaymentStatus" &&
+        <LoanRepaymentStatus
+          isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "executedDoc" &&
+        <UploadExecutedDocs
+          isOpen
+          type={type}
+          closeModal={closeModal}
         />
       }
     </section>
