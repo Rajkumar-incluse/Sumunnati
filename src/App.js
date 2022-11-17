@@ -79,6 +79,7 @@ function App() {
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="credit_admin_department" element={<CAD />}>
@@ -105,6 +106,7 @@ function App() {
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="operations" element={<Op />} >
@@ -113,6 +115,7 @@ function App() {
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="sbi" element={<SBI />} >

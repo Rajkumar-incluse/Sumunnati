@@ -1,31 +1,110 @@
 import { useState } from 'react';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 
-const data2 = [
+const data3 = [
   {
     key: "1",
-    name: "Due date",
-    desc: "12.12.22",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
   },
   {
     key: "2",
-    name: "Due amount",
-    desc: "120000",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
   },
   {
     key: "3",
-    name: "Date of Receipt",
-    desc: "13.12.22",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
   },
   {
     key: "4",
-    name: "Recieved amount",
-    desc: "100000",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
   },
   {
     key: "5",
-    name: "Outstanding amount",
-    desc: "20000",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "6",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "7",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "8",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "9",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "10",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "11",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "12",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
+  },
+  {
+    key: "13",
+    dueDate: "12.12.22",
+    dueAmount: "2345765",
+    receiptDate: "12.12.22",
+    recievedAmount: "76543654",
+    outstandingAmount: "345678",
   },
 ]
 
@@ -47,7 +126,7 @@ function LoanRepaymentStatus({ isOpen, closeModal, role = "" }) {
   return (
     <Modal
       isOpen={isOpen}
-      contentCls='dfc w-[400px]'
+      contentCls={`dfc ${title === "Payment history" ? "" : "w-[400px]"}`}
     >
       <ModalHeader
         title={title}
@@ -135,19 +214,30 @@ function LoanRepaymentStatus({ isOpen, closeModal, role = "" }) {
       {
         title === "Payment history" &&
         <>
-          {
-            data2.map(d => (
-              <div className='df mb-4' key={d.key}>
-                <p className='w-60 leading-[1.2]'>{d.name}</p>
-                <p>:</p>
-                <input
-                  disabled
-                  type="text"
-                  defaultValue={d.desc}
-                />
-              </div>
-            ))
-          }
+
+          <div className='scroll-y max-h-96'>
+            <table className='w-full'>
+              <tr className='font-medium'>
+                <td className='px-4 py-2'>Due Date</td>
+                <td className='px-4 py-2'>Due Amount</td>
+                <td className='px-4 py-2'>Date of Receipt</td>
+                <td className='px-4 py-2'>Recieved Amount</td>
+                <td className='px-4 py-2'>Outstanding Amount</td>
+              </tr>
+
+              {
+                data3.map(d => (
+                  <tr className='' key={d.key}>
+                    <td className='px-4 py-2'>{d.dueDate}</td>
+                    <td className='px-4 py-2'>{d.dueAmount}</td>
+                    <td className='px-4 py-2'>{d.receiptDate}</td>
+                    <td className='px-4 py-2'>{d.recievedAmount}</td>
+                    <td className='px-4 py-2'>{d.outstandingAmount}</td>
+                  </tr>
+                ))
+              }
+            </table>
+          </div>
 
           {
             role === "relationship_manager" &&
