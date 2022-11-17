@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
 import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
-import LoanRepaymentStatus from '../Template/Modals/LoanRepaymentStatus';
 import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
@@ -104,7 +103,6 @@ function GrantedTable({ data = [], updateOpen }) {
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
-          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Payment history</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>LSA</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
@@ -130,14 +128,6 @@ function GrantedTable({ data = [], updateOpen }) {
                 <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
                   onClick={() => updateOpen('Repayment', 'View')}
-                >
-                  View
-                </button>
-              </td>
-              <td className='px-2 py-1'>
-                <button
-                  className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={() => updateOpen('LoanRepaymentStatus')}
                 >
                   View
                 </button>
@@ -417,14 +407,6 @@ function Loan() {
       {
         open === "interest" &&
         <Interest
-          isOpen
-          closeModal={closeModal}
-        />
-      }
-
-      {
-        open === "LoanRepaymentStatus" &&
-        <LoanRepaymentStatus
           isOpen
           closeModal={closeModal}
         />

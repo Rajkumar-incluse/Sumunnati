@@ -37,7 +37,6 @@ const CO = lazy(() => import("./comp/CreditOperations"))
 const OpLoan = lazy(() => import("./comp/Operations/Loan"))
 const Op = lazy(() => import("./comp/Operations"))
 
-const SBILoanDetails = lazy(() => import("./comp/SBI/LoanDetails"))
 const SBILoan = lazy(() => import("./comp/SBI/Loan"))
 const SBI = lazy(() => import("./comp/SBI"))
 
@@ -51,76 +50,76 @@ function App() {
 
         <Route path="admin" element={<Admin />}>
           <Route path='user' element={<AdminUser />} />
-          <Route path='subscription' element={<AdminSubscription />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSettings />} />
+          <Route path='subscription' element={<AdminSubscription />} />
         </Route>
 
         <Route path="relationship_manager" element={<RM />}>
           <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='loan' element={<RMLoan />} />
+          <Route path='setting' element={<TemplateSettings />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='setting' element={<TemplateSettings />} />
-          <Route path='loan' element={<RMLoan />} />
-          <Route path='loan-details' element={<TemplateLoanDetails />} />
+          <Route path='loan-details' element={<TemplateLoanDetails role="relationship_manager" />} />
         </Route>
 
         <Route path="credit_manager" element={<CM />}>
           <Route path='fpo' element={<TemplateFPO />} />
-          <Route path='support' element={<TemplateSupport />} />
-          <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CMLoan />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSettings />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="central_co_lending_unit" element={<CCLU />}>
           <Route path='fpo' element={<TemplateFPO />} />
-          <Route path='support' element={<TemplateSupport />} />
-          <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CCLULoan />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSettings />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
         </Route>
 
         <Route path="credit_admin_department" element={<CAD />}>
           <Route path='fpo' element={<TemplateFPO />} />
-          <Route path='support' element={<TemplateSupport />} />
-          <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CADLoan />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSettings />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="credit_committee" element={<CC />}>
           <Route path='fpo' element={<TemplateFPO />} />
-          <Route path='support' element={<TemplateSupport />} />
-          <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<CCLoan />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSettings />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
         </Route>
 
         <Route path="credit_operations" element={<CO />} >
           <Route path='fpo' element={<TemplateFPO />} />
-          <Route path='support' element={<TemplateSupport />} />
-          <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<COLoan />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSettings />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
         </Route>
 
         <Route path="operations" element={<Op />} >
           <Route path='fpo' element={<TemplateFPO />} />
-          <Route path='support' element={<TemplateSupport />} />
-          <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='setting' element={<TemplateSettings />} />
           <Route path='loan' element={<OpLoan />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSettings />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
         </Route>
 
         <Route path="sbi" element={<SBI />} >
-          <Route path='loan-details' element={<SBILoanDetails />} />
-          <Route path='dashboard' element={<TemplateDashboard />} />
-          <Route path='loan' element={<SBILoan />} />
           <Route path='fpo' element={<TemplateFPO />} />
+          <Route path='loan' element={<SBILoan />} />
+          <Route path='dashboard' element={<TemplateDashboard />} />
+          <Route path='loan-details' element={<TemplateLoanDetails role='sbi' />} />
         </Route>
       </Routes>
     </Suspense>
