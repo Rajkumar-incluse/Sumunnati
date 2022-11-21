@@ -4,7 +4,7 @@ import { ReactComponent as EyeOpen } from '../../assets/svg/common/eye-open.svg'
 
 function AnimeInputField({
   wrapperCls = '', inpCls = '', spanCls = '',
-  inputType = 'text', labelProps = {},
+  inputType = 'text', labelProps = {}, name = "",
   txt = '', value = '', onChange = () => { },
   ...otherProps
 }) {
@@ -18,6 +18,7 @@ function AnimeInputField({
       <input
         required
         type={type}
+        name={name}
         className={`anime-input ${inpCls}`}
         value={value}
         onChange={onChange}

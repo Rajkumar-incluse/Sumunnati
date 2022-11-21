@@ -45,7 +45,7 @@
   }
 
   button {
-    @apply inline-block cursor-pointer rounded-md px-4 py-1 w-fit;
+    @apply inline-block cursor-pointer rounded-md px-4 py-1 w-fit disabled:cursor-default disabled:opacity-70;
   }
 
   svg {

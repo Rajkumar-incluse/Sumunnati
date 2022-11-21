@@ -19,25 +19,26 @@ export function parseJwt(token) {
 export function login(data, onSuccess, onError) {
   return async dispatch => {
     try {
-      const { token, firstName = '', lastName = '', role = '' } = await sendApiReq({
+      // const { firstName, lastName, token, role, userId } = await sendApiReq({
+      const { token } = await sendApiReq({
         isAuthendicated: false,
         method: 'post',
         url: endPoints.login,
         data,
       })
+
+      console.log(token)
       setTokenToApp(token)
 
-      let payload = {
-        firstName, lastName, role,
-        ...parseJwt(token)
-      }
+      // dispatch({
+      //   type: loginConstants.LOGIN_SUCCESSFUL,
+      //   payload: {
+      //     firstName, lastName, token,
+      //     role, userId
+      //   }
+      // })
 
-      dispatch({
-        type: loginConstants.LOGIN_SUCCESSFUL,
-        payload
-      })
-
-      onSuccess(payload)
+      onSuccess("admin")
 
     } catch (error) {
       console.log(error)
@@ -59,14 +60,14 @@ export function onLogoutSuccess() {
 
 export async function createOrg(data, onSuccess) {
   try {
-    await sendApiReq({
+    const res = await sendApiReq({
       isAuthendicated: false,
       method: 'post',
       url: endPoints.createOrg,
       data,
     })
 
-    // console.log(res)
+    console.log(res)
     onSuccess()
 
   } catch (error) {

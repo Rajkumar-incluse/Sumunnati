@@ -1,36 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getUsersList } from '../../action-reducers/admin/adminAction';
 
 import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
-import user1 from '../../assets/img/user/user1.jpg';
-import user2 from '../../assets/img/user/user2.webp';
-import user3 from '../../assets/img/user/user3.png';
-import user4 from '../../assets/img/user/user4.jpg';
-import user5 from '../../assets/img/user/user5.webp';
-import user6 from '../../assets/img/user/user6.png';
-import user7 from '../../assets/img/user/user7.jpg';
-
-import userData from '../../dummy/admin/user';
 
 import { DropDownWrapper } from '../UIComp/DropDown';
 import AddMember from './Modals/AddMember';
+import Loader from '../Common/Loader';
 
 const list1 = ["View", "Delete", "Activate"]
 const list2 = ["View", "Delete", "Inactivate"]
 
-const getImg = i => {
-  if (i % 13 === 0) return user6
-  if (i % 7 === 0) return user7
-  if (i % 5 === 0) return user5
-  if (i > 10 && i % 4 === 0) return user4
-  if (i % 3 === 0) return user3
-  if (i % 2 === 0) return user2
-  return user1
-}
-
 function User() {
+  const users = useSelector(({ admin }) => admin)
+  const [loading, setLoading] = useState("")
   const [open, setOpen] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    setLoading(true)
+
+    dispatch(getUsersList(() => setLoading(false)))
+  }, [dispatch])
+
+  // console.log(users)
 
   const updateOpen = () => setOpen(p => !p)
+
+  if (loading) return <Loader />
 
   return (
     <section className='dfc h-full overflow-y-hidden bg-[#f7f7f7]'>
@@ -60,17 +58,17 @@ function User() {
 
           <tbody>
             {
-              userData.map((u, i) => (
-                <tr key={u.id} className='text-sm'>
+              users.map((u, i) => (
+                <tr key={u._id} className='text-sm'>
                   <td className='pl-12 pr-2 py-1'>
-                    <img
+                    {/* <img
                       className='w-10 h-10 rounded object-cover'
                       src={getImg(i)}
                       alt="profile"
-                    />
+                    /> */}
                   </td>
-                  <td className='px-2 py-1'>{u.name}</td>
-                  <td className='px-2 py-1'>{u.mobile}</td>
+                  <td className='px-2 py-1'>{u.firstName} {u.lastName}</td>
+                  <td className='px-2 py-1'>{u.phoneNumber}</td>
                   <td className='px-2 py-1'>{u.email}</td>
                   <td className='px-2 py-1'>{u.role}</td>
                   <td className='px-2 py-1'>

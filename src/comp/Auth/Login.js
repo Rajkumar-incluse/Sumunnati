@@ -1,15 +1,22 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
+import { login } from "../../action-reducers/login/loginAction";
+
 import { ReactComponent as LoginImg } from '../../assets/svg/auth/signup.svg';
 import summunatiLogo from '../../assets/svg/Samunnati_Logo.svg';
 import AnimeInputField from "../Common/AnimeInputField";
 
 function Login() {
-  const navigate = useNavigate()
-  const [deatails, setDetails] = useState({
-    email: '',
-    pass: ''
+  const [loading, setLoading] = useState("")
+  const [details, setDetails] = useState({
+    email: 'mmuhsin@inclusivegrowthchain.com',
+    password: 'pwd_mmuhsin'
   })
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onChange = e => {
     setDetails(p => ({
@@ -18,42 +25,31 @@ function Login() {
     }))
   }
 
+  const onSuccess = role => {
+    const lists = {
+      admin: "user",
+      relationship_manager: "fpo",
+      credit_manager: "fpo",
+      central_co_lending_unit: "fpo",
+      credit_admin_department: "fpo",
+      credit_committee: "fpo",
+      credit_operations: "",
+      operations: "",
+      sbi: "",
+    }
+
+    const url = lists[role] ? `/${role}/${lists[role]}` : `/${role}`
+    // console.log(url)
+    navigate(url)
+  }
+
+  const onError = () => {
+    setLoading(false)
+  }
+
   const onSubmit = () => {
-    if (deatails.email === "admin" && deatails.pass === "admin") {
-      navigate('/admin/user')
-    }
-
-    if (deatails.email === "relationship_manager" && deatails.pass === "relationship_manager") {
-      navigate('/relationship_manager/fpo')
-    }
-
-    if (deatails.email === "credit_manager" && deatails.pass === "credit_manager") {
-      navigate('/credit_manager/fpo')
-    }
-
-    if (deatails.email === "central_co_lending_unit" && deatails.pass === "central_co_lending_unit") {
-      navigate('/central_co_lending_unit/fpo')
-    }
-
-    if (deatails.email === "credit_admin_department" && deatails.pass === "credit_admin_department") {
-      navigate('/credit_admin_department/fpo')
-    }
-
-    if (deatails.email === "credit_committee" && deatails.pass === "credit_committee") {
-      navigate('/credit_committee/fpo')
-    }
-
-    if (deatails.email === "credit_operations" && deatails.pass === "credit_operations") {
-      navigate('/credit_operations')
-    }
-
-    if (deatails.email === "operations" && deatails.pass === "operations") {
-      navigate('/operations')
-    }
-
-    if (deatails.email === "sbi" && deatails.pass === "sbi") {
-      navigate('/sbi')
-    }
+    setLoading(true)
+    dispatch(login(details, onSuccess, onError))
   }
 
   return (
@@ -77,7 +73,7 @@ function Login() {
             inpCls="border-0 border-b"
             txt="Email"
             name="email"
-            value={deatails.email}
+            value={details.email}
             onChange={onChange}
           />
 
@@ -86,14 +82,15 @@ function Login() {
             inputType="password"
             inpCls="border-0 border-b"
             txt="Password"
-            name="pass"
-            value={deatails.pass}
+            name="password"
+            value={details.password}
             onChange={onChange}
           />
 
           <button
             className="my-6 px-8 bg-[#2c8c79] text-white hover:bg-[#1d3a34] transition-colors mx-auto rounded-full"
             onClick={onSubmit}
+            disabled={loading}
           >
             Login
           </button>

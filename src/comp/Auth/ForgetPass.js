@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
 import { ReactComponent as ForgetImg } from '../../assets/svg/auth/forget5.svg';
 import AnimeInputField from "../Common/AnimeInputField";
 
 function ForgetPass() {
+  const [loading, setLoading] = useState("")
+  const [email, setEmail] = useState("")
+
+  const onSubmit = () => {
+    setLoading(true)
+
+  }
+
   return (
     <div className="dc auth-bg h-screen bg-no-repeat bg-cover bg-center">
       <div className="w-[clamp(750px,60vw,900px)] grid grid-cols-[60%_40%] bg-white rounded-2xl shadow-intensed">
@@ -19,11 +29,25 @@ function ForgetPass() {
             wrapperCls="mx-6 my-3"
             inpCls="border-0 border-b"
             txt="Email"
+            name="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
 
-          <button className="mt-6 px-8 bg-[#2c8c79] text-white hover:bg-[#1d3a34] transition-colors mx-auto rounded-full">Submit</button>
+          <button
+            className="mt-6 px-8 bg-[#2c8c79] text-white hover:bg-[#1d3a34] transition-colors mx-auto rounded-full"
+            onClick={onSubmit}
+            disabled={loading}
+          >
+            Submit
+          </button>
 
-          <Link className="mb-auto hover:text-[#375fd8]" to='/'>Login</Link>
+          <Link
+            className="mb-auto hover:text-[#375fd8]"
+            to='/'
+          >
+            Login
+          </Link>
         </div>
       </div>
     </div>

@@ -3,8 +3,10 @@ import { ReactComponent as Notification } from '../../assets/svg/common/notifica
 import { ReactComponent as TriArrow } from '../../assets/svg/arrows/traiangle.svg';
 import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import { useSelector } from 'react-redux';
 
 function Nav({ userType = "" }) {
+  const user = useSelector(({ login }) => login.userDetails)
   const navigate = useNavigate()
 
   const onClk = val => {
@@ -15,6 +17,7 @@ function Nav({ userType = "" }) {
     }
   }
 
+  console.log(user)
   return (
     <nav className='df gap-8 px-6 py-2 shadow-lg'>
       <div className='df gap-px pl-2 border rounded'>
