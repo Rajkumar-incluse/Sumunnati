@@ -8,11 +8,20 @@ const endPoints = {
   // login: '/user/login',
   login: '/admin/login',
 
+  support: "/support/support",
+
+
   // admin
   createUser: "/admin/createUser",
   getUserList: "/admin/getUser",
 
-  // relationship manager
+
+  // document/image upload
+  doc: "/document?filename=",
+
+  // loan related
+  fpoList: "/loan/fpoList",
+  loan: "/loan"
 }
 
 export default endPoints
