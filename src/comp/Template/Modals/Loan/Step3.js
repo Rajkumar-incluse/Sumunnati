@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Select from 'react-select';
 
-import InputWithLabel from '../../Common/InputWithLabel';
+import InputWithLabel from '../../../Common/InputWithLabel';
 
-function Step3({ type, details, onChange, onBureauChange }) {
+function Step3({ disabled, details, onChange, onBureauChange }) {
   const [options] = useState({
     Bureau_check: ["CIBIL", "Highmark", "EQUIFAX", "Worldcheck", "Experian"],
     Business_segment: ['Agri-processing', 'Food processing', 'Crop cultivation', 'Agri-infra', 'Trading', 'Service provider', 'Animal Husbandry'],
@@ -20,7 +20,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         lable='Pool size'
         value={details.Pool_size}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -29,7 +29,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         lable='Execution date(Tentative)'
         value={details.Execution_date}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -38,7 +38,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         lable='Pool maturity date'
         value={details.Pool_maturity_date}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -51,7 +51,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         lable='External rating(Entity)'
         value={details.External_rating_Entity}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -59,15 +59,15 @@ function Step3({ type, details, onChange, onBureauChange }) {
         lable='External rating(Individual)'
         value={details.External_rating_Individual}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <div className='mb-4'>
         <label htmlFor="Bureau_check">Bureau check</label>
         <Select
           closeMenuOnSelect={false}
-          placeholder={type === "View" ? details.Bureau_check : ''}
-          isDisabled={type === "View"}
+          placeholder={disabled ? details.Bureau_check : ''}
+          isDisabled={disabled}
           onChange={onBureauChange}
           options={options.Bureau_check.map(v => ({ value: v, label: v }))}
           value={details.Bureau_check}
@@ -80,7 +80,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         name='ESMS'
         value={details.ESMS}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -88,7 +88,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         lable='Samunnati score'
         value={details.Samunnati_score}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -98,7 +98,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         options={options.Business_segment}
         value={details.Business_segment}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -108,7 +108,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         options={options.Nature_of_security}
         value={details.Nature_of_security}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -117,7 +117,7 @@ function Step3({ type, details, onChange, onBureauChange }) {
         options={options.Guarantee}
         value={details.Guarantee}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
     </>
   )

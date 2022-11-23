@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Modal, { ModalHeader } from '../../UIComp/Modal';
+import Modal, { ModalHeader } from '../../../UIComp/Modal';
 import ShowDoc from './ShowDoc';
 import Step0 from './Step0';
 import Step1 from './Step1';
@@ -11,7 +11,7 @@ import Step5 from './Step5';
 import Btns from './Btns';
 
 const emptyDetails = {
-  Name: '',
+  FPO_Name: '',
   Arrangement: '',
   Aggregate_disbursement: 0,
   Tenure: "",
@@ -51,13 +51,15 @@ const emptyDetails = {
   Business_segment: '',
   Nature_of_security: '',
   Guarantee: '',
-  otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
+  otherDocs: []
 }
 
 function Loan({ type = '', isOpen, closeModal }) {
-  const [showImg, setShowImg] = useState(false)
+  const [extraDocs, setExtraDocs] = useState([{ key: 0, label: '', isInput: true }])
   const [details, setDetails] = useState({ ...emptyDetails })
+  const [showImg, setShowImg] = useState(false)
   const [step, setStep] = useState(0)
+  const disabled = type === "View"
 
   const updateImg = () => setShowImg(p => !p)
 
@@ -72,6 +74,25 @@ function Loan({ type = '', isOpen, closeModal }) {
     setDetails(pr => ({
       ...pr,
       Bureau_check: e
+    }))
+  }
+
+  const addNewOtherDoc = () => {
+    setExtraDocs(p => [
+      ...p,
+      { key: p.length, label: '', isInput: true }
+    ])
+  }
+
+  const onChangeOtherDocLable = (e, i) => {
+    setExtraDocs(prev => prev.map(p => {
+      if (p.key === i) {
+        return {
+          ...p,
+          label: e.target.value
+        }
+      }
+      return p
     }))
   }
 
@@ -95,9 +116,10 @@ function Loan({ type = '', isOpen, closeModal }) {
           {
             step === 0 &&
             <Step0
-              type={type}
               details={details}
+              disabled={disabled}
               onChange={onChange}
+              setDetails={setDetails}
             />
           }
 
@@ -106,7 +128,9 @@ function Loan({ type = '', isOpen, closeModal }) {
             <Step1
               type={type}
               details={details}
+              disabled={disabled}
               onChange={onChange}
+              updateImg={updateImg}
             />
           }
 
@@ -115,15 +139,17 @@ function Loan({ type = '', isOpen, closeModal }) {
             <Step2
               type={type}
               details={details}
+              disabled={disabled}
               onChange={onChange}
+              updateImg={updateImg}
             />
           }
 
           {
             step === 3 &&
             <Step3
-              type={type}
               details={details}
+              disabled={disabled}
               onChange={onChange}
               onBureauChange={onBureauChange}
             />
@@ -142,12 +168,19 @@ function Loan({ type = '', isOpen, closeModal }) {
             <Step5
               type={type}
               details={details}
+              extraDocs={extraDocs}
               updateImg={updateImg}
+              addNewOtherDoc={addNewOtherDoc}
+              onChangeOtherDocLable={onChangeOtherDocLable}
             />
           }
         </div>
 
-        <Btns setStep={setStep} />
+        <Btns
+          step={step}
+          type={type}
+          setStep={setStep}
+        />
       </div>
     </Modal>
   )

@@ -41,7 +41,7 @@
     @apply w-full pl-4 pr-8 py-2 border appearance-none rounded focus:outline-none
     bg-no-repeat border-gray-300 bg-[url('./assets/img/dropdown-arrow.png')];
     background-position: 98%;
-    background-size: 24px;
+    background-size: 20px;
   }
 
   button {

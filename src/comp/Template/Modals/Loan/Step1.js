@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import InputWithLabel from '../../Common/InputWithLabel';
+import InputFileWithLabel from '../../../Common/InputFileWithLabel';
+import InputWithLabel from '../../../Common/InputWithLabel';
 
-function Step1({ type, details, onChange }) {
+function Step1({ type, disabled, details, onChange, updateImg }) {
   const [options] = useState({
     Interest_repayment: ["Upfront", "Monthly", "Quartely", "Half-yearly", "Annually", "EMI", "Others"],
     Security: ["Hypothecation of current asset", "Mortgage-Commercial", "Mortgage-Residence", "Corporate guarantee", "Personnel Guarantee", "UDC-PDC", "Pledge of shares", "Warehouse receipt", "Lien", "FD", "Charge on plant-machinery-Equipment", "Vehicle hypothecation"],
@@ -22,7 +23,7 @@ function Step1({ type, details, onChange }) {
         options={options.Interest_repayment}
         value={details.Interest_repayment}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputFileWithLabel
@@ -37,7 +38,7 @@ function Step1({ type, details, onChange }) {
         options={options.Security}
         value={details.Security}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <div className='mb-4'>
@@ -47,7 +48,7 @@ function Step1({ type, details, onChange }) {
           name='Security_remarks'
           value={details.Security_remarks}
           onChange={onChange}
-          disabled={type === "View"}
+          disabled={disabled}
         ></textarea>
       </div>
 
@@ -58,7 +59,7 @@ function Step1({ type, details, onChange }) {
         lable='Rate of Interest'
         value={details.Rate_of_Interest}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -68,7 +69,7 @@ function Step1({ type, details, onChange }) {
         lable='Referral fee'
         value={details.Referral_fee}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -78,7 +79,7 @@ function Step1({ type, details, onChange }) {
         lable='Processing fee'
         value={details.Processing_fee}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputFileWithLabel
@@ -92,7 +93,7 @@ function Step1({ type, details, onChange }) {
         lable='Name of the pool'
         value={details.Name_of_the_pool}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -102,7 +103,7 @@ function Step1({ type, details, onChange }) {
         lable='Average yield'
         value={details.Average_yield}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
     </>
   )

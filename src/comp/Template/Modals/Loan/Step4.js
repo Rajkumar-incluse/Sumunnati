@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import InputFileWithLabel from '../../Common/InputFileWithLabel';
+import InputFileWithLabel from '../../../Common/InputFileWithLabel';
 
 function Step4({ type, updateImg }) {
   const [options] = useState([

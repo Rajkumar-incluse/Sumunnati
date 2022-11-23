@@ -1,4 +1,4 @@
-function Btns({ setStep }) {
+function Btns({ step, type, setStep }) {
   return (
     <div className='df'>
       {

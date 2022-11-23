@@ -1,5 +1,5 @@
-import { ReactComponent as Close } from '../../../assets/svg/actions/close.svg';
-import gst from '../../../assets/img/gst.jpg';
+import { ReactComponent as Close } from '../../../../assets/svg/actions/close.svg';
+import gst from '../../../../assets/img/gst.jpg';
 
 function ShowDoc({ updateImg }) {
   return (

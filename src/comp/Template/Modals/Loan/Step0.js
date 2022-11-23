@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import getRandom from '../../../helper/getRandom';
-import InputWithLabel from '../../Common/InputWithLabel';
+import getRandom from '../../../../helper/getRandom';
+import InputWithLabel from '../../../Common/InputWithLabel';
+import FpoName from './FpoName';
 
-function Step0({ type, details, onChange }) {
+function Step0({ disabled, details, onChange, setDetails }) {
   const [options] = useState({
     Arrangement: ["Co lending", "Business correspondent", "Direct Origination", "PTC", "Direct Assignment", "Other structured assets"],
     Tenure: ['Days', 'Months', 'Year'],
@@ -20,11 +21,10 @@ function Step0({ type, details, onChange }) {
         disabled
       />
 
-      <InputWithLabel
-        name='Name'
-        value={details.Name}
-        onChange={onChange}
-        disabled={type === "View"}
+      <FpoName
+        FPO_Name={details.FPO_Name}
+        setDetails={setDetails}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -33,7 +33,7 @@ function Step0({ type, details, onChange }) {
         value={details.Arrangement}
         options={options.Arrangement}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -42,7 +42,7 @@ function Step0({ type, details, onChange }) {
         lable='Aggregate disbursement'
         value={details.Aggregate_disbursement}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <div className='mb-4'>
@@ -52,7 +52,7 @@ function Step0({ type, details, onChange }) {
             type="text"
             name='TenureNumber'
             value={details.TenureNumber}
-            disabled={type === "View"}
+            disabled={disabled}
             onChange={onChange}
           />
 
@@ -61,7 +61,7 @@ function Step0({ type, details, onChange }) {
             name='Tenure'
             value={details.Tenure}
             onChange={onChange}
-            disabled={type === "View"}
+            disabled={disabled}
           >
             <option value="" disabled></option>
             {
@@ -79,7 +79,7 @@ function Step0({ type, details, onChange }) {
         lable='Validity of limit'
         value={details.Validity_of_limit}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -88,7 +88,7 @@ function Step0({ type, details, onChange }) {
         options={options.Purpose}
         value={details.Purpose}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -98,7 +98,7 @@ function Step0({ type, details, onChange }) {
         options={options.Nature_of_facility}
         value={details.Nature_of_facility}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -107,7 +107,7 @@ function Step0({ type, details, onChange }) {
         options={options.Revolving}
         value={details.Revolving}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -115,7 +115,7 @@ function Step0({ type, details, onChange }) {
         type='number'
         value={details.Margin}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -125,7 +125,7 @@ function Step0({ type, details, onChange }) {
         options={options.Principal_repayment}
         value={details.Principal_repayment}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
     </>
   )

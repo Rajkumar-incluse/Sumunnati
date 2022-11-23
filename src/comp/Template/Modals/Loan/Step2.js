@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import InputWithLabel from '../../Common/InputWithLabel';
+import InputFileWithLabel from '../../../Common/InputFileWithLabel';
+import InputWithLabel from '../../../Common/InputWithLabel';
 
-function Step2({ type, details, onChange }) {
+function Step2({ type, details, disabled, onChange, updateImg }) {
   const [options] = useState({
     PSL: ["PSL farm credit", "PSL other agri", "PSL MSME", 'Weaker section', 'Others'],
     Average_tenor: ['Days', 'Months'],
@@ -15,7 +16,7 @@ function Step2({ type, details, onChange }) {
         value={details.PSL}
         options={options.PSL}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -25,7 +26,7 @@ function Step2({ type, details, onChange }) {
         lable='Coupon rate'
         value={details.Coupon_rate}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -33,7 +34,7 @@ function Step2({ type, details, onChange }) {
         lable='Payment terms'
         value={details.Payment_terms}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -41,7 +42,7 @@ function Step2({ type, details, onChange }) {
         lable='Nature of underlying asset'
         value={details.Nature_of_underlying_asset}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -51,7 +52,7 @@ function Step2({ type, details, onChange }) {
         value={details.Average_tenor}
         options={options.Average_tenor}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputFileWithLabel
@@ -66,7 +67,7 @@ function Step2({ type, details, onChange }) {
         lable='Number of obligors'
         value={details.Number_of_obligors}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -76,7 +77,7 @@ function Step2({ type, details, onChange }) {
         lable='Consideration amount'
         value={details.Consideration_amount}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
@@ -85,21 +86,21 @@ function Step2({ type, details, onChange }) {
         lable='Cut-off date'
         value={details.Cut_off_date}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
         name='Asignee'
         value={details.Asignee}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
 
       <InputWithLabel
         name='Originator'
         value={details.Originator}
         onChange={onChange}
-        disabled={type === "View"}
+        disabled={disabled}
       />
     </>
   )
