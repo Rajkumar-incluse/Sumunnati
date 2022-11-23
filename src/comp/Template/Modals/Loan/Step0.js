@@ -116,6 +116,7 @@ function Step0({ disabled, details, onChange, setDetails }) {
         value={details.Margin}
         onChange={onChange}
         disabled={disabled}
+        isPercentage
       />
 
       <InputWithLabel

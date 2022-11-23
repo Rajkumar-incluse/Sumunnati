@@ -21,7 +21,7 @@ function Step4({ type, updateImg }) {
     },
     {
       head: "Credit statement",
-      list: ["Bank statement", "GST returns", "IT returns", "Debtors ageing", "Creditor ageing", "Sales report", "Purchase report", "Top customers", "Top suppliers", "Borrowing profile", "Sanction letters", "MSME Certificate", "CIBIL/Bureu Check", "Perfios Analysis"]
+      list: ["Bank statement", "GST returns", "IT returns", "Debtors ageing", "Creditor ageing", "Sales report", "Purchase report", "Top customers", "Top suppliers", "Borrowing profile", "Sanction letters", "MSME Certificate", "CIBIL/Bureu Check", "Perfios Analysis", "CAM Report"]
     }
   ])
 

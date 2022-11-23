@@ -82,11 +82,11 @@ function Step1({ type, disabled, details, onChange, updateImg }) {
         disabled={disabled}
       />
 
-      <InputFileWithLabel
+      {/* <InputFileWithLabel
         val={type}
         updateImg={updateImg}
         lable='Other supporting documents'
-      />
+      /> */}
 
       <InputWithLabel
         name='Name_of_the_pool'

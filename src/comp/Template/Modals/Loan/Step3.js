@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import Select from 'react-select';
-
+// import Select from 'react-select';
 import InputWithLabel from '../../../Common/InputWithLabel';
 
 function Step3({ disabled, details, onChange, onBureauChange }) {
@@ -62,7 +61,7 @@ function Step3({ disabled, details, onChange, onBureauChange }) {
         disabled={disabled}
       />
 
-      <div className='mb-4'>
+      {/* <div className='mb-4'>
         <label htmlFor="Bureau_check">Bureau check</label>
         <Select
           closeMenuOnSelect={false}
@@ -74,14 +73,14 @@ function Step3({ disabled, details, onChange, onBureauChange }) {
           name='Bureau_check'
           isMulti
         />
-      </div>
+      </div> */}
 
-      <InputWithLabel
+      {/* <InputWithLabel
         name='ESMS'
         value={details.ESMS}
         onChange={onChange}
         disabled={disabled}
-      />
+      /> */}
 
       <InputWithLabel
         name='Samunnati_score'
