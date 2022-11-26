@@ -17,7 +17,6 @@ function Nav({ userType = "" }) {
     }
   }
 
-  console.log(user)
   return (
     <nav className='df gap-8 px-6 py-2 shadow-lg'>
       <div className='df gap-px pl-2 border rounded'>
@@ -33,8 +32,8 @@ function Nav({ userType = "" }) {
 
       <div className='df'>
         <div>
-          <p>Raj kumar</p>
-          <p className='text-sm'>Head of the department</p>
+          <p className='first-letter:uppercase'>{user?.firstName} {user?.lastName}</p>
+          <p className='text-sm first-letter:uppercase'>{user?.role?.replace("_", " ")}</p>
         </div>
 
         <DropDownWrapper

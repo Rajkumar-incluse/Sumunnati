@@ -1,8 +1,8 @@
 import { useState } from 'react';
-// import Select from 'react-select';
+import Select from 'react-select';
 import InputWithLabel from '../../../Common/InputWithLabel';
 
-function Step3({ disabled, details, onChange, onBureauChange }) {
+function Step3({ role = "", disabled, details, onChange, onBureauChange }) {
   const [options] = useState({
     Bureau_check: ["CIBIL", "Highmark", "EQUIFAX", "Worldcheck", "Experian"],
     Business_segment: ['Agri-processing', 'Food processing', 'Crop cultivation', 'Agri-infra', 'Trading', 'Service provider', 'Animal Husbandry'],
@@ -61,26 +61,31 @@ function Step3({ disabled, details, onChange, onBureauChange }) {
         disabled={disabled}
       />
 
-      {/* <div className='mb-4'>
-        <label htmlFor="Bureau_check">Bureau check</label>
-        <Select
-          closeMenuOnSelect={false}
-          placeholder={disabled ? details.Bureau_check : ''}
-          isDisabled={disabled}
-          onChange={onBureauChange}
-          options={options.Bureau_check.map(v => ({ value: v, label: v }))}
-          value={details.Bureau_check}
-          name='Bureau_check'
-          isMulti
-        />
-      </div> */}
+      {
+        role !== "relationship_manager" &&
+        <>
+          <div className='mb-4'>
+            <label htmlFor="Bureau_check">Bureau check</label>
+            <Select
+              closeMenuOnSelect={false}
+              placeholder={disabled ? details.Bureau_check : ''}
+              isDisabled={disabled}
+              onChange={onBureauChange}
+              options={options.Bureau_check.map(v => ({ value: v, label: v }))}
+              value={details.Bureau_check}
+              name='Bureau_check'
+              isMulti
+            />
+          </div>
 
-      {/* <InputWithLabel
-        name='ESMS'
-        value={details.ESMS}
-        onChange={onChange}
-        disabled={disabled}
-      /> */}
+          <InputWithLabel
+            name='ESMS'
+            value={details.ESMS}
+            onChange={onChange}
+            disabled={disabled}
+          />
+        </>
+      }
 
       <InputWithLabel
         name='Samunnati_score'

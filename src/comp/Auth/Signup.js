@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { createOrg } from "../../action-reducers/login/loginAction";
 import { ReactComponent as LoginImg } from '../../assets/svg/auth/logini.svg';
 import AnimeInputField from "../Common/AnimeInputField";
-import Loan from "../Template/Modals/Loan";
 
 function Signup() {
   const [loading, setLoading] = useState(false)
@@ -144,12 +143,6 @@ function Signup() {
           </Link>
         </div>
       </div>
-
-      <Loan
-        isOpen
-        type="Create"
-        closeModal={() => { }}
-      />
     </div>
   )
 }

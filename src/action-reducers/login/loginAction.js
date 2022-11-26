@@ -19,26 +19,24 @@ export function parseJwt(token) {
 export function login(data, onSuccess, onError) {
   return async dispatch => {
     try {
-      // const { firstName, lastName, token, role, userId } = await sendApiReq({
-      const { token } = await sendApiReq({
+      const { firstName, lastName, token, role, userId } = await sendApiReq({
         isAuthendicated: false,
         method: 'post',
         url: endPoints.login,
         data,
       })
 
-      console.log(token)
       setTokenToApp(token)
 
-      // dispatch({
-      //   type: loginConstants.LOGIN_SUCCESSFUL,
-      //   payload: {
-      //     firstName, lastName, token,
-      //     role, userId
-      //   }
-      // })
+      dispatch({
+        type: loginConstants.LOGIN_SUCCESSFUL,
+        payload: {
+          firstName, lastName, token,
+          role, userId, email: data.email
+        }
+      })
 
-      onSuccess("admin")
+      onSuccess(role)
 
     } catch (error) {
       console.log(error)

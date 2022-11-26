@@ -350,7 +350,7 @@ function Loan() {
       </Tabs>
 
       {
-        open === 'View' &&
+        open === 'loan' &&
         <CreateLoanModal
           isOpen
           type={type}

@@ -11,8 +11,8 @@ import AnimeInputField from "../Common/AnimeInputField";
 function Login() {
   const [loading, setLoading] = useState("")
   const [details, setDetails] = useState({
-    email: 'mmuhsin@inclusivegrowthchain.com',
-    password: 'pwd_mmuhsin'
+    email: '@gmail.com',
+    password: 'pwd_'
   })
 
   const navigate = useNavigate()

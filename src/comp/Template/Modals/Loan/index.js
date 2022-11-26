@@ -54,7 +54,7 @@ const emptyDetails = {
   otherDocs: []
 }
 
-function Loan({ type = '', isOpen, closeModal }) {
+function Loan({ role = "", type = '', isOpen, closeModal }) {
   const [extraDocs, setExtraDocs] = useState([{ key: 0, label: '', isInput: true }])
   const [details, setDetails] = useState({ ...emptyDetails })
   const [showImg, setShowImg] = useState(false)
@@ -148,6 +148,7 @@ function Loan({ type = '', isOpen, closeModal }) {
           {
             step === 3 &&
             <Step3
+              role={role}
               details={details}
               disabled={disabled}
               onChange={onChange}
