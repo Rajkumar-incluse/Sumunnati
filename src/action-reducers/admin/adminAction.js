@@ -28,18 +28,17 @@ export function registerUser(data, onSuccess) {
 export function getUsersList(onSuccess) {
   return async dispatch => {
     try {
-      const { data: { message } } = await sendApiReq({
-        method: "post",
+      const data = await sendApiReq({
         url: endPoints.getUserList,
-        data: {}
       })
 
-      dispatch({
-        type: adminConstants.GET_USERS,
-        payload: message
-      })
+      console.log(data)
+      // dispatch({
+      //   type: adminConstants.GET_USERS,
+      //   payload: message
+      // })
 
-      onSuccess()
+      // onSuccess()
     } catch (error) {
       console.log(error)
     }

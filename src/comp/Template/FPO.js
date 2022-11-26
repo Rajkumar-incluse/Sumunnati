@@ -1,13 +1,26 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getFpoList } from '../../action-reducers/loan/loanAction';
+
 import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
 import { DropDownWrapper } from '../UIComp/DropDown';
-
-import getRandom from '../../helper/getRandom';
-import data from '../../dummy/manager/dpr';
+import Loader from '../Common/Loader';
 
 const l1 = ["Activate"]
 const l2 = ["De-activate"]
 
 function FPO() {
+  const fpoList = useSelector(({ loan }) => loan?.fpoList || [])
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getFpoList(() => setLoading(false)))
+  }, [dispatch])
+
+  if (loading) return <Loader />
+
   return (
     <section className='dfc h-full overflow-y-hidden bg-[#f7f7f7]'>
       <div className='df gap-4 mt-4 px-8 py-4'>
@@ -30,17 +43,17 @@ function FPO() {
 
           <tbody>
             {
-              data.map((d, i) => (
-                <tr key={d.id} className='text-sm'>
-                  <td className='pl-12 pr-2 py-1'>2022-{getRandom(10, 100)}-07</td>
-                  <td className='px-2 py-1'>{d.fpo}</td>
-                  <td className='px-2 py-1'>{d.name}</td>
-                  <td className='px-2 py-1'>{d.phone}</td>
-                  <td className='px-2 py-1'>{d.email}</td>
-                  <td className='px-2 py-1'>{d.location}</td>
+              fpoList.map(fpo => (
+                <tr key={fpo._id} className='text-sm'>
+                  <td className='pl-12 pr-2 py-1'>{fpo.FPOid}</td>
+                  <td className='px-2 py-1'>{fpo.FPOname}</td>
+                  <td className='px-2 py-1'>{fpo.ceoName}</td>
+                  <td className='px-2 py-1'>{fpo.phoneNumber}</td>
+                  <td className='px-2 py-1'>{fpo.email}</td>
+                  <td className='px-2 py-1'>{fpo.location}</td>
                   <td className='px-2 py-1'>
                     <DropDownWrapper
-                      list={i % 2 === 0 ? l2 : l1}
+                      list={fpo.status === "active" ? l2 : l1}
                       needArrow
                     >
                       <Dot className="w-4" />
