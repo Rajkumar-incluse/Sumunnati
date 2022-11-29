@@ -2,7 +2,7 @@ import { useState } from 'react';
 import InputFileWithLabel from '../../../Common/InputFileWithLabel';
 import InputWithLabel from '../../../Common/InputWithLabel';
 
-function Step1({ type, disabled, details, onChange, updateImg }) {
+function Step1({ type, disabled, details, onChange, updateImg, fileChange }) {
   const [options] = useState({
     Interest_repayment: ["Upfront", "Monthly", "Quartely", "Half-yearly", "Annually", "EMI", "Others"],
     Security: ["Hypothecation of current asset", "Mortgage-Commercial", "Mortgage-Residence", "Corporate guarantee", "Personnel Guarantee", "UDC-PDC", "Pledge of shares", "Warehouse receipt", "Lien", "FD", "Charge on plant-machinery-Equipment", "Vehicle hypothecation"],
@@ -11,9 +11,11 @@ function Step1({ type, disabled, details, onChange, updateImg }) {
   return (
     <>
       <InputFileWithLabel
-        val={type}
+        type={type}
         updateImg={updateImg}
         lable='Principal repayment'
+        value={details.Principal_repayment_doc}
+        onChange={fileName => fileChange("Principal_repayment_doc", fileName)}
       />
 
       <InputWithLabel
@@ -27,9 +29,11 @@ function Step1({ type, disabled, details, onChange, updateImg }) {
       />
 
       <InputFileWithLabel
-        val={type}
+        type={type}
         updateImg={updateImg}
         lable='Interest repayment'
+        value={details.Interest_repayment_doc}
+        onChange={fileName => fileChange("Interest_repayment_doc", fileName)}
       />
 
       <InputWithLabel
@@ -83,7 +87,7 @@ function Step1({ type, disabled, details, onChange, updateImg }) {
       />
 
       {/* <InputFileWithLabel
-        val={type}
+        type={type}
         updateImg={updateImg}
         lable='Other supporting documents'
       /> */}

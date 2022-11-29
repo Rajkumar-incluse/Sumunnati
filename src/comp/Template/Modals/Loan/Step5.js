@@ -3,7 +3,8 @@ import InputFileWithLabel from '../../../Common/InputFileWithLabel';
 
 function Step5({
   type, extraDocs, details, updateImg,
-  addNewOtherDoc, onChangeOtherDocLable
+  addNewOtherDoc, onChangeOtherDocImg,
+  onChangeOtherDocLable
 }) {
   return (
     <>
@@ -12,10 +13,11 @@ function Step5({
         type === "View" &&
         details?.otherDocs?.map(d => (
           <InputFileWithLabel
-            key={d}
-            val={type}
-            lable={d}
+            key={d.key}
+            type={type}
+            lable={d.label}
             updateImg={updateImg}
+            value={d.img}
           />
         ))
       }
@@ -36,14 +38,12 @@ function Step5({
                   value={ed.label}
                   onChange={e => onChangeOtherDocLable(e, i)}
                 />
-                {
-                  ed.isInput
-                    ? <input type='file' />
-                    : <InputFileWithLabel
-                      val={type}
-                      updateImg={updateImg}
-                    />
-                }
+                <InputFileWithLabel
+                  type={type}
+                  value={ed.img}
+                  updateImg={updateImg}
+                  onChange={fileName => onChangeOtherDocImg(i, fileName)}
+                />
               </div>
             ))
           }

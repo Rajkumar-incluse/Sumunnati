@@ -42,7 +42,8 @@ function Step3({ role = "", disabled, details, onChange, onBureauChange }) {
 
       <InputWithLabel
         lable='FPO Grading data'
-        value="hjkjhgf"
+        value={details.grading_data}
+        disabled
       />
 
       <InputWithLabel

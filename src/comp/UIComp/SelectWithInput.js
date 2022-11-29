@@ -82,7 +82,6 @@ function SelectWithInput({
         appear
         className='relative'
         {...contentTransition}
-      // afterLeave={() => setQuery('')}
       >
         <Combobox.Options
           ref={floating}

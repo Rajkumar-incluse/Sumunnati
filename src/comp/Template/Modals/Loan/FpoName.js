@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFpoList } from '../../../../action-reducers/loan/loanAction';
 import SelectWithInput from '../../../UIComp/SelectWithInput';
 
 function AddFPOName({ value = '', onClick = () => { } }) {
@@ -15,21 +17,35 @@ function AddFPOName({ value = '', onClick = () => { } }) {
   )
 }
 
-function FpoName({ disabled, FPO_Name, setDetails }) {
+function FpoName({ disabled, fpoName, setDetails }) {
+  const fposLoaded = useSelector(({ loan }) => loan.fpoListLoaded)
+  const fpos = useSelector(({ loan }) => loan?.fpoList?.map(fp => ({
+    ...fp,
+    key: fp._id,
+    displayValue: fp.FPOname
+  })))
   const [query, setQuery] = useState('')
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!fposLoaded) {
+      dispatch(getFpoList(() => { }))
+    }
+  }, [fposLoaded, dispatch])
 
   return (
     <SelectWithInput
-      list={["Anughraha FPO", "ABCD FPO", "Samrthi FPO"]}
+      list={fpos}
       lable='FPO Name'
       btnCls='mb-4'
-      value={FPO_Name}
+      value={fpoName}
       query={query}
       setQuery={setQuery}
       disabled={disabled}
-      onChange={v => setDetails(pr => ({
+      onChange={val => setDetails(pr => ({
         ...pr,
-        FPO_Name: v
+        fpoName: val.FPOname,
+        fpoId: val._id
       }))}
       NotFoundComp={
         <AddFPOName

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import InputFileWithLabel from '../../../Common/InputFileWithLabel';
 import InputWithLabel from '../../../Common/InputWithLabel';
 
-function Step2({ type, details, disabled, onChange, updateImg }) {
+function Step2({ type, details, disabled, onChange, updateImg, fileChange }) {
   const [options] = useState({
     PSL: ["PSL farm credit", "PSL other agri", "PSL MSME", 'Weaker section', 'Others'],
     Average_tenor: ['Days', 'Months'],
@@ -56,9 +56,11 @@ function Step2({ type, details, disabled, onChange, updateImg }) {
       />
 
       <InputFileWithLabel
-        val={type}
+        type={type}
         updateImg={updateImg}
         lable='Tentative term-sheet'
+        value={details.term_sheet_doc}
+        onChange={fileName => fileChange("term_sheet_doc", fileName)}
       />
 
       <InputWithLabel

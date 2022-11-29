@@ -1,6 +1,7 @@
 import loanConstants from './loanConstants';
 
 const initialState = {
+  fpoListLoaded: false,
   fpoList: [],
   loanList: {
     in_process: [],
@@ -14,6 +15,7 @@ const loanReducer = (state = initialState, { type, payload }) => {
     case loanConstants.GET_FPO:
       return {
         ...state,
+        fpoListLoaded: true,
         fpoList: [
           ...payload
         ]

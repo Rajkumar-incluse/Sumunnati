@@ -4,6 +4,7 @@ import InputWithLabel from '../../../Common/InputWithLabel';
 import FpoName from './FpoName';
 
 function Step0({ disabled, details, onChange, setDetails }) {
+  const [traId] = useState(getRandom(0, 1000))
   const [options] = useState({
     Arrangement: ["Co lending", "Business correspondent", "Direct Origination", "PTC", "Direct Assignment", "Other structured assets"],
     Tenure: ['Days', 'Months', 'Year'],
@@ -17,14 +18,24 @@ function Step0({ disabled, details, onChange, setDetails }) {
     <>
       <InputWithLabel
         lable='Transaction number/ID'
-        value={`2022${getRandom(0, 1000)}07`}
+        value={`2022${traId}07`}
         disabled
       />
 
       <FpoName
-        FPO_Name={details.FPO_Name}
+        fpoName={details.fpoName}
         setDetails={setDetails}
         disabled={disabled}
+      />
+
+      <InputWithLabel
+        type='number'
+        name='loanAmount'
+        lable='Loan Amount'
+        value={details.loanAmount}
+        onChange={onChange}
+        disabled={disabled}
+        isRupee
       />
 
       <InputWithLabel

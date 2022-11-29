@@ -3,7 +3,7 @@ import dummyData from '../../../dummy/manager/dpr';
 
 import LoanRepaymentSchedule from '../../Template/Modals/LoanRepaymentSchedule';
 import DisbursementLetter from '../Modals/DisbursementLetter';
-import CreateLoanModal from '../Modals/CreateLoanModal';
+import CreateLoanModal from '../../Template/Modals/Loan';
 import CheckListModal from '../Modals/CheckListModal';
 import Interest from '../../Template/Modals/Interest';
 import Status from '../Modals/Status';
@@ -12,50 +12,6 @@ import Tabs from '../../UIComp/Tabs';
 import InProccess from './InProccess';
 import Rejected from './Rejected';
 import Granted from './Granted';
-
-const emptyDetails = {
-  FPO_Name: 'ABC FPO',
-  Arrangement: 'PTC',
-  Aggregate_disbursement: 500000,
-  Tenure: "Months",
-  TenureNumber: 3,
-  Validity_of_limit: 10,
-  Purpose: 'Infra',
-  Nature_of_facility: 'LTL',
-  Revolving: 'Non-revolving',
-  Margin: 6770,
-  Principal_repayment: 'Quartely',
-  Interest_repayment: 'Monthly',
-  Security: 'Corporate guarantee',
-  Security_remarks: "There will be some remoarks added here.",
-  Rate_of_Interest: 20,
-  Referral_fee: 30,
-  Processing_fee: 40,
-  Name_of_the_pool: 'ABC',
-  Average_yield: 2990,
-  PSL: 'Others',
-  Coupon_rate: 690,
-  Payment_terms: 'Some payment',
-  Nature_of_underlying_asset: 'Some Nature',
-  Average_tenor: 'Months',
-  Number_of_obligors: 98,
-  Consideration_amount: 6780,
-  Cut_off_date: '2022-07-15',
-  Asignee: 'Raj kumar',
-  Originator: 'Kesavan',
-  Pool_size: 50,
-  Execution_date: '2022-07-15',
-  Pool_maturity_date: '2022-07-15',
-  External_rating_Entity: '3.6',
-  External_rating_Individual: '4.8',
-  // Bureau_check: 'Highmark',
-  ESMS: 'Applicable',
-  Samunnati_score: '5',
-  Business_segment: 'Food processing',
-  Nature_of_security: 'Secured',
-  Guarantee: 'Partially',
-  otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
-}
 
 const lists = ['Granted Loans', 'Rejected Loans', 'Loans in process']
 
@@ -106,7 +62,7 @@ function Loan() {
         <CreateLoanModal
           isOpen
           type={type}
-          data={type !== "Create" ? emptyDetails : false}
+          role="relationship_manager"
           closeModal={closeModal}
         />
       }

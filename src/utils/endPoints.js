@@ -17,7 +17,7 @@ const endPoints = {
 
 
   // document/image upload
-  doc: "/document?filename=",
+  doc: "/document", // ?filename=
 
   // loan related
   fpoList: "/loan/fpoList",

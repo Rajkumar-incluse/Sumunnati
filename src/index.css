@@ -196,7 +196,7 @@
   .loader {
     @apply 
       w-10 h-10 border-4 animate-spin rounded-full 
-      border-green-300 border-t-green-600
+      border-[#cef3a1] border-t-[#a3dc5d]
     ;
   }
 

@@ -1,4 +1,4 @@
-function Btns({ step, type, setStep }) {
+function Btns({ step, type, loading, setStep, onSubmit }) {
   return (
     <div className='df'>
       {
@@ -24,9 +24,11 @@ function Btns({ step, type, setStep }) {
       {
         step === 5 && type !== "View" &&
         <button
-          className='ml-auto bg-[#a3dc5d] hover:scale-105'
+          className='ml-auto bg-[#a3dc5d] hover:scale-105 disabled:opacity-70'
+          onClick={onSubmit}
+          disabled={loading}
         >
-          Update
+          {type}
         </button>
       }
     </div>
