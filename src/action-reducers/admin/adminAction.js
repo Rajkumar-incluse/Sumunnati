@@ -32,13 +32,12 @@ export function getUsersList(onSuccess) {
         url: endPoints.getUserList,
       })
 
-      console.log(data)
-      // dispatch({
-      //   type: adminConstants.GET_USERS,
-      //   payload: message
-      // })
+      dispatch({
+        type: adminConstants.GET_USERS,
+        payload: data
+      })
 
-      // onSuccess()
+      onSuccess()
     } catch (error) {
       console.log(error)
     }

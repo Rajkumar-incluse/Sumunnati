@@ -9,8 +9,8 @@ import { DropDownWrapper } from '../UIComp/DropDown';
 import AddMember from './Modals/AddMember';
 import Loader from '../Common/Loader';
 
-const list1 = ["View", "Delete", "Activate"]
-const list2 = ["View", "Delete", "Inactivate"]
+const list1 = ["Delete", "Activate"]
+const list2 = ["Delete", "Inactivate"]
 
 function User() {
   const users = useSelector(({ admin }) => admin)
@@ -72,13 +72,13 @@ function User() {
                   <td className='px-2 py-1'>{u.email}</td>
                   <td className='px-2 py-1'>{u.role}</td>
                   <td className='px-2 py-1'>
-                    <button className={`dc w-20 h-6 p-0 rounded-full ${u.status === 'Active' ? ' bg-green-200 text-green-900' : ' bg-red-200 text-red-900'}`}>
-                      {u.status}
+                    <button className={`dc w-20 h-6 p-0 rounded-full ${u.status === 'active' ? ' bg-green-200 text-green-900' : ' bg-red-200 text-red-900'}`}>
+                      <span className='first-letter:uppercase'>{u.status}</span>
                     </button>
                   </td>
                   <td className='px-2 py-1'>
                     <DropDownWrapper
-                      list={u.status === 'Active' ? list2 : list1}
+                      list={u.status === 'active' ? list2 : list1}
                     >
                       <Dot className='w-5 h-5 [--svg-color:#333]' />
                     </DropDownWrapper>

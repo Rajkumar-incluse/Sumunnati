@@ -12,8 +12,8 @@ const endPoints = {
 
 
   // admin
+  getUserList: "/admin",
   createUser: "/admin/createUser",
-  getUserList: "/admin/getUser",
 
 
   // document/image upload

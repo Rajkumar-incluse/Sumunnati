@@ -48,7 +48,7 @@ export function getLoanByStatus(status, onSuccess) {
         type: loanConstants.GET_LOAN_BY_STATUS,
         payload: {
           status,
-          data: JSON.parse(res)
+          data: res
         }
       })
       onSuccess()
