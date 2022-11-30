@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
-import LoanRepaymentStatus from '../Template/Modals/LoanRepaymentStatus';
 import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import CreateLoanModal from './Modals/CreateLoanModal';
@@ -104,7 +103,6 @@ function Table({ type, data, updateOpen }) {
           {
             type === "Accepted" &&
             <>
-              <td className='px-2 py-4 text-gray-500 font-medium'>Payment history</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>SBI Status</td>
             </>
@@ -156,14 +154,6 @@ function Table({ type, data, updateOpen }) {
               {
                 type === "Accepted" &&
                 <>
-                  <td className='px-2 py-1'>
-                    <button
-                      className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                      onClick={() => updateOpen('LoanRepaymentStatus')}
-                    >
-                      View
-                    </button>
-                  </td>
                   <td className='px-2 py-1'>
                     {
                       i % 2 === 0
@@ -286,14 +276,6 @@ function Loan() {
         <UploadExecutedDocs
           isOpen
           type="View"
-          closeModal={closeModal}
-        />
-      }
-
-      {
-        open === "LoanRepaymentStatus" &&
-        <LoanRepaymentStatus
-          isOpen
           closeModal={closeModal}
         />
       }

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getFpoList } from '../../action-reducers/loan/loanAction';
 
-import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
-import { DropDownWrapper } from '../UIComp/DropDown';
+// import { ReactComponent as Dot } from '../../assets/svg/common/dot.svg';
+// import { DropDownWrapper } from '../UIComp/DropDown';
 import Loader from '../Common/Loader';
 
-const l1 = ["Activate"]
-const l2 = ["De-activate"]
+// const l1 = ["Activate"]
+// const l2 = ["De-activate"]
 
 function FPO() {
   const fpoList = useSelector(({ loan }) => loan?.fpoList || [])
@@ -37,7 +37,7 @@ function FPO() {
               <td className='px-2 py-4 text-gray-500 font-medium'>Phone</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>Email</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>Location</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'></td>
+              {/* <td className='px-2 py-4 text-gray-500 font-medium'></td> */}
             </tr>
           </thead>
 
@@ -51,14 +51,14 @@ function FPO() {
                   <td className='px-2 py-1'>{fpo.phoneNumber}</td>
                   <td className='px-2 py-1'>{fpo.email}</td>
                   <td className='px-2 py-1'>{fpo.location}</td>
-                  <td className='px-2 py-1'>
+                  {/* <td className='px-2 py-1'>
                     <DropDownWrapper
                       list={fpo.status === "active" ? l2 : l1}
                       needArrow
                     >
                       <Dot className="w-4" />
                     </DropDownWrapper>
-                  </td>
+                  </td> */}
                 </tr>
               ))
             }

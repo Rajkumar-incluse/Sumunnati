@@ -64,14 +64,14 @@ function InProccess({ data = [], updateOpen }) {
                   i % 2 === 0 ?
                     <button
                       className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                      onClick={() => updateOpen('updateCLModal')}
+                      onClick={() => updateOpen('updateCLModal', "View")}
                     >
                       View
                     </button>
                     :
                     <button
                       className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                      onClick={() => updateOpen('updateCLModal')}
+                      onClick={() => updateOpen('updateCLModal', "Create")}
                     >
                       Update
                     </button>

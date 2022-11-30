@@ -22,6 +22,7 @@ function Granted({ data = [], updateOpen }) {
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Updated checklist</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
@@ -60,19 +61,27 @@ function Granted({ data = [], updateOpen }) {
                   i % 2 === 0
                     ?
                     <button
-                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      className='block w-20 mx-auto py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
                       onClick={() => updateOpen('Disbursement', 'View')}
                     >
                       View
                     </button>
                     :
                     <button
-                      className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      className='block w-20 mx-auto py-0.5 bg-red-200 hover:bg-red-300 text-xs'
                       onClick={() => updateOpen('Disbursement', "Create")}
                     >
                       Pending
                     </button>
                 }
+              </td>
+              <td className='px-2 py-1'>
+                <button
+                  className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                  onClick={() => updateOpen('Disbursement', 'View')}
+                >
+                  View
+                </button>
               </td>
               <td className='px-2 py-1'>
                 <button

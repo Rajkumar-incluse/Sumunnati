@@ -41,14 +41,14 @@ function Select() {
   )
 }
 
-function CheckListModal({ isOpen, closeModal }) {
+function CheckListModal({ isOpen, type, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
       contentCls='dfc w-[70vw] max-h-[80vh]'
     >
       <ModalHeader
-        title="Update Check List"
+        title={`${type} Check List`}
         closeModal={closeModal}
       />
 
@@ -73,6 +73,13 @@ function CheckListModal({ isOpen, closeModal }) {
           }
         </table>
       </div>
+
+      {
+        type === "Create" &&
+        <button className='block w-32 mx-auto mt-1 bg-[#bdf579] hover:bg-[#a3dc5d]'>
+          Create
+        </button>
+      }
     </Modal>
   )
 }

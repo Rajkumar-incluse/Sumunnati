@@ -88,6 +88,7 @@ function Loan() {
         open === "updateCLModal" &&
         <CheckListModal
           isOpen
+          type={type}
           closeModal={closeModal}
         />
       }
