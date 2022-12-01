@@ -1,4 +1,5 @@
 import { ReactComponent as Close } from '../../../../assets/svg/actions/close.svg';
+import { root } from '../../../../utils/endPoints';
 
 function ShowDoc({ showImg, updateImg }) {
   return (
@@ -9,7 +10,7 @@ function ShowDoc({ showImg, updateImg }) {
 
       <img
         className='w-full'
-        src={`https://colendingdocs.s3.ap-south-1.amazonaws.com/${showImg}`}
+        src={`${root.imgBaseUrl}/${showImg}`}
         alt=""
       />
     </div>

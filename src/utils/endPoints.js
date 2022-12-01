@@ -1,5 +1,6 @@
 export const root = {
   baseUrl: `http://65.2.167.209:8080/api`,
+  imgBaseUrl: "https://colendingdocs.s3.ap-south-1.amazonaws.com",
 }
 
 const endPoints = {
