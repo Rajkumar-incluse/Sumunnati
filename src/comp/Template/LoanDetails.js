@@ -86,11 +86,11 @@ function LoanDetails({ role = "" }) {
                 role !== "sbi" &&
                 <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
               }
-              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
-              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
-              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Total amount outstanding</td>
-              <td className='w-36 px-2 py-4 text-gray-500 font-medium leading-5'>Next EMI date</td>
-              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Next EMI amount</td>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
+              <td className='w-20 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
+              <td className='w-36 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
+              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
               <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
               <td className='w-36 px-2 py-4 text-gray-500 font-medium leading-5'>Payment history</td>
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>

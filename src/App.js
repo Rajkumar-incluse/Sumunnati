@@ -131,6 +131,7 @@ function App() {
           <Route path='loan' element={<SBILoan />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails role='sbi' />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
       </Routes>
     </Suspense>

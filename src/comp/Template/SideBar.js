@@ -13,7 +13,7 @@ function SideBar({ list = [], role = "" }) {
         list.map(l => (
           <div
             key={l.title}
-            className={`df px-4 py-2 cursor-pointer ${pathname === l.to ? "border-l-2 border-black bg-[#a3dc5d]" : "hover:bg-[#abf155] rounded"}`}
+            className={`df px-4 py-2 cursor-pointer ${pathname === `/${role}/${l.to}` ? "border-l-2 border-black bg-[#a3dc5d]" : "hover:bg-[#abf155] rounded"}`}
             onClick={() => navigate(`/${role}/${l.to}`)}
           >
             {l.icon}

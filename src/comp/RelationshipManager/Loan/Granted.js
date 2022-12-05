@@ -16,9 +16,6 @@ function Granted({ data = [], updateOpen }) {
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
-          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Outstanding amount</td>
-          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment amount</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Next payment date</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement request letter</td>
@@ -38,9 +35,6 @@ function Granted({ data = [], updateOpen }) {
                 <button className='p-0' onClick={() => updateOpen('interest')}>14%</button>
               </td>
               <td className='px-2 py-1'>{d.start}</td>
-              <td className='px-2 py-1'>&#8377; {d.due}</td>
-              <td className='px-2 py-1'>&#8377; {d.due - 400}</td>
-              <td className='px-2 py-1'>{d.end}</td>
               <td className='px-2 py-1'>
                 <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'

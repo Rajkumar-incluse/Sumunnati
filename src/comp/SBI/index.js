@@ -15,7 +15,7 @@ const list = [
     to: 'fpo'
   },
   {
-    title: "Loan",
+    title: "FPO Loan",
     icon: <Loan />,
     to: 'loan'
   },
@@ -23,6 +23,11 @@ const list = [
     title: "Loan-details",
     icon: <Loan />,
     to: 'loan-details'
+  },
+  {
+    title: "SBI Loan",
+    icon: <Loan />,
+    to: 'sbi-loan-details'
   },
 ]
 
