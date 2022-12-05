@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
+import { DropDownWrapper } from '../UIComp/DropDown';
 import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
 import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
+import StatusUpdateModal from '../Template/Modals/StatusUpdate';
 import CreateLoanModal from './Modals/CreateLoanModal';
-import { DropDownWrapper } from '../UIComp/DropDown';
 import CheckListModal from './Modals/CheckListModal';
 import Interest from '../Template/Modals/Interest';
-import StatusUpdate from './Modals/StatusUpdate';
 import LSAModal from './Modals/LSAModal';
 import Tabs from '../UIComp/Tabs';
 
@@ -53,12 +53,6 @@ const emptyDetails = {
   Nature_of_security: 'Secured',
   Guarantee: 'Partially',
   otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
-}
-
-const statusData = {
-  confirmed: true,
-  comment: 'Please add document X',
-  status: 'Accept',
 }
 
 function GrantedTable({ data = [], updateOpen }) {
@@ -364,10 +358,9 @@ function Loan() {
 
       {
         open === 'Status' &&
-        <StatusUpdate
+        <StatusUpdateModal
           isOpen
           type={type}
-          data={type ? statusData : false}
           closeModal={closeModal}
         />
       }

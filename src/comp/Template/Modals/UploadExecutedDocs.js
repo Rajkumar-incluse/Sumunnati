@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import InputFileWithLabel from '../../Common/InputFileWithLabel';
+import { Fragment, useState } from 'react';
+// import InputFileWithLabel from '../../Common/InputFileWithLabel';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 import { ReactComponent as Close } from '../../../assets/svg/actions/close.svg';
 import gst from '../../../assets/img/gst.jpg';
@@ -58,7 +58,7 @@ function UploadExecutedDocs({ isOpen, type, closeModal }) {
       }
 
       <div className='scroll-y pr-4 lg:pr-6 -mr-4 lg:-mr-6'>
-        {
+        {/* {
           data.map(doc => (
             <InputFileWithLabel
               key={doc}
@@ -66,6 +66,24 @@ function UploadExecutedDocs({ isOpen, type, closeModal }) {
               updateImg={updateImg}
               lable={doc}
             />
+          ))
+        } */}
+        {
+          data.map(doc => (
+            <Fragment key={doc}>
+              <label className='mb-0'>{doc}</label>
+              {
+                type === 'Create' ?
+                  <input className='mt-1 mb-4' type="file" />
+                  :
+                  <button
+                    className='mb-4 px-2 py-0.5 bg-[#a3dc5d] text-white text-sm'
+                    onClick={updateImg}
+                  >
+                    View
+                  </button>
+              }
+            </Fragment>
           ))
         }
       </div>

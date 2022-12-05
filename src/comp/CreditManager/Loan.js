@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
-import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
+import StatusUpdateModal from '../Template/Modals/StatusUpdate';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import InterestModal from '../Template/Modals/Interest';
-import OthersStatus from './Modals/OthersStatus';
-import StatusUpdate from './Modals/StatusUpdate';
-import BureauCheck from './Modals/BureauCheck';
+import SharedStatus from '../Template/Modals/SharedStatus';
+import BureauCheck from '../Template/Modals/BureauCheck';
 import Tabs from '../UIComp/Tabs';
 
 const emptyDetails = {
@@ -52,12 +52,6 @@ const emptyDetails = {
   Nature_of_security: 'Secured',
   Guarantee: 'Partially',
   otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
-}
-
-const statusData = {
-  confirmed: true,
-  comment: 'Please add document X',
-  status: 'Accept',
 }
 
 function GrantedTable({ data = [], updateOpen }) {
@@ -399,10 +393,9 @@ function Loan() {
 
       {
         open === 'Status' &&
-        <StatusUpdate
+        <StatusUpdateModal
           isOpen
           type={type}
-          data={type ? statusData : false}
           closeModal={closeModal}
         />
       }
@@ -418,8 +411,9 @@ function Loan() {
 
       {
         open === 'OtherStatus' &&
-        <OthersStatus
+        <SharedStatus
           isOpen
+          role="credit_manager"
           closeModal={closeModal}
         />
       }

@@ -1,15 +1,15 @@
-import InputFileWithLabel from '../../Common/InputFileWithLabel';
+// import InputFileWithLabel from '../../Common/InputFileWithLabel';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 import gst from '../../../assets/img/gst.jpg';
 
-function DisbursementLetter({ isOpen, type, closeModal }) {
+function UploadViewDoc({ isOpen, type, title = "", closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
       contentCls={`dfc w-[400px] ${type === 'View' ? "h-[500px]" : "h-[250px]"}`}
     >
       <ModalHeader
-        title="Disbursement request Letter"
+        title={title}
         closeModal={closeModal}
       />
 
@@ -21,12 +21,14 @@ function DisbursementLetter({ isOpen, type, closeModal }) {
       {
         type === 'Create' &&
         <>
-          <InputFileWithLabel
-            val={type}
+          <label className='mb-0'>{title}</label>
+          <input type="file" />
+          {/* <InputFileWithLabel
+            type={type}
             lable='Disbursement request letter'
-          />
+          /> */}
           <button
-            className='ml-auto bg-[#a3dc5d] hover:scale-105'
+            className='ml-auto mt-auto bg-[#a3dc5d] hover:scale-105'
           >
             Submit
           </button>
@@ -36,4 +38,4 @@ function DisbursementLetter({ isOpen, type, closeModal }) {
   )
 }
 
-export default DisbursementLetter
+export default UploadViewDoc

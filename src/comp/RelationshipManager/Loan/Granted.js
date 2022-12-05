@@ -72,7 +72,7 @@ function Granted({ data = [], updateOpen }) {
               <td className='px-2 py-1'>
                 <button
                   className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                  onClick={() => updateOpen('Disbursement', 'View')}
+                  onClick={() => updateOpen('updateCLModal', 'View')}
                 >
                   View
                 </button>

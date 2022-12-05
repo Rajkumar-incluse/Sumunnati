@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
-import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
-import CreateLoanModal from './Modals/CreateLoanModal';
 import { DropDownWrapper } from '../UIComp/DropDown';
-import Interest from '../Template/Modals/Interest';
+import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
+import StatusUpdateModal from '../Template/Modals/StatusUpdate';
+import CreateLoanModal from './Modals/CreateLoanModal';
 import OthersStatus from './Modals/OthersStatus';
-import StatusUpdate from './Modals/StatusUpdate';
+import BureauCheck from '../Template/Modals/BureauCheck';
+import Interest from '../Template/Modals/Interest';
 import Tabs from '../UIComp/Tabs';
 
 const emptyDetails = {
@@ -53,12 +54,6 @@ const emptyDetails = {
   otherDocs: ["Driving Lisence", "Other Doc", "Legal Cert", "Extra doc"]
 }
 
-const statusData = {
-  confirmed: true,
-  comment: 'Please add document X',
-  status: 'Accept',
-}
-
 function GrantedTable({ data = [], updateOpen }) {
   const [filterByRM, setFilterByRM] = useState('None')
   const [rmNames, setRmNames] = useState([])
@@ -97,6 +92,7 @@ function GrantedTable({ data = [], updateOpen }) {
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Loan date</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Bureau Check</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Repayment structure</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
@@ -115,6 +111,22 @@ function GrantedTable({ data = [], updateOpen }) {
                 <button className='p-0' onClick={() => updateOpen('interest')}>14%</button>
               </td>
               <td className='px-2 py-1'>{d.start}</td>
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('Bureau check', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button className='w-20 py-0.5 bg-red-200 text-xs cursor-default'>
+                      Pending
+                    </button>
+                }
+              </td>
               <td className='px-2 py-1'>
                 <button
                   className='py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
@@ -255,6 +267,7 @@ function ProcessTable({ data = [], updateOpen }) {
           </td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium'>Proposed loan amount</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium'>Interest rate</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Bureau Check</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Action</td>
           <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Status</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
@@ -271,6 +284,22 @@ function ProcessTable({ data = [], updateOpen }) {
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1'>
                 <button className='p-0' onClick={() => updateOpen('interest')}>14%</button>
+              </td>
+              <td className='px-2 py-1'>
+                {
+                  i % 2 === 0
+                    ?
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('Bureau check', 'View')}
+                    >
+                      View
+                    </button>
+                    :
+                    <button className='w-20 py-0.5 bg-red-200  text-xs cursor-default'>
+                      Pending
+                    </button>
+                }
               </td>
               <td className='px-2 py-1'>
                 {
@@ -369,10 +398,10 @@ function Loan() {
 
       {
         open === 'Status' &&
-        <StatusUpdate
+        <StatusUpdateModal
           isOpen
           type={type}
-          data={type ? statusData : false}
+          role='credit_committee'
           closeModal={closeModal}
         />
       }
@@ -398,6 +427,15 @@ function Loan() {
         open === "interest" &&
         <Interest
           isOpen
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === 'Bureau check' &&
+        <BureauCheck
+          isOpen
+          type={type}
           closeModal={closeModal}
         />
       }

@@ -24,14 +24,15 @@ const list = [
   'Escrow Documents – Declaration cum Indemnity, Letter of Instruction & Confirmation',
 ]
 
-function Select() {
-  const [val, setVal] = useState('')
+function Select({ type }) {
+  const [val, setVal] = useState(type === "View" ? 'Yes' : "")
 
   return (
     <select
       className='w-16 py-1 pl-2.5 pr-2 text-sm bg-[length:16px]'
       value={val}
       onChange={e => setVal(e.target.value)}
+      disabled={type === "View"}
     >
       <option value="" disabled></option>
       <option value="Yes">Yes</option>
@@ -66,7 +67,7 @@ function CheckListModal({ isOpen, type, closeModal }) {
                 <td className="px-4 py-2">{i + 1}</td>
                 <td className="px-4 py-2">{l}</td>
                 <td className="px-4 py-2">
-                  <Select />
+                  <Select type={type} />
                 </td>
               </tr>
             ))

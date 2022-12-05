@@ -3,6 +3,7 @@ import { useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
 import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
+import UploadViewDocModal from '../Template/Modals/UploadViewDoc';
 import DisbursementModal from './Modals/DisbursementModal';
 import InProgressStatus from './Modals/InProgressStatus';
 import TotalAmountModal from '../Template/Modals/TotalAmount';
@@ -90,13 +91,16 @@ function SanctionedTable({ data, updateOpen }) {
                 {
                   i % 2 === 0
                     ?
-                    <button className='w-20 py-0.5 bg-[#bdf579] text-xs'>
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                      onClick={() => updateOpen("DeedofAssignment", "View")}
+                    >
                       View
                     </button>
                     :
                     <button
                       className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                      onClick={() => updateOpen('shareToSBI')}
+                      onClick={() => updateOpen('DeedofAssignment', "Create")}
                     >
                       Pending
                     </button>
@@ -442,6 +446,16 @@ function Loan() {
         <UploadExecutedDocs
           isOpen
           type={type}
+          closeModal={closeModal}
+        />
+      }
+
+      {
+        open === "DeedofAssignment" &&
+        <UploadViewDocModal
+          isOpen
+          type={type}
+          title='Deed of Assignment'
           closeModal={closeModal}
         />
       }

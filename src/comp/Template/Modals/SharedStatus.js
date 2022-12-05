@@ -1,29 +1,42 @@
+import { useState } from 'react';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 
 const data = [
   {
+    by: "credit_manager",
     role: 'Credit Manager',
-    status: 'Accepted',
+    status: 'Approved',
     comment: 'Some comment added by Credit Manager.'
   },
   {
+    by: "credit_committee",
     role: 'Credit Committee',
-    status: 'Accepted',
+    status: 'Approved',
     comment: 'Some comment added by Credit Committee.'
   },
   {
+    by: "central_co_lending_unit",
+    role: 'Central Co Lending Unit',
+    status: 'Reviewed',
+    comment: 'Some comment added by Central Co Lending Unit.'
+  },
+  {
+    by: "credit_admin_department",
     role: 'Credit Admin',
     status: 'Rejected',
     comment: 'Some comment added by Credit Admin.'
   },
-  {
-    role: 'Credit Operations',
-    status: 'Pending',
-    comment: 'Some comment added by Credit Operations.'
-  },
+  // {
+  //   by: "credit_operations",
+  //   role: 'Credit Operations',
+  //   status: 'Reviewed',
+  //   comment: 'Some comment added by Credit Operations.'
+  // },
 ]
 
-function Status({ isOpen, closeModal }) {
+function SharedStatus({ role, isOpen, closeModal }) {
+  const [filtered] = useState(data.filter(d => d.by !== role))
+
   return (
     <Modal
       isOpen={isOpen}
@@ -41,15 +54,15 @@ function Status({ isOpen, closeModal }) {
         </tr>
 
         {
-          data.map(d => (
+          filtered.map(d => (
             <tr key={d.role} className='border'>
               <td className="px-4 py-2">{d.role}</td>
               <td className="px-4 py-2">
-                <button className={` text-sm ${d.status === "Accepted" ? "bg-green-200 text-green-800" : ""} ${d.status === "Rejected" ? "bg-red-200 text-red-900" : ""} ${d.status === "Pending" ? "bg-yellow-200 text-yellow-900" : ""}`}>
+                <button className={` text-sm ${d.status === "Approved" ? "bg-green-200 text-green-800" : ""} ${d.status === "Rejected" ? "bg-red-200 text-red-900" : ""} ${d.status === "Reviewed" ? "bg-yellow-200 text-yellow-900" : ""}`}>
                   {d.status}
                 </button>
               </td>
-              <td className="px-4 py-2">{d.status !== "Pending" ? d.comment : '-'}</td>
+              <td className="px-4 py-2">{d.status !== "Reviewed" ? d.comment : '-'}</td>
             </tr>
           ))
         }
@@ -58,4 +71,4 @@ function Status({ isOpen, closeModal }) {
   )
 }
 
-export default Status
+export default SharedStatus

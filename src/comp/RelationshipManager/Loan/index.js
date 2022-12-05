@@ -2,11 +2,11 @@ import { useState } from 'react';
 import dummyData from '../../../dummy/manager/dpr';
 
 import LoanRepaymentSchedule from '../../Template/Modals/LoanRepaymentSchedule';
-import DisbursementLetter from '../Modals/DisbursementLetter';
+import UploadViewDocModal from '../../Template/Modals/UploadViewDoc';
 import CreateLoanModal from '../../Template/Modals/Loan';
 import CheckListModal from '../Modals/CheckListModal';
+import SharedStatus from '../../Template/Modals/SharedStatus';
 import Interest from '../../Template/Modals/Interest';
-import Status from '../Modals/Status';
 import Tabs from '../../UIComp/Tabs';
 
 import InProccess from './InProccess';
@@ -69,8 +69,9 @@ function Loan() {
 
       {
         open === "status" &&
-        <Status
+        <SharedStatus
           isOpen
+          role="relationship_manager"
           closeModal={closeModal}
         />
       }
@@ -103,9 +104,10 @@ function Loan() {
 
       {
         open === "Disbursement" &&
-        <DisbursementLetter
+        <UploadViewDocModal
           isOpen
           type={type}
+          title='Disbursement request Letter'
           closeModal={closeModal}
         />
       }

@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import dummyData from '../../dummy/manager/dpr';
 
-import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
 import { DropDownWrapper } from '../UIComp/DropDown';
+import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
+import UploadViewDocModal from '../Template/Modals/UploadViewDoc';
+import StatusUpdateModal from '../Template/Modals/StatusUpdate';
 import CreateLoanModal from './Modals/CreateLoanModal';
 import InterestModal from '../Template/Modals/Interest';
-import StatusUpdate from './Modals/StatusUpdate';
+// import SharedStatus from '../Template/Modals/SharedStatus';
 import ShareToSBI from './Modals/ShareToSBI';
 import SBIStatus from './Modals/SBIStatus';
 import Tabs from '../UIComp/Tabs';
@@ -93,9 +95,11 @@ function Table({ type, data, updateOpen }) {
           </td>
           {
             type === "Pending" &&
-            <td className='px-2 py-4 text-gray-500 font-medium'>Action</td>
+            <>
+              <td className='px-2 py-4 text-gray-500 font-medium'>Action</td>
+              {/* <td className='px-2 py-4 text-gray-500 font-medium'>Status</td> */}
+            </>
           }
-          <td className='px-2 py-4 text-gray-500 font-medium'>Loan Application</td>
           {
             type !== "Rejected" &&
             <td className='px-2 py-4 text-gray-500 font-medium'>Executed Documents</td>
@@ -103,10 +107,12 @@ function Table({ type, data, updateOpen }) {
           {
             type === "Accepted" &&
             <>
+              <td className='px-2 py-4 text-gray-500 font-medium'>Deed of Assignment</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
               <td className='px-2 py-4 text-gray-500 font-medium'>SBI Status</td>
             </>
           }
+          <td className='px-2 py-4 text-gray-500 font-medium'>Loan Application</td>
         </tr>
       </thead>
 
@@ -123,23 +129,36 @@ function Table({ type, data, updateOpen }) {
               <td className='px-2 py-1'>{d.name}</td>
               {
                 type === "Pending" &&
-                <td className='px-2 py-1'>
-                  <button
-                    className='py-px bg-[#a3dc5d] hover:bg-[#bdf579]'
-                    onClick={() => updateOpen("statusUpdate")}
-                  >
-                    Update
-                  </button>
-                </td>
+                <>
+                  <td className='px-2 py-1'>
+                    {
+                      i % 3 !== 0
+                        ?
+                        <button
+                          className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                          onClick={() => updateOpen('statusUpdate', 'View')}
+                        >
+                          View
+                        </button>
+                        :
+                        <button
+                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                          onClick={() => updateOpen('statusUpdate', "Create")}
+                        >
+                          Update
+                        </button>
+                    }
+                  </td>
+                  {/* <td className='px-2 py-1'>
+                    <button
+                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                      onClick={() => updateOpen('Status', 'View')}
+                    >
+                      View
+                    </button>
+                  </td> */}
+                </>
               }
-              <td className='px-2 py-1'>
-                <button
-                  className='py-px bg-[#a3dc5d] hover:bg-[#bdf579]'
-                  onClick={() => updateOpen("Loan")}
-                >
-                  View
-                </button>
-              </td>
               {
                 type !== "Rejected" &&
                 <td className='px-2 py-1'>
@@ -154,6 +173,22 @@ function Table({ type, data, updateOpen }) {
               {
                 type === "Accepted" &&
                 <>
+                  {
+                    i % 2 === 0
+                      ?
+                      <button
+                        className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                        onClick={() => updateOpen("DeedofAssignment")}
+                      >
+                        View
+                      </button>
+                      :
+                      <button
+                        className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                      >
+                        Pending
+                      </button>
+                  }
                   <td className='px-2 py-1'>
                     {
                       i % 2 === 0
@@ -189,6 +224,14 @@ function Table({ type, data, updateOpen }) {
                   </td>
                 </>
               }
+              <td className='px-2 py-1'>
+                <button
+                  className='py-px bg-[#a3dc5d] hover:bg-[#bdf579]'
+                  onClick={() => updateOpen("Loan")}
+                >
+                  View
+                </button>
+              </td>
             </tr>
           ))
         }
@@ -249,7 +292,7 @@ function Loan() {
 
       {
         open === "statusUpdate" &&
-        <StatusUpdate
+        <StatusUpdateModal
           isOpen
           closeModal={closeModal}
         />
@@ -279,6 +322,25 @@ function Loan() {
           closeModal={closeModal}
         />
       }
+
+      {
+        open === "DeedofAssignment" &&
+        <UploadViewDocModal
+          isOpen
+          type="View"
+          title='Deed of Assignment'
+          closeModal={closeModal}
+        />
+      }
+
+      {/* {
+        open === 'Status' &&
+        <SharedStatus
+          isOpen
+          role="central_co_lending_unit"
+          closeModal={closeModal}
+        />
+      } */}
     </section>
   )
 }
