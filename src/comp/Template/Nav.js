@@ -5,13 +5,13 @@ import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import { useSelector } from 'react-redux';
 
-function Nav({ userType = "" }) {
+function Nav({ role = "" }) {
   const user = useSelector(({ login }) => login.userDetails)
   const navigate = useNavigate()
 
   const onClk = val => {
     if (val === "Profile") {
-      navigate(`/${userType}/setting`)
+      navigate(`/${role}/setting`)
     } else if (val === 'Log out') {
       navigate('/')
     }

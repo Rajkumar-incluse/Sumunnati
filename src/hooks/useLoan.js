@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 
-import { getLoanByStatus } from '../action-reducers/loan/loanAction';
+// import { getLoanByStatus } from '../action-reducers/loan/loanAction';
 
 function useLoan(status) {
-  const loanData = useSelector(({ loan }) => loan?.loanList?.[status] || [])
-  const [loading, setLoading] = useState(true)
-  const dispatch = useDispatch()
+  // const loanData = useSelector(({ loan }) => loan?.loanList?.[status] || [])
+  const [loading] = useState(false)
+  // , setLoading
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    const onSuccess = () => setLoading(false)
-    dispatch(getLoanByStatus(status, onSuccess))
-  }, [dispatch, status])
+  // useEffect(() => {
+  //   const onSuccess = () => setLoading(false)
+  //   dispatch(getLoanByStatus(status, onSuccess))
+  // }, [dispatch, status])
 
   return {
     loading,
-    loanData
+    loanData: {}
   }
 }
 

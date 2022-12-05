@@ -9,37 +9,42 @@ const list = [
   {
     title: "Dashboard",
     icon: <Dashboard />,
-    to: '/operations/dashboard'
+    to: 'dashboard'
   },
   {
     title: "FPO Info",
     icon: <Dpr />,
-    to: '/operations/fpo'
+    to: 'fpo'
   },
   {
-    title: "Loan",
+    title: "FPO Loan",
     icon: <Loan />,
-    to: '/operations/loan'
+    to: 'loan'
   },
   {
     title: "Loan account details",
     icon: <Loan />,
-    to: '/credit_admin_department/loan-details'
+    to: 'loan-details'
+  },
+  {
+    title: "SBI Loan",
+    icon: <Loan />,
+    to: 'sbi-loan-details'
   },
   {
     title: "Support",
     icon: <Support />,
-    to: '/operations/support'
+    to: 'support'
   },
   {
     title: "Settings",
     icon: <Setting />,
-    to: '/operations/setting'
+    to: 'setting'
   },
 ]
 
 function Operations() {
-  return <AppWrapper userType="operations" list={list} />
+  return <AppWrapper role="operations" list={list} />
 }
 
 export default Operations

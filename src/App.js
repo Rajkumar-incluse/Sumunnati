@@ -6,6 +6,7 @@ const ForgetPass = lazy(() => import("./comp/Auth/ForgetPass"))
 const Signup = lazy(() => import("./comp/Auth/Signup"))
 const Login = lazy(() => import("./comp/Auth/Login"))
 
+const TemplateSBILoanDetails = lazy(() => import("./comp/Template/SBILoanDetails"))
 const TemplateLoanDetails = lazy(() => import("./comp/Template/LoanDetails"))
 const TemplateDashboard = lazy(() => import("./comp/Template/Dashboard"))
 const TemplateSettings = lazy(() => import("./comp/Template/Settings"))
@@ -62,6 +63,7 @@ function App() {
           <Route path='support' element={<TemplateSupport />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails role="relationship_manager" />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
 
         <Route path="credit_manager" element={<CM />}>
@@ -71,6 +73,7 @@ function App() {
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
 
         <Route path="central_co_lending_unit" element={<CCLU />}>
@@ -80,6 +83,7 @@ function App() {
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
 
         <Route path="credit_admin_department" element={<CAD />}>
@@ -89,6 +93,7 @@ function App() {
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
 
         <Route path="credit_committee" element={<CC />}>
@@ -98,6 +103,7 @@ function App() {
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
 
         <Route path="credit_operations" element={<CO />} >
@@ -107,6 +113,7 @@ function App() {
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
 
         <Route path="operations" element={<Op />} >
@@ -116,6 +123,7 @@ function App() {
           <Route path='setting' element={<TemplateSettings />} />
           <Route path='dashboard' element={<TemplateDashboard />} />
           <Route path='loan-details' element={<TemplateLoanDetails />} />
+          <Route path='sbi-loan-details' element={<TemplateSBILoanDetails />} />
         </Route>
 
         <Route path="sbi" element={<SBI />} >

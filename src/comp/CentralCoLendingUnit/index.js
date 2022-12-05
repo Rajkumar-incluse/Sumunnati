@@ -9,37 +9,42 @@ const list = [
   {
     title: "Dashboard",
     icon: <Dashboard />,
-    to: '/central_co_lending_unit/dashboard'
+    to: 'dashboard'
   },
   {
     title: "FPO Info",
     icon: <Dpr />,
-    to: '/central_co_lending_unit/fpo'
+    to: 'fpo'
   },
   {
-    title: "Loan",
+    title: "FPO Loan",
     icon: <Loan />,
-    to: '/central_co_lending_unit/loan'
+    to: 'loan'
   },
   {
     title: "Loan account details",
     icon: <Loan />,
-    to: '/credit_admin_department/loan-details'
+    to: 'loan-details'
+  },
+  {
+    title: "SBI Loan",
+    icon: <Loan />,
+    to: 'sbi-loan-details'
   },
   {
     title: "Support",
     icon: <Support />,
-    to: '/central_co_lending_unit/support'
+    to: 'support'
   },
   {
     title: "Settings",
     icon: <Setting />,
-    to: '/central_co_lending_unit/setting'
+    to: 'setting'
   },
 ]
 
 function Manager() {
-  return <AppWrapper userType="central_co_lending_unit" list={list} />
+  return <AppWrapper role="central_co_lending_unit" list={list} />
 }
 
 export default Manager

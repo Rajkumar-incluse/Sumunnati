@@ -28,7 +28,7 @@ const list = [
 ]
 
 function Admin() {
-  return <AppWrapper userType="admin" list={list} />
+  return <AppWrapper role="admin" list={list} />
 }
 
 export default Admin

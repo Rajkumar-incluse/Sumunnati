@@ -9,37 +9,42 @@ const list = [
   {
     title: "Dashboard",
     icon: <Dashboard />,
-    to: '/relationship_manager/dashboard'
+    to: 'dashboard'
   },
   {
     title: "FPO Info",
     icon: <Dpr />,
-    to: '/relationship_manager/fpo'
+    to: 'fpo'
   },
   {
-    title: "Loan",
+    title: "FPO Loan",
     icon: <Loan />,
-    to: '/relationship_manager/loan'
+    to: 'loan'
   },
   {
     title: "Loan account details",
     icon: <Loan />,
-    to: '/relationship_manager/loan-details'
+    to: 'loan-details'
+  },
+  {
+    title: "SBI Loan",
+    icon: <Loan />,
+    to: 'sbi-loan-details'
   },
   {
     title: "Support",
     icon: <Support />,
-    to: '/relationship_manager/support'
+    to: 'support'
   },
   {
     title: "Settings",
     icon: <Setting />,
-    to: '/relationship_manager/setting'
+    to: 'setting'
   },
 ]
 
 function Manager() {
-  return <AppWrapper userType="relationship_manager" list={list} />
+  return <AppWrapper role="relationship_manager" list={list} />
 }
 
 export default Manager

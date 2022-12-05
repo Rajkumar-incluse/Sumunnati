@@ -7,27 +7,27 @@ const list = [
   {
     title: "Dashboard",
     icon: <Dashboard />,
-    to: '/sbi/dashboard'
+    to: 'dashboard'
   },
   {
     title: "FPO Info",
     icon: <Dpr />,
-    to: '/sbi/fpo'
+    to: 'fpo'
   },
   {
     title: "Loan",
     icon: <Loan />,
-    to: '/sbi/loan'
+    to: 'loan'
   },
   {
     title: "Loan-details",
     icon: <Loan />,
-    to: '/sbi/loan-details'
+    to: 'loan-details'
   },
 ]
 
 function Operations() {
-  return <AppWrapper userType="sbi" list={list} />
+  return <AppWrapper role="sbi" list={list} />
 }
 
 export default Operations

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import summunatiLogo from '../../assets/svg/Samunnati_Logo.svg';
 
-function SideBar({ list = [] }) {
+function SideBar({ list = [], role = "" }) {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ function SideBar({ list = [] }) {
           <div
             key={l.title}
             className={`df px-4 py-2 cursor-pointer ${pathname === l.to ? "border-l-2 border-black bg-[#a3dc5d]" : "hover:bg-[#abf155] rounded"}`}
-            onClick={() => navigate(l.to)}
+            onClick={() => navigate(`/${role}/${l.to}`)}
           >
             {l.icon}
             {l.title}

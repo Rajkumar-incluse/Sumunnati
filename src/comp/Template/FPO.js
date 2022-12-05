@@ -46,8 +46,8 @@ function FPO() {
               fpoList.map(fpo => (
                 <tr key={fpo._id} className='text-sm'>
                   <td className='pl-12 pr-2 py-1'>{fpo.FPOid}</td>
-                  <td className='px-2 py-1'>{fpo.FPOname}</td>
-                  <td className='px-2 py-1'>{fpo.ceoName}</td>
+                  <td className='px-2 py-1 first-letter:uppercase'>{fpo.FPOname}</td>
+                  <td className='px-2 py-1 first-letter:uppercase'>{fpo.ceoName}</td>
                   <td className='px-2 py-1'>{fpo.phoneNumber}</td>
                   <td className='px-2 py-1'>{fpo.email}</td>
                   <td className='px-2 py-1'>{fpo.location}</td>
