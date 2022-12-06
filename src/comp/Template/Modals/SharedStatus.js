@@ -15,27 +15,21 @@ const data = [
     comment: 'Some comment added by Credit Committee.'
   },
   {
-    by: "central_co_lending_unit",
-    role: 'Central Co Lending Unit',
-    status: 'Reviewed',
-    comment: 'Some comment added by Central Co Lending Unit.'
-  },
-  {
     by: "credit_admin_department",
     role: 'Credit Admin',
     status: 'Rejected',
     comment: 'Some comment added by Credit Admin.'
   },
-  // {
-  //   by: "credit_operations",
-  //   role: 'Credit Operations',
-  //   status: 'Reviewed',
-  //   comment: 'Some comment added by Credit Operations.'
-  // },
+  {
+    by: "central_co_lending_unit",
+    role: 'Central Co Lending Unit',
+    status: 'Review',
+    comment: 'Some comment added by Central Co Lending Unit.'
+  },
 ]
 
-function SharedStatus({ role, isOpen, closeModal }) {
-  const [filtered] = useState(data.filter(d => d.by !== role))
+function SharedStatus({ rolesAllowed = [], isOpen, closeModal }) {
+  const [filtered] = useState(data.filter(d => rolesAllowed.includes(d.by)))
 
   return (
     <Modal
@@ -58,11 +52,11 @@ function SharedStatus({ role, isOpen, closeModal }) {
             <tr key={d.role} className='border'>
               <td className="px-4 py-2">{d.role}</td>
               <td className="px-4 py-2">
-                <button className={` text-sm ${d.status === "Approved" ? "bg-green-200 text-green-800" : ""} ${d.status === "Rejected" ? "bg-red-200 text-red-900" : ""} ${d.status === "Reviewed" ? "bg-yellow-200 text-yellow-900" : ""}`}>
+                <button className={` text-sm ${d.status === "Approved" ? "bg-green-200 text-green-800" : ""} ${d.status === "Rejected" ? "bg-red-200 text-red-900" : ""} ${d.status === "Review" ? "bg-yellow-200 text-yellow-900" : ""}`}>
                   {d.status}
                 </button>
               </td>
-              <td className="px-4 py-2">{d.status !== "Reviewed" ? d.comment : '-'}</td>
+              <td className="px-4 py-2">{d.status !== "Review" ? d.comment : '-'}</td>
             </tr>
           ))
         }

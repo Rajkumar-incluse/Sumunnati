@@ -5,7 +5,7 @@ import { DropDownWrapper } from '../UIComp/DropDown';
 import LoanRepaymentSchedule from '../Template/Modals/LoanRepaymentSchedule';
 import StatusUpdateModal from '../Template/Modals/StatusUpdate';
 import CreateLoanModal from './Modals/CreateLoanModal';
-import OthersStatus from './Modals/OthersStatus';
+import SharedStatus from '../Template/Modals/SharedStatus';
 import BureauCheck from '../Template/Modals/BureauCheck';
 import Interest from '../Template/Modals/Interest';
 import Tabs from '../UIComp/Tabs';
@@ -417,8 +417,9 @@ function Loan() {
 
       {
         open === 'OtherStatus' &&
-        <OthersStatus
+        <SharedStatus
           isOpen
+          rolesAllowed={["credit_admin_department", "central_co_lending_unit"]}
           closeModal={closeModal}
         />
       }

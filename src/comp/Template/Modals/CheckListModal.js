@@ -78,7 +78,7 @@ function CheckListModal({ isOpen, type, closeModal }) {
       {
         type === "Create" &&
         <button className='block w-32 mx-auto mt-1 bg-[#bdf579] hover:bg-[#a3dc5d]'>
-          Create
+          Submit
         </button>
       }
     </Modal>

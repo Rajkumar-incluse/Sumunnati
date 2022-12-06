@@ -413,7 +413,7 @@ function Loan() {
         open === 'OtherStatus' &&
         <SharedStatus
           isOpen
-          role="credit_manager"
+          rolesAllowed={["credit_committee", "credit_admin_department", "central_co_lending_unit"]}
           closeModal={closeModal}
         />
       }

@@ -4,7 +4,7 @@ import dummyData from '../../../dummy/manager/dpr';
 import LoanRepaymentSchedule from '../../Template/Modals/LoanRepaymentSchedule';
 import UploadViewDocModal from '../../Template/Modals/UploadViewDoc';
 import CreateLoanModal from '../../Template/Modals/Loan';
-import CheckListModal from '../Modals/CheckListModal';
+import CheckListModal from '../../Template/Modals/CheckListModal';
 import SharedStatus from '../../Template/Modals/SharedStatus';
 import Interest from '../../Template/Modals/Interest';
 import Tabs from '../../UIComp/Tabs';
@@ -71,7 +71,7 @@ function Loan() {
         open === "status" &&
         <SharedStatus
           isOpen
-          role="relationship_manager"
+          rolesAllowed={["credit_manager", "credit_committee", "credit_admin_department", "central_co_lending_unit"]}
           closeModal={closeModal}
         />
       }

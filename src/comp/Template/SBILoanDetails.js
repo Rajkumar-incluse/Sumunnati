@@ -6,7 +6,6 @@ import DisbursementModal from '../Operations/Modals/DisbursementModal';
 import LoanRepaymentStatus from './Modals/LoanRepaymentStatus';
 import TotalAmountModal from './Modals/TotalAmount';
 import CreateLoan from './Modals/CreateLoan';
-import Interest from './Modals/Interest';
 
 const emptyDetails = {
   FPO_Name: 'ABC FPO',
@@ -87,7 +86,7 @@ function SBILoanDetails() {
               <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
               <td className='w-36 px-2 py-4 text-gray-500 font-medium leading-5'>Payment history</td>
               <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
-              <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement</td>
+              <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement from SBI to SAMFIN</td>
             </tr>
           </thead>
 
@@ -102,12 +101,7 @@ function SBILoanDetails() {
                     &#8377; {d.amount}
                   </td>
                   <td className='px-2 py-1'>
-                    <button
-                      className='p-0'
-                      onClick={() => updateOpen('interest')}
-                    >
-                      14%
-                    </button>
+                    9%
                   </td>
                   <td className='px-2 py-1'>&#8377; {d.due}</td>
                   <td className='px-2 py-1'>&#8377; {d.next}</td>
@@ -155,11 +149,11 @@ function SBILoanDetails() {
                           className='w-24 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
                           onClick={() => updateOpen('Disbursement', 'View')}
                         >
-                          Repaid
+                          Disbursed
                         </button>
                         :
                         <button className='w-24 py-0.5 bg-red-200 hover:bg-red-300 text-xs cursor-default'>
-                          In-progress
+                          Pending
                         </button>
                     }
                   </td>
@@ -176,14 +170,6 @@ function SBILoanDetails() {
           isOpen
           type={type}
           data={type !== "Create" ? emptyDetails : false}
-          closeModal={closeModal}
-        />
-      }
-
-      {
-        open === "interest" &&
-        <Interest
-          isOpen
           closeModal={closeModal}
         />
       }

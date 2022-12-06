@@ -3,16 +3,21 @@ import Modal, { ModalHeader } from '../../UIComp/Modal';
 const data = [
   {
     title: 'Loan Application form',
-    status: 'Accepted',
+    status: 'Approved',
     comment: 'Comments added by SBI.'
   },
   {
     title: 'Due Diligence check',
-    status: 'Accepted',
+    status: 'Approved',
     comment: 'Comments added by SBI.'
   },
   {
     title: 'Loan Limit Appraisal',
+    status: 'Review',
+    comment: 'Comments added by SBI.'
+  },
+  {
+    title: 'Loan Sanction',
     status: 'Rejected',
     comment: 'Comments added by SBI.'
   },
@@ -38,7 +43,7 @@ function SBIStatus({ isOpen, closeModal }) {
             <tr key={d.role} className='border'>
               <td className="px-4 py-2">{d.title}</td>
               <td className="px-4 py-2">
-                <button className={`text-sm ${d.status === "Accepted" ? "bg-green-200 text-green-800" : ""} ${d.status === "Rejected" ? "bg-red-200 text-red-900" : ""} ${d.status === "Pending" ? "bg-yellow-200 text-yellow-900" : ""}`}>
+                <button className={`w-24 px-0 text-sm ${d.status === "Approved" ? "bg-green-200 text-green-800" : ""} ${d.status === "Rejected" || d.status === "Review" ? "bg-red-200 text-red-900" : ""} ${d.status === "Pending" ? "bg-yellow-200 text-yellow-900" : ""}`}>
                   {d.status}
                 </button>
               </td>

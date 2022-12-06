@@ -6,8 +6,8 @@ import UploadExecutedDocs from '../Template/Modals/UploadExecutedDocs';
 import UploadViewDocModal from '../Template/Modals/UploadViewDoc';
 import StatusUpdateModal from '../Template/Modals/StatusUpdate';
 import CreateLoanModal from './Modals/CreateLoanModal';
+import CheckListModal from '../Template/Modals/CheckListModal';
 import InterestModal from '../Template/Modals/Interest';
-// import SharedStatus from '../Template/Modals/SharedStatus';
 import ShareToSBI from './Modals/ShareToSBI';
 import SBIStatus from './Modals/SBIStatus';
 import Tabs from '../UIComp/Tabs';
@@ -75,14 +75,14 @@ function Table({ type, data, updateOpen }) {
   }, [data, filterByRM])
 
   return (
-    <table className='w-full'>
+    <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='pl-12 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>FPO Name</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>FPO Name</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Loan amount</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
+          <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>
             <DropDownWrapper
               list={rmNames}
               onClk={setFilterByRM}
@@ -95,24 +95,24 @@ function Table({ type, data, updateOpen }) {
           </td>
           {
             type === "Pending" &&
-            <>
-              <td className='px-2 py-4 text-gray-500 font-medium'>Action</td>
-              {/* <td className='px-2 py-4 text-gray-500 font-medium'>Status</td> */}
-            </>
+            <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Action</td>
           }
           {
             type !== "Rejected" &&
-            <td className='px-2 py-4 text-gray-500 font-medium'>Executed Documents</td>
+            <>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Executed Documents</td>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Updated checklist</td>
+            </>
           }
           {
             type === "Accepted" &&
             <>
-              <td className='px-2 py-4 text-gray-500 font-medium'>Deed of Assignment</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'>Status</td>
-              <td className='px-2 py-4 text-gray-500 font-medium'>SBI Status</td>
+              <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Deed of Assignment</td>
+              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
+              <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>SBI Status</td>
             </>
           }
-          <td className='px-2 py-4 text-gray-500 font-medium'>Loan Application</td>
+          <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -120,7 +120,7 @@ function Table({ type, data, updateOpen }) {
         {
           finalData.map((d, i) => (
             <tr key={d.id} className='text-sm'>
-              <td className='pl-12 pr-2 py-1'>{d.loanId}</td>
+              <td className='pl-4 pr-2 py-1'>{d.loanId}</td>
               <td className='px-2 py-1'>{d.fpo}</td>
               <td className='px-2 py-1'>&#8377; {d.amount}</td>
               <td className='px-2 py-1'>
@@ -149,46 +149,71 @@ function Table({ type, data, updateOpen }) {
                         </button>
                     }
                   </td>
-                  {/* <td className='px-2 py-1'>
-                    <button
-                      className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
-                      onClick={() => updateOpen('Status', 'View')}
-                    >
-                      View
-                    </button>
-                  </td> */}
+
+                  <td className='px-2 py-1'>
+                    {
+                      i % 3 !== 0 ?
+                        <button
+                          className='w-20 py-0.5 bg-[#a3dc5d] text-xs hover:bg-[#bdf579]'
+                          onClick={() => updateOpen("ExecutedDoc", "View")}
+                        >
+                          View
+                        </button>
+                        :
+                        <button
+                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                          onClick={() => updateOpen('ExecutedDoc', "Create")}
+                        >
+                          Update
+                        </button>
+                    }
+                  </td>
                 </>
               }
+
               {
                 type !== "Rejected" &&
                 <td className='px-2 py-1'>
                   <button
-                    className='w-20 py-0.5 bg-[#a3dc5d] text-xs hover:bg-[#bdf579]'
-                    onClick={() => updateOpen("ExecutedDoc")}
+                    className='w-20 py-0.5 bg-[#bdf579] hover:bg-[#a3dc5d] text-xs'
+                    onClick={() => updateOpen('updateCLModal', 'View')}
                   >
                     View
                   </button>
                 </td>
               }
+
               {
                 type === "Accepted" &&
                 <>
-                  {
-                    i % 2 === 0
-                      ?
-                      <button
-                        className='w-20 py-0.5 bg-[#bdf579] text-xs'
-                        onClick={() => updateOpen("DeedofAssignment")}
-                      >
-                        View
-                      </button>
-                      :
-                      <button
-                        className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
-                      >
-                        Pending
-                      </button>
-                  }
+                  <td className='px-2 py-1'>
+                    <button
+                      className='w-20 py-0.5 bg-[#a3dc5d] text-xs hover:bg-[#bdf579]'
+                      onClick={() => updateOpen("ExecutedDoc", "View")}
+                    >
+                      View
+                    </button>
+                  </td>
+
+                  <td className='px-2 py-1'>
+                    {
+                      i % 2 === 0
+                        ?
+                        <button
+                          className='w-20 py-0.5 bg-[#bdf579] text-xs'
+                          onClick={() => updateOpen("DeedofAssignment")}
+                        >
+                          View
+                        </button>
+                        :
+                        <button
+                          className='w-20 py-0.5 bg-red-200 hover:bg-red-300 text-xs'
+                        >
+                          Pending
+                        </button>
+                    }
+                  </td>
+
                   <td className='px-2 py-1'>
                     {
                       i % 2 === 0
@@ -224,6 +249,7 @@ function Table({ type, data, updateOpen }) {
                   </td>
                 </>
               }
+
               <td className='px-2 py-1'>
                 <button
                   className='py-px bg-[#a3dc5d] hover:bg-[#bdf579]'
@@ -244,9 +270,17 @@ const lists = ["Accepted", "Rejected", "Pending"]
 
 function Loan() {
   const [open, setOpen] = useState("")
+  const [type, setType] = useState('')
 
-  const updateOpen = val => setOpen(val)
-  const closeModal = () => setOpen('')
+  const updateOpen = (val, condition) => {
+    setOpen(val)
+    if (condition) setType(condition)
+  }
+
+  const closeModal = () => {
+    setOpen('')
+    setType('')
+  }
 
   return (
     <section className='dfc gap-4 h-full overflow-y-hidden bg-[#f7f7f7]'>
@@ -258,7 +292,7 @@ function Loan() {
         tabsList={lists}
         listClass='mx-6'
         tabClass='pb-2'
-        panelClass='scroll-y mx-4 my-2 bg-white'
+        panelClass='scroll-y overflow-x-auto mx-4 my-2 bg-white'
       >
         {
           lists.map(l => (
@@ -318,7 +352,7 @@ function Loan() {
         open === "ExecutedDoc" &&
         <UploadExecutedDocs
           isOpen
-          type="View"
+          type={type}
           closeModal={closeModal}
         />
       }
@@ -333,14 +367,14 @@ function Loan() {
         />
       }
 
-      {/* {
-        open === 'Status' &&
-        <SharedStatus
+      {
+        open === "updateCLModal" &&
+        <CheckListModal
           isOpen
-          role="central_co_lending_unit"
+          type={type}
           closeModal={closeModal}
         />
-      } */}
+      }
     </section>
   )
 }

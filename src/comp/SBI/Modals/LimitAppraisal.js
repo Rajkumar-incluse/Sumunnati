@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 import { ReactComponent as Close } from '../../../assets/svg/actions/close.svg';
+import { ReactComponent as Tick } from '../../../assets/svg/common/tick.svg';
 import gst from '../../../assets/img/gst.jpg';
 
 function LimitAppraisal({ isOpen, type, closeModal, openBueroCheck }) {
@@ -77,27 +78,45 @@ function LimitAppraisal({ isOpen, type, closeModal, openBueroCheck }) {
 
       <div className='df gap-4 my-4'>
         {
-          !status ?
-            <>
+          type === "View"
+            ? <p className={status === "Approved" ? "text-[#86ba46]" : "text-red-500"}>{status}</p>
+            : <>
               <button
-                onClick={() => setStatus("Approved")}
+                className={`dfc w-24 items-center ml-auto py-4 px-8 rounded-lg border cursor-pointer ${status === 'Approve' ? "border-green-600" : ""}`}
+                onClick={() => setStatus('Approve')}
                 disabled={!confirmed}
-                className='w-full py-0.5 bg-[#bdf579] hover:bg-[#8bb657] disabled:opacity-80'
               >
-                Approve
+                <Tick className={`w-12 h-12 ${status === 'Approve' ? '[--svg-color:rgb(22,163,74)]' : ''}`} />
+                <p className={status === 'Approve' ? 'text-green-600' : ''}>Approve</p>
               </button>
+
               <button
-                onClick={() => setStatus("Rejected")}
+                className={`dfc w-24 items-center mr-auto py-4 px-8 rounded-lg border cursor-pointer ${status === 'Review' ? "border-yellow-600" : ""}`}
+                onClick={() => setStatus('Review')}
                 disabled={!confirmed}
-                className='w-full py-0.5 bg-red-200 hover:bg-red-300 disabled:opacity-80'
               >
-                Reject
+                <Close className={`w-12 h-12 ${status === 'Review' ? '[--svg-color:rgb(202,138,4)]' : ''}`} />
+                <p className={status === 'Review' ? 'text-yellow-600' : ''}>Review</p>
+              </button>
+
+              <button
+                className={`dfc w-24 items-center mr-auto py-4 px-8 rounded-lg border cursor-pointer ${status === 'Reject' ? "border-red-600" : ""}`}
+                onClick={() => setStatus('Reject')}
+                disabled={!confirmed}
+              >
+                <Close className={`w-12 h-12 ${status === 'Reject' ? '[--svg-color:rgb(220,38,38)]' : ''}`} />
+                <p className={status === 'Reject' ? 'text-red-600' : ''}>Reject</p>
               </button>
             </>
-            :
-            <p className={status === "Approved" ? "text-[#86ba46]" : "text-red-500"}>{status}</p>
         }
       </div>
+
+      {
+        type !== "View" && status && confirmed &&
+        <button className='block w-3/4 mt-8 mx-auto bg-[#a3dc5d] disabled:bg-[#b9e287] disabled:cursor-not-allowed'>
+          Submit
+        </button>
+      }
     </Modal>
   )
 }

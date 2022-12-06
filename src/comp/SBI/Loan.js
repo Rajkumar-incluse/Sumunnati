@@ -60,18 +60,18 @@ const emptyDetails = {
 
 function SanctionedTable({ data, updateOpen }) {
   return (
-    <table className='w-full'>
+    <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Date</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Deed of Assignment</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Disbursement</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Executed documents</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Due diligence</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Loan limit appraisal</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Date</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed Loan amount</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Deed of Assignment</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Disbursement</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Executed documents</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Due diligence</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Loan limit appraisal</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
 
@@ -167,19 +167,19 @@ function SanctionedTable({ data, updateOpen }) {
 
 function InProgressTable({ data, updateOpen }) {
   return (
-    <table className='w-full'>
+    <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
           <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium leading-5'>Loan Id</td>
           <td className='w-40 px-2 py-4 text-gray-500 font-medium leading-5'>Date</td>
           <td className='w-32 px-2 py-4 text-gray-500 font-medium leading-5'>Proposed Loan amount</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>SBI's share</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Samunnati's share</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Due diligence</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Loan limit appraisal</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Executed documents</td>
-          <td className='px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>SBI's share</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Samunnati's share</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Interest rate</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Due diligence</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Loan limit appraisal</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Executed documents</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium leading-5'>Status</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
       </thead>
@@ -284,12 +284,12 @@ function InProgressTable({ data, updateOpen }) {
 
 function RejectedTable({ data, updateOpen }) {
   return (
-    <table className='w-full'>
+    <table className='w-full table-fixed'>
       <thead>
         <tr className='sticky top-0 bg-white text-left'>
-          <td className='pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Date</td>
-          <td className='px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
+          <td className='w-28 pl-4 pr-2 py-4 text-gray-500 font-medium'>Loan Id</td>
+          <td className='w-40 px-2 py-4 text-gray-500 font-medium'>Date</td>
+          <td className='w-28 px-2 py-4 text-gray-500 font-medium'>Proposed Loan amount</td>
           <td className='w-80 px-2 py-4 text-gray-500 font-medium'>Reason for rejection (Comment of credit committee)</td>
           <td className='w-24 px-2 py-4 text-gray-500 font-medium leading-5'>Loan Application</td>
         </tr>
