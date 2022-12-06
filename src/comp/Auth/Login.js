@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import { login } from "../../action-reducers/login/loginAction";
+// import { login } from "../../action-reducers/login/loginAction";
 
 import { ReactComponent as LoginImg } from '../../assets/svg/auth/signup.svg';
 import summunatiLogo from '../../assets/svg/Samunnati_Logo.svg';
@@ -16,7 +16,7 @@ function Login() {
   })
 
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const onChange = e => {
     setDetails(p => ({
@@ -25,31 +25,32 @@ function Login() {
     }))
   }
 
-  const onSuccess = role => {
-    const lists = {
-      admin: "user",
-      relationship_manager: "fpo",
-      credit_manager: "fpo",
-      central_co_lending_unit: "fpo",
-      credit_admin_department: "fpo",
-      credit_committee: "fpo",
-      credit_operations: "",
-      operations: "",
-      sbi: "",
-    }
+  // const onSuccess = role => {
+  //   const lists = {
+  //     admin: "user",
+  //     relationship_manager: "fpo",
+  //     credit_manager: "fpo",
+  //     central_co_lending_unit: "fpo",
+  //     credit_admin_department: "fpo",
+  //     credit_committee: "fpo",
+  //     credit_operations: "",
+  //     operations: "",
+  //     sbi: "",
+  //   }
 
-    const url = lists[role] ? `/${role}/${lists[role]}` : `/${role}`
-    // console.log(url)
-    navigate(url)
-  }
+  //   const url = lists[role] ? `/${role}/${lists[role]}` : `/${role}`
+  //   // console.log(url)
+  //   navigate(url)
+  // }
 
-  const onError = () => {
-    setLoading(false)
-  }
+  // const onError = () => {
+  //   setLoading(false)
+  // }
 
   const onSubmit = () => {
     setLoading(true)
-    dispatch(login(details, onSuccess, onError))
+    navigate(`/${details.email.split("@")[0]}/loan`)
+    // dispatch(login(details, onSuccess, onError))
   }
 
   return (
