@@ -14,7 +14,7 @@ const endPoints = {
   // admin
   getUserList: "/admin",
   createUser: "/admin/createUser",
-
+  editUser: "/admin/editUser",
 
   // document/image upload
   doc: "/document", // ?filename=

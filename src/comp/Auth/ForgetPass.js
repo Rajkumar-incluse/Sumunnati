@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { forgotPassword } from "../../action-reducers/login/loginAction";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as ForgetImg } from '../../assets/svg/auth/forget5.svg';
 import AnimeInputField from "../Common/AnimeInputField";
@@ -7,10 +9,20 @@ import AnimeInputField from "../Common/AnimeInputField";
 function ForgetPass() {
   const [loading, setLoading] = useState("")
   const [email, setEmail] = useState("")
+  const history = useNavigate();
+
+  const backToLogin = () => {
+    history("/");
+  }
 
   const onSubmit = () => {
+    console.log(email);
     setLoading(true)
-
+    const details = {
+      email: email,
+    }
+    forgotPassword(details, backToLogin);
+    backToLogin();
   }
 
   return (

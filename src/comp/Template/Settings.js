@@ -1,7 +1,13 @@
 import { useId, useState } from 'react';
+import loginConstants from '../../action-reducers/login/loginConstants';
+import loginReducer from '../../action-reducers/login/loginReducer';
 import uerImg from '../../assets/img/user/user3.png';
+import store from '../../utils/store';
+import { useSelector } from 'react-redux';
+import { editUser } from '../../action-reducers/admin/adminAction';
+import { useDispatch } from "react-redux";
 
-function Input({ name = '', label = '', value = '', onChange }) {
+function Input({ name = '', label = '', value = '', onChange, readOnly }) {
   const id = useId()
 
   return (
@@ -21,6 +27,7 @@ function Input({ name = '', label = '', value = '', onChange }) {
         id={id}
         value={value}
         onChange={onChange}
+        readOnly={readOnly}
       />
     </div>
   )
@@ -29,16 +36,36 @@ function Input({ name = '', label = '', value = '', onChange }) {
 function Settings() {
   const [show, setShow] = useState("profile")
   const [edit, setEdit] = useState(false)
+  const user = useSelector(({ login }) => login.userDetails)
   const [details, setDetails] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
     phone: '',
     oldPassword: '',
     newPassword: '',
+    token: user.token,
+    role: user.role,
+    userId: user.userId
   })
 
-  const updateEdit = () => setEdit(p => !p)
+  const dispatch = useDispatch()
+
+  const updateEdit = () => {
+    setEdit(p => !p)
+  }
+
+  const updateUserDetails = () => {
+    setEdit(p => !p)
+    const data = {
+      firstName: details.firstName,
+      lastName: details.lastName,
+      email: details.email,
+      phone: '098743589891',
+    }
+    console.log(data);
+    dispatch(editUser(data));
+  }
 
   const onChange = e => {
     setDetails(p => ({
@@ -74,6 +101,7 @@ function Settings() {
               label='First Name'
               value={details.firstName}
               onChange={onChange}
+              readOnly={!edit}
             />
 
             <Input
@@ -81,6 +109,7 @@ function Settings() {
               label='Last Name'
               value={details.lastName}
               onChange={onChange}
+              readOnly={!edit}
             />
 
             <Input
@@ -88,6 +117,7 @@ function Settings() {
               label='Email'
               value={details.email}
               onChange={onChange}
+              readOnly={!edit}
             />
 
             <Input
@@ -95,6 +125,7 @@ function Settings() {
               label='Phone number'
               value={details.phone}
               onChange={onChange}
+              readOnly={!edit}
             />
 
             {
@@ -119,7 +150,7 @@ function Settings() {
 
                 <button
                   className='block bg-[#a3dc5d] hover:bg-[#678b3b]'
-                  onClick={updateEdit}
+                  onClick={updateUserDetails}
                 >
                   Update
                 </button>
@@ -137,12 +168,14 @@ function Settings() {
               label='Old Password'
               value={details.oldPassword}
               onChange={onChange}
+              readOnly={!edit}
             />
             <Input
               name="newPassword"
               label='New Password'
               value={details.newPassword}
               onChange={onChange}
+              readOnly={!edit}
             />
 
             <button

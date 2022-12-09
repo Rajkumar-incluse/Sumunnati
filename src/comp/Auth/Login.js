@@ -25,7 +25,7 @@ function Login() {
     }))
   }
 
-  const onSuccess = role => {
+  const onSuccess = role => { 
     const lists = {
       admin: "user",
       relationship_manager: "fpo",

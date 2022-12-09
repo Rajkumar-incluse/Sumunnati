@@ -72,3 +72,19 @@ export async function createOrg(data, onSuccess) {
     console.log(error)
   }
 }
+
+export async function forgotPassword(data, onSuccess) {
+  try {
+    console.log(data);
+    const payload = await sendApiReq({
+      method: 'post',
+      url: endPoints.forgetPass,
+      data,
+    })
+
+    console.log(payload)
+    onSuccess()
+  } catch (error) {
+    console.log(error)
+  }
+}

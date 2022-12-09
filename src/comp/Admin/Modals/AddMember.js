@@ -5,11 +5,12 @@ import { useDispatch } from 'react-redux';
 import Modal, { ModalHeader } from '../../UIComp/Modal';
 import user from '../../../assets/img/user.png';
 import { registerUser } from '../../../action-reducers/admin/adminAction';
+import { UploadFile } from '../../../../src/action-reducers/loan/loanAction';
 
 function AddMember({ isOpen, closeModal }) {
   const [list] = useState(["Relationship Manager", "Credit Manager", "Credit committee", "Credit Administration", "Central Co-lending Unit", "Credit Operations", "Operations", "SBI"])
   const [loading, setLoading] = useState(false)
-  const [fileData, setFileData] = useState({})
+  const [fileData, setFileData] = useState("")
   const [file, setFile] = useState("")
   const dispatch = useDispatch()
 
@@ -20,6 +21,10 @@ function AddMember({ isOpen, closeModal }) {
     email: "",
     role: "",
   })
+
+  const setFileName = (name) => {
+    setFile(name);
+  }
 
   const onChange = e => {
     setData(p => ({
@@ -32,11 +37,17 @@ function AddMember({ isOpen, closeModal }) {
     acceptedFiles.forEach((file) => {
       setFileData(file)
       const reader = new FileReader()
+      const formData = new FormData()
 
+      formData.append("document", file)
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = (e) => {
-        setFile(e.target.result)
+        console.log('file reading...')
+        console.log(formData)
+        console.log(file)
+        setFileData(e.target.result)
+        UploadFile(formData, setFileName);
       }
       reader.readAsDataURL(file)
     })
@@ -52,16 +63,39 @@ function AddMember({ isOpen, closeModal }) {
 
   const onSubmit = () => {
     setLoading(true)
-    const formData = new FormData()
+    console.log(file);
 
-    formData.append("profileImg", fileData)
-    formData.append("phoneNumber", data.phoneNumber)
-    formData.append("firstName", data.firstName)
-    formData.append("lastName", data.lastName)
-    formData.append("email", data.email)
-    formData.append("role", data.role)
+    console.log(file);
+    console.log(data.phoneNumber);
+    console.log(data.firstName);
+    console.log(data.lastName);
+    console.log(data.email);
+    console.log(data.role);
 
-    dispatch(registerUser(formData))
+    const details = {
+      // profileImg: file,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      role: data.role,
+    }
+
+    console.log(details);
+
+    dispatch(registerUser(details, close))
+  }
+
+  const close = () => {
+    closeModal()
+    setFileData("")
+    setFile("")
+    data.firstName = ""
+    data.lastName = ""
+    data.email = ""
+    data.phoneNumber = ""
+    data.role = ""
+    setLoading(false)  
   }
 
   return (
@@ -81,7 +115,7 @@ function AddMember({ isOpen, closeModal }) {
           {...getRootProps()}
         // onClick={() => inputRef.current.click()}
         >
-          <img className='w-32 h-32 rounded-full object-cover' src={file || user} alt="user" />
+          <img className='w-32 h-32 rounded-full object-cover' src={fileData || user || file} alt="user" />
         </div>
 
         <input {...getInputProps()} />
